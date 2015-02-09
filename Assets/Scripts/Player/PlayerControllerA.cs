@@ -13,18 +13,13 @@ public class PlayerControllerA : MonoBehaviour {
 	private float _speed = 5f;
 	private float _jumpForce = 300f;
 
-	//Health and Stamina
-	private int _health = 100;
-	private int _stamina = 100;
-	public Slider healthBar;
-	public Slider staminaBar;
+	//Health, Stamina and Experience
+	public int _health = 100;
+	public int _stamina = 100;
+	public float experience = 0;
 
 	//Stamina Regen timer
 	private int StaTimer = 0;
-
-	//Experience
-	private float experience = 0;
-	public Slider XPBar;
 
 	//Check if on Ground
 	private bool isGrounded = false;
@@ -37,35 +32,22 @@ public class PlayerControllerA : MonoBehaviour {
 
 	void Update () 
 	{
-		CheckMovement ();
-		CheckBars ();
-
-		//Damage Test
-		if(Input.GetKeyDown(KeyCode.H) && _health > 0)
-			_health -= 20;
-		
-		if (_health <= 0)
+		CheckHealth ();
+		if (_health > 0)
 		{
-			Player.renderer.material.color = Color.Lerp (Player.renderer.material.color, _transparant, fadeSpeed * Time.deltaTime);
-			Destroy(gameObject, 5f);
-		}
-		
-		//Stamina Refill
-		if (StaTimer > 0)
-		{
-			StaTimer--;
-		}else if(StaTimer == 0 && _stamina < 100)
-			_stamina ++;
+			if (Input.GetAxis ("Horizontal") != 0)
+				CheckMovement ();
 
-		//EXP Test
-		if (Input.GetKeyDown (KeyCode.X))
-			experience += 40;
+			//Damage Test
+			if(Input.GetKeyDown(KeyCode.H) && _health > 0)
+				_health -= 20;
 
-		//EXPBar Constant Check
-		if (experience >= XPBar.maxValue)
-		{
-			experience -= XPBar.maxValue;
-			Mathf.Floor(XPBar.maxValue = XPBar.maxValue * 1.8f);
+			//Stamina Refill
+			if (StaTimer > 0)
+			{
+				StaTimer--;
+			}else if(StaTimer == 0 && _stamina < 100)
+				_stamina ++;
 		}
 	}
 
@@ -95,12 +77,13 @@ public class PlayerControllerA : MonoBehaviour {
 		
 		transform.Translate (x, 0, 0, Space.Self);
 	}
-
-	void CheckBars()
+	
+	void CheckHealth()
 	{
-		//Visual Bars constant checking
-		staminaBar.value = _stamina;
-		healthBar.value = _health;
-		XPBar.value = experience;
+		if (_health <= 0)
+		{
+			Player.renderer.material.color = Color.Lerp (Player.renderer.material.color, _transparant, fadeSpeed * Time.deltaTime);
+			Destroy(gameObject, 5f);
+		}
 	}
 }
