@@ -32,23 +32,23 @@ public class PlayerControllerA : MonoBehaviour {
 
 	void Update () 
 	{
-		CheckMovement ();
 		CheckHealth ();
-
-		//Damage Test
-		if(Input.GetKeyDown(KeyCode.H) && _health > 0)
-			_health -= 20;
-
-		//Stamina Refill
-		if (StaTimer > 0)
+		if (_health > 0)
 		{
-			StaTimer--;
-		}else if(StaTimer == 0 && _stamina < 100)
-			_stamina ++;
+			if (Input.GetAxis ("Horizontal") != 0)
+				CheckMovement ();
 
-		//EXP Test
-		if (Input.GetKeyDown (KeyCode.X))
-			experience += 40;
+			//Damage Test
+			if(Input.GetKeyDown(KeyCode.H) && _health > 0)
+				_health -= 20;
+
+			//Stamina Refill
+			if (StaTimer > 0)
+			{
+				StaTimer--;
+			}else if(StaTimer == 0 && _stamina < 100)
+				_stamina ++;
+		}
 	}
 
 	void OnCollisionEnter (Collision other)
