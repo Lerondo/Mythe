@@ -1,50 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : Unit {
 	public int[] allDamages = new int[5];
 
-	private CharacterController _controller;
-	private bool _isGrounded = false;
-	private bool _attacking = false;
-	private bool _defending = false;
-	private float _currentAttackDmg;
-	private float _speed = 5f;
+	private bool _isTryingToClimb = false;
+	private bool _isClimbing = false;
 	private float _jumpHeight = 10f;
-	void Start () {
-	}
+
+	//ATTACKING
 	public void Attack(int skillNumber)
 	{
 		Debug.Log("doing attack: " + skillNumber);
-		_attacking = true;
 		_currentAttackDmg = allDamages[skillNumber];
 		//TODO: check animation by skillnumber.
 	}
-	private void Defend()
-	{
-		_defending = true;
-	}
+	//MOVEMENT
 	public void Move(Vector3 movement)
 	{
 		movement *= _speed * Time.deltaTime;
 		transform.Translate(movement);
 	}
-	public void Jump()
+	public void Jump(Vector3 climbMovement)
 	{
 		if(_isGrounded)
 		{
 			Vector3 jumpForce = rigidbody.velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
 			rigidbody.velocity = jumpForce; 
+		} else if(!_isTryingToClimb) {
+			_isTryingToClimb = true;
+		} else if(_isClimbing)
+		{
+			climbMovement *= _speed * Time.deltaTime;
+			transform.Translate(climbMovement);
 		}
 	}
+	void Climb()
+	{
+		_isClimbing = true;
+		rigidbody.useGravity = false;
+	}
+	protected override void Update () 
+	{
+		if(_isClimbing)
+		{
+			Vector3 newPos = this.transform.position;
+			newPos.z = 1f;
+			this.transform.position = newPos;
+		} else {
+			Vector3 newPos = this.transform.position;
+			newPos.z = 0f;
+			this.transform.position = newPos;
+		}
+	}
+	//COLLISION
 	void OnTriggerStay(Collider other)
 	{
-		if(_attacking)
+		if(_attacking && !_justAttacked)
 		{
 			if(other.transform.tag == "Enemy")
 			{
-				_attacking = false;
+				_justAttacked = true;				
 				//TODO: give dmg
 			}
 		}
@@ -54,6 +71,12 @@ public class PlayerController : MonoBehaviour {
 		if(other.transform.tag == "Floor")
 		{
 			_isGrounded = true;
+			_isTryingToClimb = false;
+		}
+		if(!_isGrounded && _isTryingToClimb)
+		{
+			if(other.transform.tag == "Ladder")
+				Climb();
 		}
 	}
 	void OnCollisionExit(Collision other)
