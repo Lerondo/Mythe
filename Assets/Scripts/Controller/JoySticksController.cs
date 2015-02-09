@@ -31,6 +31,7 @@ public class JoySticksController : MonoBehaviour {
 			{
 				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x)
 				{
+					playerController.SetIsMoving(true);
 					float xOffSet = Input.GetTouch(_currentFingerId).position.x - movementJoyStickTransform.position.x;
 					xOffSet *= 0.01f;
 					if(xOffSet > 1)
@@ -42,13 +43,22 @@ public class JoySticksController : MonoBehaviour {
 					}
 					Vector3 movement = new Vector3(xOffSet,0,0);
 					playerController.Move(movement);
+				} else {
+					playerController.SetIsMoving(false);
 				}
-				if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+20)
+				if(playerController.GetIsClimbing())
 				{
 					float yOffSet = Input.GetTouch(_currentFingerId).position.y - movementJoyStickTransform.position.y;
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
-					playerController.Jump(climbMovement);
+					playerController.Climb(climbMovement);
+				}
+				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+20)
+				{
+					playerController.Jump();
+				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-20)
+				{
+					playerController.FallDown();
 				}
 			}
 		} else {
