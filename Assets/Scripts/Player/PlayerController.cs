@@ -3,24 +3,37 @@ using System.Collections;
 
 public class PlayerController : Unit {
 	public int[] allDamages = new int[5];
+	public int[] allCooldowns = new int[5];
 
 	private bool _isTryingToClimb = false;
 	private bool _isClimbing = false;
 	private float _jumpHeight = 10f;
 
-	//ATTACKING
+	/// <summary>
+	/// Attack with the specified skillNumber.
+	/// </summary>
+	/// <param name="skillNumber">Skill number.</param>
 	public void Attack(int skillNumber)
 	{
 		Debug.Log("doing attack: " + skillNumber);
 		_currentAttackDmg = allDamages[skillNumber];
 		//TODO: check animation by skillnumber.
 	}
-	//MOVEMENT
+
+	/// <summary>
+	/// Move the specified movement.
+	/// </summary>
+	/// <param name="movement">Movement.</param>
 	public void Move(Vector3 movement)
 	{
 		movement *= _speed * Time.deltaTime;
 		transform.Translate(movement);
 	}
+
+	/// <summary>
+	/// Jump.
+	/// </summary>
+	/// <param name="climbMovement">Climb movement.</param>
 	public void Jump(Vector3 climbMovement)
 	{
 		if(_isGrounded)
@@ -54,18 +67,30 @@ public class PlayerController : Unit {
 			this.transform.position = newPos;
 		}
 	}
-	//COLLISION
+
+	/// <summary>
+	/// Raises the trigger stay event.
+	/// </summary>
+	/// <param name="other">Other.</param>
 	void OnTriggerStay(Collider other)
 	{
 		if(_attacking && !_justAttacked)
 		{
-			if(other.transform.tag == "Enemy")
+			if(!other.isTrigger)
 			{
-				_justAttacked = true;				
-				//TODO: give dmg
+				if(other.transform.tag == "Enemy")
+				{
+					_justAttacked = true;	
+					//TODO: give dmg
+				}
 			}
 		}
 	}
+
+	/// <summary>
+	/// Raises the collision enter event.
+	/// </summary>
+	/// <param name="other">Other.</param>
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.transform.tag == "Floor")
@@ -79,6 +104,11 @@ public class PlayerController : Unit {
 				Climb();
 		}
 	}
+
+	/// <summary>
+	/// Raises the collision exit event.
+	/// </summary>
+	/// <param name="other">Other.</param>
 	void OnCollisionExit(Collision other)
 	{
 		if(other.transform.tag == "Floor")

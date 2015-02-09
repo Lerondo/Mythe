@@ -51,18 +51,6 @@ public class JoySticksController : MonoBehaviour {
 					playerController.Jump(climbMovement);
 				}
 			}
-			foreach (var touch in Input.touches) 
-			{
-				Ray ray = Camera.main.ScreenPointToRay(touch.position);
-				RaycastHit hit;
-				if (Physics.Raycast(ray, out hit))
-				{
-					if(hit.transform.tag == "button")
-					{
-						//check hit
-					}
-				}
-			}
 		} else {
 			_currentFingerId = -1;
 		}
