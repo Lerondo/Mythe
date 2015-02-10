@@ -29,6 +29,7 @@ public class CameraControll : MonoBehaviour {
 	{
 		this.transform.position = new Vector3 (_player.transform.position.x, _player.transform.position.y + 1.74f, -10);
 
+
 		minY = new Vector3 (_player.transform.position.x, Mathf.Clamp(0f, 3.8F, 3.8F), -10);
 		maxY = new Vector3(_player.transform.position.x, Mathf.Clamp(0f, 10F, 10F), -10);
 	}

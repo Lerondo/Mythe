@@ -47,6 +47,9 @@ public class PlayerController : Unit {
 					Physics.IgnoreCollision(col,this.collider,false);
 				}
 				_isGrounded = true;
+				break;
+			} else {
+				_isGrounded = false;
 			}
 		}
 	}
@@ -111,6 +114,7 @@ public class PlayerController : Unit {
 			Vector3 jumpForce = rigidbody.velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
 			rigidbody.velocity = jumpForce; 
+			_isGrounded = false;
 			_justJumped = true;
 		} 
 		else if(!_isTryingToClimb) 
@@ -153,7 +157,6 @@ public class PlayerController : Unit {
 	public void StopClimbing()
 	{
 		_isClimbing = false;
-		_isGrounded = true;
 		rigidbody.useGravity = true;
 		Vector3 newPos = this.transform.position;
 		newPos.z = 0f;
