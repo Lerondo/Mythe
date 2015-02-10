@@ -6,10 +6,50 @@ public class PlayerController : Unit {
 	public int[] allCooldowns = new int[5];
 	
 	private bool _isTryingToClimb = false;
-	private bool _isMoving = false;
 	private bool _isClimbing = false;
-	private float _jumpHeight = 10f;
+	private bool _justJumped = false;
+	private float _jumpHeight = 25f;
 	private GameObject currentFloor;
+
+	protected override void Update()
+	{
+		if(!_justJumped)
+		{
+			CheckCollision();
+		} 
+		else if(rigidbody.velocity.y <= -0.5f)
+		{
+			_justJumped = false;
+		}
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.color = Color.yellow;
+		Vector3 spherePosition = this.transform.position;
+		spherePosition.y -= 1f;
+		Gizmos.DrawSphere(spherePosition, 0.1f);
+	}
+	/// <summary>
+	/// Checks the collision.
+	/// </summary>
+	void CheckCollision()
+	{
+		Vector3 spherePosition = this.transform.position;
+		spherePosition.y -= 1f;
+		Collider[] colliders = Physics.OverlapSphere (spherePosition,  0.1f);
+		foreach(Collider col in colliders)
+		{
+			if(col.transform.tag == "Floor" && !col.isTrigger) 
+			{
+				if(currentFloor == null || col.gameObject != currentFloor)
+				{
+					currentFloor = col.gameObject;
+					Physics.IgnoreCollision(col,this.collider,false);
+				}
+				_isGrounded = true;
+			}
+		}
+	}
 
 	/// <summary>
 	/// Attack with the specified skillNumber.
@@ -17,7 +57,6 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void Attack(int skillNumber)
 	{
-		Debug.Log("doing attack: " + skillNumber);
 		_currentAttackDmg = allDamages[skillNumber];
 		//TODO: check animation by skillnumber.
 	}
@@ -36,15 +75,25 @@ public class PlayerController : Unit {
 			}
 			movement *= _speed * Time.deltaTime;
 			transform.Translate(movement);
+			Vector3 newScale = this.transform.localScale;
+			newScale.x = 1;
+			if(movement.x < 0)
+			{
+				newScale.x = -1;
+			}
+			transform.localScale = newScale;
 		}
 	}
-	public void SetIsMoving(bool moving)
+	/// <summary>
+	/// Stoppeds the moving.
+	/// </summary>
+	public void StoppedMoving()
 	{
-		if(moving == false)
-		{
-			_speed = 3f;
-		}
+		_speed = 3f;
 	}
+	/// <summary>
+	/// Falls down.
+	/// </summary>
 	public void FallDown()
 	{
 		Physics.IgnoreCollision(currentFloor.collider, collider, true);
@@ -62,21 +111,33 @@ public class PlayerController : Unit {
 			Vector3 jumpForce = rigidbody.velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
 			rigidbody.velocity = jumpForce; 
+			_justJumped = true;
 		} 
 		else if(!_isTryingToClimb) 
 		{
 			_isTryingToClimb = true;
 		}
 	}
+	/// <summary>
+	/// Climb the specified climbMovement.
+	/// </summary>
+	/// <param name="climbMovement">Climb movement.</param>
 	public void Climb(Vector3 climbMovement)
 	{
 		climbMovement *= _speed * Time.deltaTime;
 		transform.Translate(climbMovement);
 	}
+	/// <summary>
+	/// Gets the is climbing.
+	/// </summary>
+	/// <returns><c>true</c>, if is climbing was gotten, <c>false</c> otherwise.</returns>
 	public bool GetIsClimbing()
 	{
 		return _isClimbing;
 	}
+	/// <summary>
+	/// Starts the climbing.
+	/// </summary>
 	public void StartClimbing()
 	{
 		_isClimbing = true;
@@ -86,9 +147,13 @@ public class PlayerController : Unit {
 		newPos.z = -1f;
 		this.transform.position = newPos;
 	}
+	/// <summary>
+	/// Stops the climbing.
+	/// </summary>
 	public void StopClimbing()
 	{
 		_isClimbing = false;
+		_isGrounded = true;
 		rigidbody.useGravity = true;
 		Vector3 newPos = this.transform.position;
 		newPos.z = 0f;
@@ -114,6 +179,10 @@ public class PlayerController : Unit {
 		}
 	}
 
+	/// <summary>
+	/// Raises the trigger exit event.
+	/// </summary>
+	/// <param name="other">Other.</param>
 	void OnTriggerExit(Collider other)
 	{
 		if(other.transform.tag == "Ladder")
@@ -130,16 +199,11 @@ public class PlayerController : Unit {
 	{
 		if(other.transform.tag == "Floor")
 		{
-			_isGrounded = true;
-			_isTryingToClimb = false;
-			if(currentFloor == null)
+			if(!_isGrounded)
 			{
-				currentFloor = other.gameObject;
-			}
-			else if(other.gameObject != currentFloor)
-			{
-				Physics.IgnoreCollision(currentFloor.collider, collider, false);
-				currentFloor = other.gameObject;
+				Physics.IgnoreCollision(this.collider,other.collider,true);
+			} else {
+				Physics.IgnoreCollision(this.collider,other.collider,false);
 			}
 		}
 	}

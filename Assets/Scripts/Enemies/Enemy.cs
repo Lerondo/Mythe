@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Enemy : Unit {
-	private Transform _target;
+	protected Transform _target;
 
 	/// <summary>
 	/// Raises the trigger enter event.
@@ -59,11 +59,14 @@ public class Enemy : Unit {
 		else 
 		{
 			Vector3 movement = new Vector3(1,0,0);
+			Vector3 scale = new Vector3(1,1,1);
 			if(this.transform.position.x > _target.transform.position.x)
 			{
 				movement.x *= -1;
+				scale.x *= -1;
 			}
 			movement *= _speed * Time.deltaTime;
+			transform.localScale = scale;
 			transform.position += movement;
 		}
 	}
