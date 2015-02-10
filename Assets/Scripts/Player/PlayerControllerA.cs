@@ -10,13 +10,16 @@ public class PlayerControllerA : MonoBehaviour {
 	private Color _transparant;
 
 	//Speed variables
-	private float _speed = 5f;
-	private float _jumpForce = 300f;
+	private float _speed = 15f;
+	private float _jumpForce = 450f;
 
 	//Health, Stamina and Experience
 	public int _health = 100;
 	public int _stamina = 100;
 	public float experience = 0;
+
+	//Death Timer Restart
+	private int onDeathRespawn = 250;
 
 	//Stamina Regen timer
 	private int StaTimer = 0;
@@ -33,9 +36,10 @@ public class PlayerControllerA : MonoBehaviour {
 	void Update () 
 	{
 		CheckHealth ();
+
 		if (_health > 0)
 		{
-			if (Input.GetAxis ("Horizontal") != 0)
+			if (Input.GetAxis ("Horizontal") != 0 || Input.GetKeyDown(KeyCode.Space))
 				CheckMovement ();
 
 			//Damage Test
@@ -49,11 +53,17 @@ public class PlayerControllerA : MonoBehaviour {
 			}else if(StaTimer == 0 && _stamina < 100)
 				_stamina ++;
 		}
+		if (_health <= 0)
+		{
+			onDeathRespawn -= 1;
+		}
+		if (onDeathRespawn < 0)
+			Application.LoadLevel(0);
 	}
 
-	void OnCollisionEnter (Collision other)
+	void OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.tag == "Ground")
+		if (other.gameObject.tag == "Floor")
 			isGrounded = true;
 	}
 
