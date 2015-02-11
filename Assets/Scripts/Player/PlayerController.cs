@@ -13,21 +13,17 @@ public class PlayerController : Unit {
 
 	protected override void Update()
 	{
-		if(!_justJumped)
+		if(_death)
 		{
-			CheckCollision();
-		} 
-		else if(rigidbody.velocity.y <= -0.5f)
-		{
-			_justJumped = false;
+			if(!_justJumped)
+			{
+				CheckCollision();
+			} 
+			else if(rigidbody.velocity.y <= -0.5f)
+			{
+				_justJumped = false;
+			}
 		}
-	}
-
-	void OnDrawGizmos() {
-		Gizmos.color = Color.yellow;
-		Vector3 spherePosition = this.transform.position;
-		spherePosition.y -= 1f;
-		Gizmos.DrawSphere(spherePosition, 0.1f);
 	}
 	/// <summary>
 	/// Checks the collision.

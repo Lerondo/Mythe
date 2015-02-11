@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour {
 	protected float _speed = 5f;
 	protected float _currentAttackDmg;
 	protected float _range;
+	protected bool _death = false;
 	protected int _health;
 
 	protected virtual void Start () {
@@ -16,6 +17,10 @@ public class Unit : MonoBehaviour {
 
 	protected virtual void Update () {
 		//update function
+	}
+	public void SetDeath(bool death)
+	{
+		_death = death;
 	}
 	/// <summary>
 	/// Attack via AnimationEvent.

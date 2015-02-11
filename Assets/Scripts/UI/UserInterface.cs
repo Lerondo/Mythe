@@ -3,72 +3,102 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour {
+	public const string HEALTHBAR = "healthbar";
+	public const string STAMINABAR = "staminabar";
+	public const string XPBAR = "xpbar";
 
 	//Ingame bars
-	public Slider healthBar;
-	public Slider staminaBar;
-	public Slider XPBar;
+	[SerializeField]private Slider _healthBar;
+	[SerializeField]private Slider _staminaBar;
+	[SerializeField]private Slider _XPBar;
 
-	//Links
-	private PlayerControllerA _playerController;
-
-	//Lvling Systems
-	private bool lvlingup = false;
-	private int lvluptimer = 0;
-	public GUIStyle lvlupTexture;
-
-	private float XoffSet = 0.42f;
-
-	void Awake()
+	/// <summary>
+	/// Updates a userinterface slider.
+	/// </summary>
+	/// <param name="bar">Bar.</param>
+	/// <param name="value">Value.</param>
+	public void UpdateBar(string bar, int value)
 	{
-		//PlayerScript linken
-		_playerController = GameObject.Find ("Player").GetComponent<PlayerControllerA>();
-	}
-
-	void Update()
-	{		
-		//EXP Test
-		if (Input.GetKeyDown (KeyCode.X))
-			_playerController.experience += XPBar.maxValue /2;
-
-		//Timed LvlUp visual
-		if (lvlingup == true)
-			lvluptimer ++;
-		if (lvluptimer > 150)
+		if(bar == HEALTHBAR)
 		{
-			lvlingup = false;
-			lvluptimer = 0;
+			_healthBar.value = value;
 		}
-
-		CheckBars ();
-		//EXPBar Constant Check
-		if (_playerController.experience >= XPBar.maxValue)
+		else if(bar == STAMINABAR)
 		{
-			_playerController.experience -= XPBar.maxValue;
-			Mathf.Floor(XPBar.maxValue = XPBar.maxValue * 1.5f);
-			lvlUp();
+			_staminaBar.value = value;
+		}
+		else if(bar == XPBAR)
+		{
+			_XPBar.value = value;
+		} else {
+			Debug.LogWarning("bar does not exist");
 		}
 	}
-	
-	void CheckBars()
+	/// <summary>
+	/// Updates the max value.
+	/// </summary>
+	/// <param name="bar">Bar.</param>
+	/// <param name="value">Value.</param>
+	public void UpdateMaxValue(string bar, int value)
 	{
-		//Visual Bars constant checking
-		staminaBar.value = _playerController._stamina;
-		healthBar.value = _playerController._health;
-		XPBar.value = _playerController.experience;
+		if(bar == HEALTHBAR)
+		{
+			_healthBar.maxValue += value;
+		}
+		else if(bar == STAMINABAR)
+		{
+			_staminaBar.maxValue += value;
+		}
+		else if(bar == XPBAR)
+		{
+			_XPBar.maxValue += value;
+		} else {
+			Debug.LogWarning("bar does not exist");
+		}
 	}
-
-	void lvlUp()
+	/// <summary>
+	/// Sets the max value.
+	/// </summary>
+	/// <param name="bar">Bar.</param>
+	/// <param name="value">Value.</param>
+	public void SetMaxValue(string bar,int value)
 	{
-		//Lvling up values
-		_playerController._health += 20;
-		healthBar.maxValue += 20;
-		lvlingup = true;
+		if(bar == HEALTHBAR)
+		{
+			_healthBar.maxValue = value;
+		}
+		else if(bar == STAMINABAR)
+		{
+			_staminaBar.maxValue = value;
+		}
+		else if(bar == XPBAR)
+		{
+			_XPBar.maxValue = value;
+		} else {
+			Debug.LogWarning("bar does not exist");
+		}
 	}
-
-	void OnGUI()
+	/// <summary>
+	/// Gets the max value.
+	/// </summary>
+	/// <returns>The max value.</returns>
+	/// <param name="bar">Bar.</param>
+	public float GetMaxValue(string bar)
 	{
-		if (lvlingup)
-			GUI.Label(new Rect(Screen.width * XoffSet, 100 , 150, 150), "", lvlupTexture);
+		if(bar == HEALTHBAR)
+		{
+			return _healthBar.maxValue;
+		}
+		else if(bar == STAMINABAR)
+		{
+			return _staminaBar.maxValue;
+		}
+		else if(bar == XPBAR)
+		{
+			return _XPBar.maxValue;
+		} else {
+			Debug.LogWarning("bar does not exist");
+		}
+		return 0;
 	}
 }

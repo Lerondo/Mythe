@@ -38,11 +38,14 @@ public class Enemy : Unit {
 	/// </summary>
 	protected override void Update() 
 	{
-		if (_target) 
+		if(!_death)
 		{
-			if(IsSeeingPlayer())
+			if (_target) 
 			{
-				MoveTowardsPlayer();
+				if(IsSeeingPlayer())
+				{
+					MoveTowardsPlayer();
+				}
 			}
 		}
 	}
