@@ -42,13 +42,22 @@ public class JoySticksController : MonoBehaviour {
 					}
 					Vector3 movement = new Vector3(xOffSet,0,0);
 					playerController.Move(movement);
+				} else {
+					playerController.StoppedMoving();
 				}
-				if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+20)
+				if(playerController.GetIsClimbing())
 				{
 					float yOffSet = Input.GetTouch(_currentFingerId).position.y - movementJoyStickTransform.position.y;
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
-					playerController.Jump(climbMovement);
+					playerController.Climb(climbMovement);
+				}
+				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
+				{
+					playerController.Jump();
+				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
+				{
+					playerController.FallDown();
 				}
 			}
 		} else {
