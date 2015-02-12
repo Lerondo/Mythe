@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour {
 	protected bool _attacking = false;
 	protected bool _justAttacked = false;
 	protected float _speed = 5f;
-	protected float _currentAttackDmg;
+	protected int _currentAttackDmg;
 	protected float _range;
 	protected bool _death = false;
 	protected int _health;
@@ -21,6 +21,23 @@ public class Unit : MonoBehaviour {
 	public void SetDeath(bool death)
 	{
 		_death = death;
+	}
+	public void KnockBack(Vector3 position)
+	{
+		float derp = this.transform.position.x - position.x;
+		Vector3 knockback = this.rigidbody.velocity;
+		if(derp < 0)
+		{
+			knockback.x = -2;
+			knockback.y = 2;
+			this.rigidbody.velocity = knockback;
+		} 
+		else 
+		{
+			knockback.x = 2;
+			knockback.y = 2;
+			this.rigidbody.velocity = knockback;
+		}
 	}
 	/// <summary>
 	/// Attack via AnimationEvent.

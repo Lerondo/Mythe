@@ -4,16 +4,26 @@ using System.Collections;
 public class PlayerController : Unit {
 	public int[] allDamages = new int[5];
 	public int[] allCooldowns = new int[5];
-	
+
+	private Animator _playerAnimator;
 	private bool _isTryingToClimb = false;
 	private bool _isClimbing = false;
+	private bool _isMoving = false;
 	private bool _justJumped = false;
 	private float _jumpHeight = 25f;
 	private GameObject currentFloor;
 
+	void Awake()
+	{
+		_playerAnimator = GetComponent<Animator>();
+	}
+	protected override void Start ()
+	{
+		_currentAttackDmg = 10;
+	}
 	protected override void Update()
 	{
-		if(_death)
+		if(!_death)
 		{
 			if(!_justJumped)
 			{
@@ -25,13 +35,20 @@ public class PlayerController : Unit {
 			}
 		}
 	}
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Vector3 spherePosition = this.transform.position;
+		spherePosition.y -= 1.5f;
+		Gizmos.DrawSphere(spherePosition, 0.1f);
+	}
 	/// <summary>
 	/// Checks the collision.
 	/// </summary>
 	void CheckCollision()
 	{
 		Vector3 spherePosition = this.transform.position;
-		spherePosition.y -= 1f;
+		spherePosition.y -= 1.5f;
 		Collider[] colliders = Physics.OverlapSphere (spherePosition,  0.1f);
 		foreach(Collider col in colliders)
 		{
@@ -54,34 +71,40 @@ public class PlayerController : Unit {
 	/// Attack with the specified skillNumber.
 	/// </summary>
 	/// <param name="skillNumber">Skill number.</param>
-	public void Attack(int skillNumber)
+	public void StartAttack(int skillNumber)
 	{
 		_currentAttackDmg = allDamages[skillNumber];
-		//TODO: check animation by skillnumber.
+		_playerAnimator.SetTrigger("Attack");
 	}
 
 	/// <summary>
 	/// Move the specified movement.
 	/// </summary>
 	/// <param name="movement">Movement.</param>
-	public void Move(Vector3 movement)
+	public void Move(Vector3 movement, bool isGoingRight)
 	{
 		if(!_isClimbing)
 		{
+			_playerAnimator.SetBool("Running", true);
+			_isMoving = true;
 			if(_speed <= 4.9f)
 			{
 				_speed += 0.01f;
 			}
 			movement *= _speed * Time.deltaTime;
 			transform.Translate(movement);
-			Vector3 newScale = this.transform.localScale;
-			newScale.x = 1;
-			if(movement.x < 0)
+			Vector3 newRot = this.transform.eulerAngles;
+			newRot.y = 90f;
+			if(!isGoingRight)
 			{
-				newScale.x = -1;
+				newRot.y = 270f;
 			}
-			transform.localScale = newScale;
+			transform.eulerAngles = newRot;
 		}
+	}
+	public bool GetIsMoving()
+	{
+		return _isMoving;
 	}
 	/// <summary>
 	/// Stoppeds the moving.
@@ -89,6 +112,8 @@ public class PlayerController : Unit {
 	public void StoppedMoving()
 	{
 		_speed = 3f;
+		_playerAnimator.SetBool("Running", false);
+		_isMoving = false;
 	}
 	/// <summary>
 	/// Falls down.
@@ -172,7 +197,8 @@ public class PlayerController : Unit {
 				if(other.transform.tag == "Enemy")
 				{
 					_justAttacked = true;	
-					//TODO: give dmg
+					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+					other.GetComponent<Unit>().KnockBack(this.transform.position);
 				}
 			}
 		}

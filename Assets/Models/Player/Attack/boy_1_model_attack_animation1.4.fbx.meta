@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: ca77343ee3d9a4046ae65c34b0ae3434
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Floor
+    100004: Head
+    100006: L_Foot
+    100008: LL_Arm
+    100010: LL_Leg
+    100012: LU_Arm
+    100014: LU_Leg
+    100016: Null
+    100018: Pelvis
+    100020: R_Foot
+    100022: RL_Arm
+    100024: RL_Leg
+    100026: RU_Arm
+    100028: RU_Leg
+    100030: Torso
+    100032: Weapon
+    400000: //RootNode
+    400002: Floor
+    400004: Head
+    400006: L_Foot
+    400008: LL_Arm
+    400010: LL_Leg
+    400012: LU_Arm
+    400014: LU_Leg
+    400016: Null
+    400018: Pelvis
+    400020: R_Foot
+    400022: RL_Arm
+    400024: RL_Leg
+    400026: RU_Arm
+    400028: RU_Leg
+    400030: Torso
+    400032: Weapon
+    2300000: Head
+    2300002: L_Foot
+    2300004: LL_Arm
+    2300006: LL_Leg
+    2300008: LU_Arm
+    2300010: LU_Leg
+    2300012: Pelvis
+    2300014: R_Foot
+    2300016: RL_Arm
+    2300018: RL_Leg
+    2300020: RU_Arm
+    2300022: RU_Leg
+    2300024: Torso
+    3300000: Head
+    3300002: L_Foot
+    3300004: LL_Arm
+    3300006: LL_Leg
+    3300008: LU_Arm
+    3300010: LU_Leg
+    3300012: Pelvis
+    3300014: R_Foot
+    3300016: RL_Arm
+    3300018: RL_Leg
+    3300020: RU_Arm
+    3300022: RU_Leg
+    3300024: Torso
+    4300000: Pelvis
+    4300002: LU_Leg
+    4300004: LL_Leg
+    4300006: L_Foot
+    4300008: RU_Leg
+    4300010: RL_Leg
+    4300012: R_Foot
+    4300014: Torso
+    4300016: RU_Arm
+    4300018: RL_Arm
+    4300020: LU_Arm
+    4300022: LL_Arm
+    4300024: Head
+    7400000: Attack
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: C4D Animation Take
+      firstFrame: 1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .497737557
+        functionName: Attack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .832579195
+        functionName: StopAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Floor
+        weight: 1
+      - path: Null
+        weight: 1
+      - path: Null/Pelvis
+        weight: 1
+      - path: Null/Pelvis/LU_Leg
+        weight: 1
+      - path: Null/Pelvis/LU_Leg/LL_Leg
+        weight: 1
+      - path: Null/Pelvis/LU_Leg/LL_Leg/L_Foot
+        weight: 1
+      - path: Null/Pelvis/RU_Leg
+        weight: 1
+      - path: Null/Pelvis/RU_Leg/RL_Leg
+        weight: 1
+      - path: Null/Pelvis/RU_Leg/RL_Leg/R_Foot
+        weight: 1
+      - path: Null/Pelvis/Torso
+        weight: 1
+      - path: Null/Pelvis/Torso/Head
+        weight: 1
+      - path: Null/Pelvis/Torso/LU_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/LU_Arm/LL_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
