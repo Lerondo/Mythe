@@ -33,7 +33,6 @@ public class HealthController : MonoBehaviour {
 	}
 	public void UpdateHealth(int health)
 	{
-		float oldHealth = _health;
 		_health += health;
 		UpdateInterface();
 		if(_health <= 0)
@@ -52,10 +51,10 @@ public class HealthController : MonoBehaviour {
 	private IEnumerator Die()
 	{
 		Destroy(gameObject, 5f);
-		while(gameObject.renderer.material.color.a <= 0 && this.gameObject != null)
+		while(gameObject.renderer.material.color.a >= 0 && this.gameObject != null)
 		{
 			gameObject.renderer.material.color = Color.Lerp (gameObject.renderer.material.color, _transparant, fadeSpeed * Time.deltaTime);
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForEndOfFrame();
 		}
 	}
 }

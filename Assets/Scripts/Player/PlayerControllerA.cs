@@ -85,7 +85,7 @@ public class PlayerControllerA : MonoBehaviour {
 			DecreaseStamina();
 		}
 		
-		transform.Translate (x, 0, 0, Space.Self);
+		transform.Translate (0, 0, x, Space.Self);
 	}
 	
 	void CheckHealth()

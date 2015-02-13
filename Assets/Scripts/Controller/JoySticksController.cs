@@ -3,6 +3,8 @@ using System.Collections;
 
 public class JoySticksController : MonoBehaviour {
 	public PlayerController playerController;
+	public GameObject controllerMenu;
+	public GameObject inventoryInterface;
 	private int _currentFingerId;
 	public RectTransform movementJoyStickTransform;
 
@@ -12,7 +14,13 @@ public class JoySticksController : MonoBehaviour {
 	}
 	public void PressButton(int buttonID)
 	{
-		playerController.StartAttack(buttonID);
+		if(buttonID <= 6)
+		{
+			playerController.StartAttack(buttonID);
+		} else {
+			inventoryInterface.SetActive(true);
+			controllerMenu.SetActive(false);
+		}
 	}
 	public void SetFingerIndex(int index)
 	{
@@ -29,7 +37,7 @@ public class JoySticksController : MonoBehaviour {
 		{
 			if(_currentFingerId != -1)
 			{
-				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x)
+				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x+20 || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x-20)
 				{
 					float xOffSet = Input.GetTouch(_currentFingerId).position.x - movementJoyStickTransform.position.x;
 					bool isGoingRight = true;
@@ -45,6 +53,11 @@ public class JoySticksController : MonoBehaviour {
 					}
 					Vector3 movement = new Vector3(0,0,xOffSet);
 					playerController.Move(movement, isGoingRight);
+				} else {
+					if(playerController.GetIsMoving())
+					{
+						playerController.StoppedMoving();
+					}
 				}
 				if(playerController.GetIsClimbing())
 				{

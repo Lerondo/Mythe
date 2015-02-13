@@ -73,11 +73,11 @@ public class Menu : MonoBehaviour
 		creditsPanel.SetActive (false);
 		optionsPanel.SetActive (false);
 
-		if (creditsPanelBool = true) 
+		if (creditsPanelBool == true) 
 		{
 			creditsPanel.transform.position = new Vector2 (100, 100);
 
-		} else if (optionsPanelBool = true) 
+		} else if (optionsPanelBool == true) 
 		{
 			optionsPanel.transform.position = new Vector2 (-100,-100);
 		}

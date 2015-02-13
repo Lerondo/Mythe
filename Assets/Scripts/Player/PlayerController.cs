@@ -33,14 +33,11 @@ public class PlayerController : Unit {
 			{
 				_justJumped = false;
 			}
+			if(!_isGrounded && !_justJumped)
+			{
+				_playerAnimator.Play("Jump", 0, 0.48f);
+			}
 		}
-	}
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.yellow;
-		Vector3 spherePosition = this.transform.position;
-		spherePosition.y -= 1.5f;
-		Gizmos.DrawSphere(spherePosition, 0.1f);
 	}
 	/// <summary>
 	/// Checks the collision.
@@ -85,7 +82,8 @@ public class PlayerController : Unit {
 	{
 		if(!_isClimbing)
 		{
-			_playerAnimator.SetBool("Running", true);
+			if(_isGrounded)
+				_playerAnimator.SetBool("Running", true);
 			_isMoving = true;
 			if(_speed <= 4.9f)
 			{
@@ -132,6 +130,7 @@ public class PlayerController : Unit {
 	{
 		if(_isGrounded)
 		{
+			_playerAnimator.SetTrigger("Jump");
 			Vector3 jumpForce = rigidbody.velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
 			rigidbody.velocity = jumpForce; 
@@ -169,7 +168,7 @@ public class PlayerController : Unit {
 		rigidbody.useGravity = false;
 		rigidbody.velocity = new Vector3(0,0,0);
 		Vector3 newPos = this.transform.position;
-		newPos.z = -1f;
+		newPos.z = -2f;
 		this.transform.position = newPos;
 	}
 	/// <summary>
@@ -199,6 +198,8 @@ public class PlayerController : Unit {
 					_justAttacked = true;	
 					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 					other.GetComponent<Unit>().KnockBack(this.transform.position);
+					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag("GameController").GetComponent<TextMessenger>();
+					txtMessenger.MakeText(_currentAttackDmg.ToString(), this.transform.position + new Vector3(0,3,1), Color.red, 24, true);
 				}
 			}
 		}
@@ -229,6 +230,7 @@ public class PlayerController : Unit {
 				Physics.IgnoreCollision(this.collider,other.collider,true);
 			} else {
 				Physics.IgnoreCollision(this.collider,other.collider,false);
+				_playerAnimator.Play("Jump", 0, 0.52f);
 			}
 		}
 	}

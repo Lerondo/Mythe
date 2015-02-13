@@ -6,6 +6,8 @@ public class Melee : Enemy {
 	protected override void Start()
 	{
 		_range = 2f;
+		_speed = 2.5f;
+		_currentAttackDmg = 10;
 	}
 	/// <summary>
 	/// Raises the trigger stay event.
@@ -18,7 +20,8 @@ public class Melee : Enemy {
 			if(other.transform.tag == "Player")
 			{
 				_justAttacked = true;				
-				//TODO: give dmg
+				other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+				other.GetComponent<Unit>().KnockBack(this.transform.position);
 			}
 		}
 	}

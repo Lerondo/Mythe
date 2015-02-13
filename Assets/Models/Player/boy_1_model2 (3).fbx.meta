@@ -1,56 +1,62 @@
 fileFormatVersion: 2
-guid: b3e0b7f200ed0de4d91f2048c5d97538
+guid: 4a1615c7d3c807d4e8f7993b4fed98b7
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Head
-    100004: L_Foot
-    100006: LL_Arm
-    100008: LL_Leg
-    100010: LU_Arm
-    100012: LU_Leg
-    100014: R_Foot
-    100016: RL_Arm
-    100018: RL_Leg
-    100020: RU_Arm
-    100022: RU_Leg
-    100024: Torso
-    100026: Weapon
+    100002: Floor
+    100004: Head
+    100006: L_Foot
+    100008: LL_Arm
+    100010: LL_Leg
+    100012: LU_Arm
+    100014: LU_Leg
+    100016: Null
+    100018: Pelvis
+    100020: R_Foot
+    100022: RL_Arm
+    100024: RL_Leg
+    100026: RU_Arm
+    100028: RU_Leg
+    100030: Torso
+    100032: Weapon
     400000: //RootNode
-    400002: Head
-    400004: L_Foot
-    400006: LL_Arm
-    400008: LL_Leg
-    400010: LU_Arm
-    400012: LU_Leg
-    400014: R_Foot
-    400016: RL_Arm
-    400018: RL_Leg
-    400020: RU_Arm
-    400022: RU_Leg
-    400024: Torso
-    400026: Weapon
-    2300000: //RootNode
-    2300002: Head
-    2300004: L_Foot
-    2300006: LL_Arm
-    2300008: LL_Leg
-    2300010: LU_Arm
-    2300012: LU_Leg
+    400002: Floor
+    400004: Head
+    400006: L_Foot
+    400008: LL_Arm
+    400010: LL_Leg
+    400012: LU_Arm
+    400014: LU_Leg
+    400016: Null
+    400018: Pelvis
+    400020: R_Foot
+    400022: RL_Arm
+    400024: RL_Leg
+    400026: RU_Arm
+    400028: RU_Leg
+    400030: Torso
+    400032: Weapon
+    2300000: Head
+    2300002: L_Foot
+    2300004: LL_Arm
+    2300006: LL_Leg
+    2300008: LU_Arm
+    2300010: LU_Leg
+    2300012: Pelvis
     2300014: R_Foot
     2300016: RL_Arm
     2300018: RL_Leg
     2300020: RU_Arm
     2300022: RU_Leg
     2300024: Torso
-    3300000: //RootNode
-    3300002: Head
-    3300004: L_Foot
-    3300006: LL_Arm
-    3300008: LL_Leg
-    3300010: LU_Arm
-    3300012: LU_Leg
+    3300000: Head
+    3300002: L_Foot
+    3300004: LL_Arm
+    3300006: LL_Leg
+    3300008: LU_Arm
+    3300010: LU_Leg
+    3300012: Pelvis
     3300014: R_Foot
     3300016: RL_Arm
     3300018: RL_Leg

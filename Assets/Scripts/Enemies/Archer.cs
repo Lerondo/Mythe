@@ -10,7 +10,8 @@ public class Archer : Enemy {
 		_objectPool = GameObject.FindGameObjectWithTag("GameController").GetComponent<ObjectPool>();
 	}
 	protected override void Start () {
-		_range = 5f;
+		_range = 10f;
+		_currentAttackDmg = 5;
 	}
 	protected override AnimationEvent Attack ()
 	{

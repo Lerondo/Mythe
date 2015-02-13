@@ -3,12 +3,12 @@ using System.Collections;
 
 public class ArrowBehavior : MonoBehaviour {
 	private float _speed = 5f;
-	private float _damage;
+	private int _damage;
 	// Update is called once per frame
 	void Update () {
 		this.transform.Translate(Vector3.forward * _speed * Time.deltaTime);
 	}
-	public void SetDamage(float damage)
+	public void SetDamage(int damage)
 	{
 		_damage = damage;
 	}
@@ -16,7 +16,9 @@ public class ArrowBehavior : MonoBehaviour {
 	{
 		if(other.transform.tag == "Player")
 		{
-			//TODO: do dmg
+			other.GetComponent<HealthController>().UpdateHealth(-_damage);
+			other.GetComponent<Unit>().KnockBack(this.transform.position);
+			Destroy(this.gameObject);
 		}
 	}
 }

@@ -6,7 +6,9 @@ public class ObjectPool : MonoBehaviour
 {
 	
 	public static ObjectPool instance;
-	
+
+	public Transform canvas;
+
 	/// <summary>
 	/// The object prefabs which the pool can handle.
 	/// </summary>
@@ -91,7 +93,12 @@ public class ObjectPool : MonoBehaviour
 				{
 					GameObject pooledObject = pooledObjects[i][0];
 					pooledObjects[i].RemoveAt(0);
-					pooledObject.transform.parent = null;
+					if(pooledObject.name == "Text")
+					{
+						pooledObject.transform.SetParent(canvas);
+					} else {
+						pooledObject.transform.parent = null;
+					}
 					pooledObject.SetActive(true);
 					
 					return pooledObject;
@@ -122,7 +129,7 @@ public class ObjectPool : MonoBehaviour
 			if(objectPrefabs[i].name == obj.name)
 			{
 				obj.SetActive(false);
-				obj.transform.parent = containerObject.transform;
+				obj.transform.SetParent(containerObject.transform);
 				pooledObjects[i].Add(obj);
 				return;
 			}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
 	protected bool _isGrounded = false;
@@ -24,9 +25,9 @@ public class Unit : MonoBehaviour {
 	}
 	public void KnockBack(Vector3 position)
 	{
-		float derp = this.transform.position.x - position.x;
+		float side = this.transform.position.x - position.x;
 		Vector3 knockback = this.rigidbody.velocity;
-		if(derp < 0)
+		if(side < 0)
 		{
 			knockback.x = -2;
 			knockback.y = 2;

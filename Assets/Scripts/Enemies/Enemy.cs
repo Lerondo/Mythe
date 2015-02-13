@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : Unit {
 	protected Transform _target;
-
+	protected float _attackCooldown;
 	/// <summary>
 	/// Raises the trigger enter event.
 	/// </summary>
@@ -58,6 +58,11 @@ public class Enemy : Unit {
 		if (Vector3.Distance (this.transform.position, _target.position) < _range) 
 		{
 			//TODO: if animation not playing set animation + animation event attack
+			if(_attackCooldown < Time.time)
+			{
+				Attack();
+				_attackCooldown = Time.time + 2f;
+			}
 		} 
 		else 
 		{
