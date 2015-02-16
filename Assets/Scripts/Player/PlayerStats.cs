@@ -4,14 +4,8 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour {
 	public int basicDamage;
 	public int basicDefence;
-	private ItemDatabase _itemDatabase;
 	private int _damage;
 	private int _defence;
-	private int _shieldId;
-	void Awake()
-	{
-		_itemDatabase = GameObject.FindGameObjectWithTag("GameController").GetComponent<ItemDatabase>();
-	}
 	void Start()
 	{
 		//TODO: get save updatestats.
@@ -37,28 +31,28 @@ public class PlayerStats : MonoBehaviour {
 			switch(i)
 			{
 			case 1:
-				dmg = _itemDatabase.itemList[swordId].GetItemDamage();
-				def = _itemDatabase.itemList[swordId].GetItemDefence();
+				dmg = ItemDatabase.itemList[swordId].GetItemDamage();
+				def = ItemDatabase.itemList[swordId].GetItemDefence();
 				break;
 			case 2:
-				dmg = _itemDatabase.itemList[shieldId].GetItemDamage();
-				def = _itemDatabase.itemList[shieldId].GetItemDefence();
+				dmg = ItemDatabase.itemList[shieldId].GetItemDamage();
+				def = ItemDatabase.itemList[shieldId].GetItemDefence();
 				break;
 			case 3:
-				dmg = _itemDatabase.itemList[helmId].GetItemDamage();
-				def = _itemDatabase.itemList[helmId].GetItemDefence();
+				dmg = ItemDatabase.itemList[helmId].GetItemDamage();
+				def = ItemDatabase.itemList[helmId].GetItemDefence();
 				break;
 			case 4:
-				dmg = _itemDatabase.itemList[legsId].GetItemDamage();
-				def = _itemDatabase.itemList[legsId].GetItemDefence();
+				dmg = ItemDatabase.itemList[legsId].GetItemDamage();
+				def = ItemDatabase.itemList[legsId].GetItemDefence();
 				break;
 			case 5:
-				dmg = _itemDatabase.itemList[bodyId].GetItemDamage();
-				def = _itemDatabase.itemList[bodyId].GetItemDefence();
+				dmg = ItemDatabase.itemList[bodyId].GetItemDamage();
+				def = ItemDatabase.itemList[bodyId].GetItemDefence();
 				break;
 			case 6:
-				dmg = _itemDatabase.itemList[bootsId].GetItemDamage();
-				def = _itemDatabase.itemList[bootsId].GetItemDefence();
+				dmg = ItemDatabase.itemList[bootsId].GetItemDamage();
+				def = ItemDatabase.itemList[bootsId].GetItemDefence();
 				break;
 			default:
 				break;

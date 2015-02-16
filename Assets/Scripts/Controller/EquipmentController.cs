@@ -4,68 +4,54 @@ using System.Collections.Generic;
 
 public class EquipmentController : MonoBehaviour {
 	public GameObject playerSword;
+	public List<Item> equipedItems = new List<Item>();
 
-	//all item ids for character interface
-	private int _swordId;
-	private int _shieldId;
-	private int _helmId;
-	private int _legsId;
-	private int _bodyId;
-	private int _bootsId;
+	//all items for player
+	public Item _sword = new Item();
+	public Item _shield = new Item();
+	public Item _helm = new Item();
+	public Item _legs = new Item();
+	public Item _body = new Item();
+	public Item _boots = new Item();
 
 	private PlayerStats _playerStats;
-	private ItemDatabase _itemDatabase;
 	// Use this for initialization
 	void Start () {
-		_itemDatabase = GetComponent<ItemDatabase>();
-		_playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+		_playerStats = GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>();
+
+		//making fake items! (gets replaced by real items later on)
+		_sword.itemSort = Item.ItemSort.sword;
+		_shield.itemSort = Item.ItemSort.shield;
+		_helm.itemSort = Item.ItemSort.helm;
+		_legs.itemSort = Item.ItemSort.legs;
+		_body.itemSort = Item.ItemSort.body;
+		_boots.itemSort = Item.ItemSort.boots;
+		equipedItems.Add(_sword);
+		equipedItems.Add(_shield);
+		equipedItems.Add(_helm);
+		equipedItems.Add(_legs);
+		equipedItems.Add(_body);
+		equipedItems.Add(_boots);
 		//TODO: get save file and equip items.
 	}
 	/// <summary>
 	/// Equips a item.
 	/// </summary>
-	/// <param name="itemId">Item identifier.</param>
-	public void EquipItem(int itemId)
+	public void EquipItem(Item item)
 	{
-		if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.sword)
-		{
-			UpdateItemStats(_swordId,itemId);
-			_swordId = itemId;
-			playerSword.renderer.material.mainTexture = _itemDatabase.GetItemTexture(itemId);
-			playerSword.GetComponent<MeshFilter>().mesh = _itemDatabase.GetItemMesh(itemId);
-		} 
-		else if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.shield)
-		{
-			UpdateItemStats(_shieldId,itemId);
-			_shieldId = itemId;
-		} else if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.helm)
-		{
-			UpdateItemStats(_helmId,itemId);
-			_helmId = itemId;
-		} else if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.legs)
-		{
-			UpdateItemStats(_legsId,itemId);
-			_legsId = itemId;
-		} else if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.body)
-		{
-			UpdateItemStats(_bodyId,itemId);
-			_bodyId = itemId;
-		} else if(_itemDatabase.itemList[itemId].GetItemSort() == Item.ItemSort.boots)
-		{
-			UpdateItemStats(_bootsId,itemId);
-			_bootsId = itemId;
-		} else if(_itemDatabase.itemList[itemId] == null)
-		{
-			Debug.LogError("Item does not exist!");
+		for (int i = 0; i < equipedItems.Count; i++) {
+			if(item.itemSort == equipedItems[i].itemSort)
+			{
+				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
+				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
+				equipedItems[i] = item;
+				break;
+			}
 		}
-	}
-	private void UpdateItemStats(int oldItemId,int newItemId)
-	{
-		int newDamage = _itemDatabase.itemList[newItemId].GetItemDamage();
-		int oldDamage = _itemDatabase.itemList[oldItemId].GetItemDamage();
-		int newDefence = _itemDatabase.itemList[newItemId].GetItemDefence();
-		int oldDefence = _itemDatabase.itemList[oldItemId].GetItemDefence();
-		_playerStats.UpdateDamage(oldDamage,newDamage);
-		_playerStats.UpdateDefence(oldDefence,newDefence);
+		if(item.itemSort == Item.ItemSort.sword)
+		{
+			playerSword.GetComponent<MeshFilter>().mesh = item.GetItemMesh();
+			playerSword.renderer.material.mainTexture = item.GetItemTexture();
+		}
 	}
 }

@@ -18,19 +18,22 @@ public class Item{
 		rare,
 		legendary
 	}
-	protected ItemSort _itemSort;
-	protected ItemQuality _itemQuality;
+	public ItemSort itemSort;
+	public ItemQuality itemQuality;
 	protected int _damage;
 	protected int _defence;
 	protected bool _equiped = false;
+	protected Mesh _itemMesh;
+	protected Texture _itemTexture;
+	protected Sprite _itemSprite;
 
 	public ItemSort GetItemSort()
 	{
-		return _itemSort;
+		return itemSort;
 	}
 	public ItemQuality GetItemQuality()
 	{
-		return _itemQuality;
+		return itemQuality;
 	}
 	public int GetItemDamage()
 	{
@@ -39,5 +42,17 @@ public class Item{
 	public int GetItemDefence()
 	{
 		return _defence;
+	}
+	public Mesh GetItemMesh()
+	{
+		return _itemMesh;
+	}
+	public Texture GetItemTexture()
+	{
+		return _itemTexture;
+	}
+	public Sprite GetItemSprite()
+	{
+		return _itemSprite;
 	}
 }

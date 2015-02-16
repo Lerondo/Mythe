@@ -9,11 +9,6 @@ public class InventoryInterface : MonoBehaviour {
 
 	private int selectedId;
 	private Button[] allButtons = new Button[30];
-	private ItemDatabase _itemDatabase;
-	void Awake()
-	{
-		_itemDatabase = GetComponent<ItemDatabase>();
-	}
 	void Start()
 	{
 		float counter = 0;
@@ -35,22 +30,22 @@ public class InventoryInterface : MonoBehaviour {
 	}
 	public void SetInventorySpace(int itemId, int slot)
 	{
-		Sprite itemSprite = _itemDatabase.GetItemSprite(itemId);
+		Sprite itemSprite = ItemDatabase.itemList[itemId].GetItemSprite();
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(itemId));
 	}
 	public void ShowStats(int itemId)
 	{
 		string stats = "";
-		stats += _itemDatabase.itemList[itemId].GetItemSort() + "\n";
-		stats += _itemDatabase.itemList[itemId].GetItemQuality() + "\n";
-		stats += _itemDatabase.itemList[itemId].GetItemDamage() + "\n";
-		stats += _itemDatabase.itemList[itemId].GetItemDefence();
+		stats += ItemDatabase.itemList[itemId].GetItemSort() + "\n";
+		stats += ItemDatabase.itemList[itemId].GetItemQuality() + "\n";
+		stats += ItemDatabase.itemList[itemId].GetItemDamage() + "\n";
+		stats += ItemDatabase.itemList[itemId].GetItemDefence();
 		statText.text = stats;
 		selectedId = itemId;
 	}
 	public void EquipCurrentSelected()
 	{
-		GetComponent<EquipmentController>().EquipItem(selectedId);
+		GetComponent<EquipmentController>().EquipItem(ItemDatabase.itemList[selectedId]);
 	}
 }
