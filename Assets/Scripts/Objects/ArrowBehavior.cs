@@ -11,6 +11,7 @@ public class ArrowBehavior : MonoBehaviour {
 	public void SetDamage(int damage)
 	{
 		_damage = damage;
+		Invoke ("PoolMyself", 5f);
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -18,7 +19,11 @@ public class ArrowBehavior : MonoBehaviour {
 		{
 			other.GetComponent<HealthController>().UpdateHealth(-_damage);
 			other.GetComponent<Unit>().KnockBack(this.transform.position);
-			Destroy(this.gameObject);
+			ObjectPool.instance.PoolObject(this.gameObject);
 		}
+	}
+	void PoolMyself()
+	{
+		ObjectPool.instance.PoolObject(this.gameObject);
 	}
 }

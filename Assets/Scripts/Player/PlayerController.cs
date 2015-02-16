@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : Unit {
 	public int[] allDamages = new int[5];
 	public int[] allCooldowns = new int[5];
+	public Collider myCollider;
 
 	private Animator _playerAnimator;
 	private bool _isTryingToClimb = false;
@@ -12,6 +13,7 @@ public class PlayerController : Unit {
 	private bool _justJumped = false;
 	private float _jumpHeight = 25f;
 	private GameObject currentFloor;
+	private Vector3 _checkPoint;
 
 	void Awake()
 	{
@@ -20,6 +22,13 @@ public class PlayerController : Unit {
 	protected override void Start ()
 	{
 		_currentAttackDmg = 10;
+	}
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Vector3 spherePosition = this.transform.position;
+		spherePosition.y -= 1.75f;
+		Gizmos.DrawSphere(spherePosition,  0.1f);
 	}
 	protected override void Update()
 	{
@@ -37,7 +46,19 @@ public class PlayerController : Unit {
 			{
 				_playerAnimator.Play("Jump", 0, 0.48f);
 			}
+			if(this.transform.position.y <= -5f)
+				OnDeath();
 		}
+	}
+	public void SetCheckPoint(Vector3 pos)
+	{
+		_checkPoint = pos;
+		_checkPoint.z = 0;
+	}
+	public void OnDeath()
+	{
+		this.transform.position = _checkPoint;
+		GetComponent<HealthController>().ResetHealth();
 	}
 	/// <summary>
 	/// Checks the collision.
@@ -45,7 +66,7 @@ public class PlayerController : Unit {
 	void CheckCollision()
 	{
 		Vector3 spherePosition = this.transform.position;
-		spherePosition.y -= 1.5f;
+		spherePosition.y -= 1.75f;
 		Collider[] colliders = Physics.OverlapSphere (spherePosition,  0.1f);
 		foreach(Collider col in colliders)
 		{
@@ -55,6 +76,10 @@ public class PlayerController : Unit {
 				{
 					currentFloor = col.gameObject;
 					Physics.IgnoreCollision(col,this.collider,false);
+				}
+				if(!_justJumped && !_isGrounded)
+				{
+					_playerAnimator.SetTrigger("Idle");
 				}
 				_isGrounded = true;
 				break;
@@ -85,7 +110,7 @@ public class PlayerController : Unit {
 			if(_isGrounded)
 				_playerAnimator.SetBool("Running", true);
 			_isMoving = true;
-			if(_speed <= 4.9f)
+			if(_speed <= 7.4f)
 			{
 				_speed += 0.01f;
 			}
@@ -109,7 +134,7 @@ public class PlayerController : Unit {
 	/// </summary>
 	public void StoppedMoving()
 	{
-		_speed = 3f;
+		_speed = 5f;
 		_playerAnimator.SetBool("Running", false);
 		_isMoving = false;
 	}
@@ -130,12 +155,13 @@ public class PlayerController : Unit {
 	{
 		if(_isGrounded)
 		{
+			_justJumped = true;
+			_playerAnimator.StopPlayback();
 			_playerAnimator.SetTrigger("Jump");
 			Vector3 jumpForce = rigidbody.velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
 			rigidbody.velocity = jumpForce; 
 			_isGrounded = false;
-			_justJumped = true;
 		} 
 		else if(!_isTryingToClimb) 
 		{
@@ -227,23 +253,11 @@ public class PlayerController : Unit {
 		{
 			if(!_isGrounded)
 			{
-				Physics.IgnoreCollision(this.collider,other.collider,true);
+				Physics.IgnoreCollision(myCollider,other.collider,true);
 			} else {
-				Physics.IgnoreCollision(this.collider,other.collider,false);
+				Physics.IgnoreCollision(myCollider,other.collider,false);
 				_playerAnimator.Play("Jump", 0, 0.52f);
 			}
-		}
-	}
-
-	/// <summary>
-	/// Raises the collision exit event.
-	/// </summary>
-	/// <param name="other">Other.</param>
-	void OnCollisionExit(Collision other)
-	{
-		if(other.transform.tag == "Floor")
-		{
-			_isGrounded = false;
 		}
 	}
 }

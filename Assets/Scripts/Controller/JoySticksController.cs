@@ -24,7 +24,6 @@ public class JoySticksController : MonoBehaviour {
 	}
 	public void SetFingerIndex(int index)
 	{
-		Debug.Log(index);
 		_currentFingerId = index;
 	}
 	public int GetFingerIndex()
@@ -69,8 +68,9 @@ public class JoySticksController : MonoBehaviour {
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
 					playerController.Jump();
-				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
+				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-20)
 				{
+					Debugger.log("trying to fall down",DebugInterests.M);
 					playerController.FallDown();
 				}
 			}

@@ -18,6 +18,11 @@ public class HealthController : MonoBehaviour {
 	{
 		_transparant = new Color(0,0,0,0);
 	}
+	public void ResetHealth()
+	{
+		_health = _maxHealth;
+		UpdateInterface();
+	}
 	public int GetHealth()
 	{
 		return _health;
@@ -38,7 +43,7 @@ public class HealthController : MonoBehaviour {
 		if(_health <= 0)
 		{
 			_currentUnit.SetDeath(true);
-			StartCoroutine(Die ());
+			Die();
 		}
 	}
 	private void UpdateInterface()
@@ -48,13 +53,13 @@ public class HealthController : MonoBehaviour {
 			_userInterface.UpdateBar(UserInterface.HEALTHBAR, _health);
 		}
 	}
-	private IEnumerator Die()
+	private void Die()
 	{
-		Destroy(gameObject, 5f);
-		while(gameObject.renderer.material.color.a >= 0 && this.gameObject != null)
+		if(GetComponent<PlayerController>())
 		{
-			gameObject.renderer.material.color = Color.Lerp (gameObject.renderer.material.color, _transparant, fadeSpeed * Time.deltaTime);
-			yield return new WaitForEndOfFrame();
+			GetComponent<PlayerController>().OnDeath();
+		} else {
+			Destroy(gameObject, 5f);
 		}
 	}
 }

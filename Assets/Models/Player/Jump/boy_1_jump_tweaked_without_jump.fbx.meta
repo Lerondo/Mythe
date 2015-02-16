@@ -102,7 +102,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump
       takeName: C4D Animation Take
-      firstFrame: 0
+      firstFrame: 7
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
