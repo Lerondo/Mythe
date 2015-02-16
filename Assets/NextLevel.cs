@@ -23,8 +23,6 @@ public class NextLevel : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log (_nextLvl);
-
 		if (_startNextLvl == true)
 		{
 			_darkness.color = Color.Lerp(_darkness.color, Color.black, Time.deltaTime);

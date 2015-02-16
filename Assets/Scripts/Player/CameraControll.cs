@@ -4,9 +4,12 @@ using System.Collections;
 public class CameraControll : MonoBehaviour {
 
 	private GameObject _player;
+	private Vector3 _camPos;
 
-	private Vector3 minY;
-	private Vector3 maxY;
+	private float minX;
+	private float maxX;
+	private float minY;
+	private float maxY;
 
 	void Start()
 	{
@@ -16,21 +19,9 @@ public class CameraControll : MonoBehaviour {
 	void Update()
 	{
 		if (_player != null)
-			CheckToClamp ();
-
-		if(this.transform.position.y < 3.8f)
-			transform.position = minY;
-
-		if(this.transform.position.y > 25f)
-			transform.position = maxY;
-	}
-
-	void CheckToClamp()
-	{
-		this.transform.position = new Vector3 (_player.transform.position.x, _player.transform.position.y + 1.74f, -10);
-
-
-		minY = new Vector3 (_player.transform.position.x, Mathf.Clamp(0f, 3.8F, 3.8F), -10);
-		maxY = new Vector3(_player.transform.position.x, Mathf.Clamp(0f, 25F, 25F), -10);
+		{
+			_camPos = new Vector3 (Mathf.Clamp(_player.transform.position.x, -7f, 55f), Mathf.Clamp(_player.transform.position.y, 3.8f, 20f), -10);
+			transform.position = _camPos;
+		}
 	}
 }
