@@ -37,4 +37,3 @@ public class WindController : MonoBehaviour {
 		rigidbody.AddForce(force * factor);
 	}
 }
-piemol
