@@ -37,6 +37,9 @@ public class PlayerControllerA : MonoBehaviour {
 
 	void Update () 
 	{
+		if (this.gameObject.transform.position.y < -5)
+			Application.LoadLevel (Application.loadedLevel);
+
 		CheckHealth ();
 		UpdateBars ();
 
@@ -98,7 +101,7 @@ public class PlayerControllerA : MonoBehaviour {
 			DecreaseStamina();
 		}
 		
-		transform.Translate (0, 0, x, Space.Self);
+		transform.Translate (x, 0, 0, Space.Self);
 	}
 	
 	void CheckHealth()

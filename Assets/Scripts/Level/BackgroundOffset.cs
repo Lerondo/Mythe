@@ -23,7 +23,7 @@ public class BackgroundOffset : MonoBehaviour {
 		if(_cam.transform.position.x == _player.transform.position.x)
 			renderer.material.mainTextureOffset = new Vector2 (GameObject.Find("Player").transform.position.x * speed, 0);
 		if (this.gameObject.name == "CloseBackground")
-			transform.position = new Vector3 (_cam.transform.position.x, 4.4f, -8f);
+			transform.position = new Vector3 (_cam.transform.position.x, 4.3f, -8f);
 
 	}
 }

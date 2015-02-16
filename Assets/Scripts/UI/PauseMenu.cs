@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour {
 	private static int _gameQuality;
 	private static float _gameVolume = 1.0f;
 
-	private GUIStyle _optionsStyle;
+	[SerializeField]private GUIStyle _optionsStyle;
 
 	void Start()
 	{
@@ -45,7 +45,7 @@ public class PauseMenu : MonoBehaviour {
 				}
 			}
 			if (GUI.Button(new Rect(0,120,buttonWidth, buttonHeight), "Main Menu"))
-				Application.LoadLevel(0);
+				Application.LoadLevel("Menu");
 			if (GUI.Button(new Rect(0,180, buttonWidth, buttonHeight), "Restart Level"))
 				Application.LoadLevel(Application.loadedLevel);
 			if (GUI.Button(new Rect(0,240, buttonWidth, buttonHeight), "Quit Game"))
@@ -57,7 +57,7 @@ public class PauseMenu : MonoBehaviour {
 				GUI.BeginGroup(new Rect(325 , 100 , groupWidth, groupHeight));
 				if (GUI.Button(new Rect(0,0, buttonWidth, buttonHeight), "Increase Quality"))
 				{
-					if (_gameQuality < 6)
+					if (_gameQuality < 5)
 						PlayerPrefs.SetInt("game_Quality", _gameQuality + 1);
 				}
 				if (GUI.Button(new Rect(0,60, buttonWidth, buttonHeight), "Decrease Quality"))
