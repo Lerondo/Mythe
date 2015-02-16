@@ -29,14 +29,12 @@ public class Menu : MonoBehaviour
 	//Play Button
 	public void PlayButtonPressed ()
 	{
-		Debug.Log ("Startbutton clicked");
 		//Application.LoadLevel (1);
 	}
 
 	//Quit Button
 	public void QuitButtonPressed ()
 	{
-		Debug.Log ("Quitbutton clicked");
 		Application.Quit ();
 	}
 
@@ -81,5 +79,10 @@ public class Menu : MonoBehaviour
 		{
 			optionsPanel.transform.position = new Vector2 (-100,-100);
 		}
+	}
+
+	public void ApplyButtonPressed()
+	{
+
 	}
 }
