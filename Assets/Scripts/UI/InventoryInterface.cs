@@ -7,6 +7,7 @@ public class InventoryInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 
+	private int selectedId;
 	private Button[] allButtons = new Button[30];
 	private ItemDatabase _itemDatabase;
 	void Awake()
@@ -37,15 +38,19 @@ public class InventoryInterface : MonoBehaviour {
 		Sprite itemSprite = _itemDatabase.GetItemSprite(itemId);
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(itemId));
-		Debug.Log(ItemDatabase.itemList[itemId].GetItemSort());
 	}
 	public void ShowStats(int itemId)
 	{
 		string stats = "";
-		stats += ItemDatabase.itemList[itemId].GetItemSort() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemQuality() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemDamage() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemDefence();
+		stats += _itemDatabase.itemList[itemId].GetItemSort() + "\n";
+		stats += _itemDatabase.itemList[itemId].GetItemQuality() + "\n";
+		stats += _itemDatabase.itemList[itemId].GetItemDamage() + "\n";
+		stats += _itemDatabase.itemList[itemId].GetItemDefence();
 		statText.text = stats;
+		selectedId = itemId;
+	}
+	public void EquipCurrentSelected()
+	{
+		GetComponent<EquipmentController>().EquipItem(selectedId);
 	}
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ca77343ee3d9a4046ae65c34b0ae3434
+guid: 014359cf251cd6b46af64d70cf3d097f
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Floor
+    100002: Floor_1
     100004: Head
     100006: L_Foot
     100008: LL_Arm
@@ -20,8 +20,9 @@ ModelImporter:
     100028: RU_Leg
     100030: Torso
     100032: Weapon
+    100034: Wooden_sword
     400000: //RootNode
-    400002: Floor
+    400002: Floor_1
     400004: Head
     400006: L_Foot
     400008: LL_Arm
@@ -37,6 +38,7 @@ ModelImporter:
     400028: RU_Leg
     400030: Torso
     400032: Weapon
+    400034: Wooden_sword
     2300000: Head
     2300002: L_Foot
     2300004: LL_Arm
@@ -50,6 +52,7 @@ ModelImporter:
     2300020: RU_Arm
     2300022: RU_Leg
     2300024: Torso
+    2300026: Wooden_sword
     3300000: Head
     3300002: L_Foot
     3300004: LL_Arm
@@ -63,6 +66,7 @@ ModelImporter:
     3300020: RU_Arm
     3300022: RU_Leg
     3300024: Torso
+    3300026: Wooden_sword
     4300000: Pelvis
     4300002: LU_Leg
     4300004: LL_Leg
@@ -73,10 +77,11 @@ ModelImporter:
     4300014: Torso
     4300016: RU_Arm
     4300018: RL_Arm
-    4300020: LU_Arm
-    4300022: LL_Arm
-    4300024: Head
-    7400000: Attack
+    4300020: Wooden_sword
+    4300022: LU_Arm
+    4300024: LL_Arm
+    4300026: Head
+    7400000: Jump
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -95,10 +100,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack
+      name: Jump
       takeName: C4D Animation Take
-      firstFrame: 1
-      lastFrame: 29
+      firstFrame: 15
+      lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -116,25 +121,11 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: .497737557
-        functionName: Attack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: .832579195
-        functionName: StopAttack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
-      - path: Floor
+      - path: Floor_1
         weight: 1
       - path: Null
         weight: 1
@@ -165,6 +156,8 @@ ModelImporter:
       - path: Null/Pelvis/Torso/RU_Arm/RL_Arm
         weight: 1
       - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Wooden_sword
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

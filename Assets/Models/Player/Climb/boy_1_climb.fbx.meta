@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f9da2f88dbaa85a46a49307621355fc3
+guid: 301a53cc02924204fa0734808dee9a16
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Floor_1
+    100002: Floor
     100004: Head
     100006: L_Foot
     100008: LL_Arm
@@ -20,9 +20,8 @@ ModelImporter:
     100028: RU_Leg
     100030: Torso
     100032: Weapon
-    100034: Wooden_sword
     400000: //RootNode
-    400002: Floor_1
+    400002: Floor
     400004: Head
     400006: L_Foot
     400008: LL_Arm
@@ -38,7 +37,6 @@ ModelImporter:
     400028: RU_Leg
     400030: Torso
     400032: Weapon
-    400034: Wooden_sword
     2300000: Head
     2300002: L_Foot
     2300004: LL_Arm
@@ -52,7 +50,6 @@ ModelImporter:
     2300020: RU_Arm
     2300022: RU_Leg
     2300024: Torso
-    2300026: Wooden_sword
     3300000: Head
     3300002: L_Foot
     3300004: LL_Arm
@@ -66,7 +63,6 @@ ModelImporter:
     3300020: RU_Arm
     3300022: RU_Leg
     3300024: Torso
-    3300026: Wooden_sword
     4300000: Pelvis
     4300002: LU_Leg
     4300004: LL_Leg
@@ -77,11 +73,10 @@ ModelImporter:
     4300014: Torso
     4300016: RU_Arm
     4300018: RL_Arm
-    4300020: Wooden_sword
-    4300022: LU_Arm
-    4300024: LL_Arm
-    4300026: Head
-    7400000: Jump
+    4300020: LU_Arm
+    4300022: LL_Arm
+    4300024: Head
+    7400000: Climb
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -100,16 +95,16 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump
+      name: Climb
       takeName: C4D Animation Take
-      firstFrame: 7
-      lastFrame: 49
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -125,7 +120,7 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Floor_1
+      - path: Floor
         weight: 1
       - path: Null
         weight: 1
@@ -156,8 +151,6 @@ ModelImporter:
       - path: Null/Pelvis/Torso/RU_Arm/RL_Arm
         weight: 1
       - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon
-        weight: 1
-      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Wooden_sword
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
