@@ -11,6 +11,7 @@ public class WindController : MonoBehaviour {
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
+		
 			OnMouseDown();
 		} else if(Input.GetMouseButtonUp(0))
 		{
@@ -36,3 +37,4 @@ public class WindController : MonoBehaviour {
 		rigidbody.AddForce(force * factor);
 	}
 }
+piemol
