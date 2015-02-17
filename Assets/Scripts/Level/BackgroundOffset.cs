@@ -19,8 +19,8 @@ public class BackgroundOffset : MonoBehaviour {
 	void Update()
 	{
 		renderer.material.mainTextureOffset = new Vector2 (_cam.transform.position.x * speed, 0);
+		
 		if (this.gameObject.name == "background-close")
 			transform.position = new Vector3 (_cam.transform.position.x, 4.3f, -8f);
-
 	}
 }

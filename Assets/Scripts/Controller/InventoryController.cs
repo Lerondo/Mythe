@@ -5,11 +5,17 @@ using System.Collections.Generic;
 public class InventoryController : MonoBehaviour {
 	private List<Item> _playerItems = new List<Item>();
 	private InventoryInterface _inventoryInterface;
-	private ItemDatabase _itemDatabase;
 	void Awake()
 	{
 		_inventoryInterface = GetComponent<InventoryInterface>();
-		_itemDatabase = GetComponent<ItemDatabase>();
+	}
+	public void RemovePlayerItem(Item item)
+	{
+		_playerItems.Remove(item);
+	}
+	public Item GetPlayerItem(int item)
+	{
+		return _playerItems[item];
 	}
 	public void AddItem(Item newItem)
 	{
@@ -18,8 +24,7 @@ public class InventoryController : MonoBehaviour {
 	public void ShowCurrentItems()
 	{
 		for (int i = 0; i < _playerItems.Count; i++) {
-			int itemId = _itemDatabase.itemList.IndexOf(_playerItems[i]);
-			_inventoryInterface.SetInventorySpace(itemId,i);
+			_inventoryInterface.SetInventorySpace(i,_playerItems[i]);
 		}
 	}
 }

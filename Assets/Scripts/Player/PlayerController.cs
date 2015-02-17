@@ -7,9 +7,11 @@ public class PlayerController : Unit {
 	public int[] allCooldowns = new int[5];
 	private Animator _playerAnimator;
 	private Vector3 _checkPoint;
+	private PlayerStats _stats;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
+		_stats = GetComponent<PlayerStats>();
 	}
 	protected override void Start ()
 	{
@@ -45,7 +47,7 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void StartAttack(int skillNumber)
 	{
-		_currentAttackDmg = allDamages[skillNumber];
+		_currentAttackDmg = allDamages[skillNumber] + _stats.GetDamage();
 		_playerAnimator.SetTrigger("Attack");
 	}
 	/// <summary>
@@ -58,13 +60,13 @@ public class PlayerController : Unit {
 		{
 			if(!other.isTrigger)
 			{
-				if(other.transform.tag == "Enemy")
+				if(other.transform.tag == TagManager.Enemy)
 				{
 					_justAttacked = true;	
 					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 					other.GetComponent<Unit>().KnockBack(this.transform.position);
-					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag("GameController").GetComponent<TextMessenger>();
-					txtMessenger.MakeText(_currentAttackDmg.ToString(), this.transform.position + new Vector3(0,3,1), Color.red, 24, true);
+					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<TextMessenger>();
+					txtMessenger.MakeText(_currentAttackDmg.ToString(), other.transform.position + new Vector3(0,3,0), Color.red, 24, true);
 				}
 			}
 		}

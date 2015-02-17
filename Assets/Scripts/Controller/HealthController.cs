@@ -53,7 +53,8 @@ public class HealthController : MonoBehaviour {
 		{
 			GetComponent<PlayerController>().OnDeath();
 		} else {
-			Destroy(gameObject, 5f);
+			Destroy(gameObject);
+			//TODO: death animation + drop gold
 			GetComponent<DropController>().DropItem();
 		}
 	}
