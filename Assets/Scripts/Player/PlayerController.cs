@@ -64,7 +64,7 @@ public class PlayerController : Unit {
 					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 					other.GetComponent<Unit>().KnockBack(this.transform.position);
 					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag("GameController").GetComponent<TextMessenger>();
-					txtMessenger.MakeText(_currentAttackDmg.ToString(), this.transform.position + new Vector3(0,3,1), Color.red, 24, true);
+					txtMessenger.MakeText(_currentAttackDmg.ToString(), other.transform.position + new Vector3(0,3,1), Color.red, 24, true);
 				}
 			}
 		}
