@@ -4,11 +4,18 @@ using UnityEngine.UI;
 
 public class InventoryInterface : MonoBehaviour {
 	public Text statText;
+	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 
-	private int selectedId;
+	private InventoryController _playerInventory;
+	private int selectedButtonId;
+	private Item selectedItem;
 	private Button[] allButtons = new Button[30];
+	void Awake()
+	{
+		_playerInventory = GetComponent<InventoryController>();
+	}
 	void Start()
 	{
 		float counter = 0;
@@ -28,24 +35,33 @@ public class InventoryInterface : MonoBehaviour {
 		controllerMenu.SetActive(true);
 		inventoryInterface.SetActive(false);
 	}
-	public void SetInventorySpace(int itemId, int slot)
+	public void SetInventorySpace(int slot, Item item)
 	{
-		Sprite itemSprite = ItemDatabase.itemList[itemId].GetItemSprite();
+		Sprite itemSprite = item.GetItemSprite();
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
-		allButtons[slot].onClick.AddListener(() => ShowStats(itemId));
+		allButtons[slot].onClick.AddListener(() => ShowStats(slot,item));
 	}
-	public void ShowStats(int itemId)
+	public void ResetInventorySpace(int slot)
+	{
+		allButtons[slot].GetComponent<Image>().sprite = emptySlot;
+		allButtons[slot].onClick.RemoveAllListeners();
+		statText.text = "";
+	}
+	public void ShowStats(int buttonSlot, Item item)
 	{
 		string stats = "";
-		stats += ItemDatabase.itemList[itemId].GetItemSort() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemQuality() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemDamage() + "\n";
-		stats += ItemDatabase.itemList[itemId].GetItemDefence();
+		stats += item.GetItemSort() + "\n";
+		stats += item.GetItemQuality() + "\n";
+		stats += item.GetItemDamage() + "\n";
+		stats += item.GetItemDefence();
 		statText.text = stats;
-		selectedId = itemId;
+		selectedButtonId = buttonSlot;
+		selectedItem = item;
 	}
 	public void EquipCurrentSelected()
 	{
-		GetComponent<EquipmentController>().EquipItem(ItemDatabase.itemList[selectedId]);
+		Item oldItem = GetComponent<EquipmentController>().EquipItem(selectedItem);
+		_playerInventory.RemovePlayerItem(selectedItem);
+		SetInventorySpace(selectedButtonId, oldItem);
 	}
 }

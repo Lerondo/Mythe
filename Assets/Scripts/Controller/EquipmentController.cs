@@ -37,15 +37,17 @@ public class EquipmentController : MonoBehaviour {
 	/// <summary>
 	/// Equips a item.
 	/// </summary>
-	public void EquipItem(Item item)
+	public Item EquipItem(Item item)
 	{
+		Item oldItem = null;
 		for (int i = 0; i < equipedItems.Count; i++) {
 			if(item.itemSort == equipedItems[i].itemSort)
 			{
+				oldItem = equipedItems[i];
 				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
 				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
 				equipedItems[i] = item;
-				break;
+
 			}
 		}
 		if(item.itemSort == Item.ItemSort.sword)
@@ -53,5 +55,6 @@ public class EquipmentController : MonoBehaviour {
 			playerSword.GetComponent<MeshFilter>().mesh = item.GetItemMesh();
 			playerSword.renderer.material.mainTexture = item.GetItemTexture();
 		}
+		return oldItem;
 	}
 }

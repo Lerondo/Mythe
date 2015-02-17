@@ -10,6 +10,10 @@ public class PlayerStats : MonoBehaviour {
 	{
 		//TODO: get save updatestats.
 	}
+	public int GetDamage()
+	{
+		return _damage;
+	}
 	public void UpdateDamage(int newDamage,int oldDamage)
 	{
 		_damage -= oldDamage;
