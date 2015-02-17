@@ -7,7 +7,7 @@ public class LadderBehavior : MonoBehaviour {
 		if(other.transform.tag == "Player")
 		{
 			if(!other.isTrigger)
-				other.gameObject.GetComponent<PlayerController>().StartClimbing();
+				other.gameObject.GetComponent<PlayerMovement>().StartClimbing();
 		}
 	}
 	void OnTriggerExit(Collider other)
@@ -15,7 +15,7 @@ public class LadderBehavior : MonoBehaviour {
 		if(other.transform.tag == "Player")
 		{
 			if(!other.isTrigger)
-				other.gameObject.GetComponent<PlayerController>().StopClimbing();
+				other.gameObject.GetComponent<PlayerMovement>().StopClimbing();
 		}
 	}
 }

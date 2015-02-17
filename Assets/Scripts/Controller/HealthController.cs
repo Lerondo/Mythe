@@ -6,17 +6,11 @@ public class HealthController : MonoBehaviour {
 	private Unit _currentUnit;
 	private int _health = 100;
 	private int _maxHealth = 100;
-	private float fadeSpeed = 5f;
-	private Color _transparant;
 	void Awake()
 	{
 		if(GetComponent<PlayerController>())
 			_userInterface = GameObject.FindGameObjectWithTag("GameController").GetComponent<UserInterface>();
 		_currentUnit = GetComponent<Unit>();
-	}
-	void Start()
-	{
-		_transparant = new Color(0,0,0,0);
 	}
 	public void ResetHealth()
 	{
@@ -59,7 +53,11 @@ public class HealthController : MonoBehaviour {
 		{
 			GetComponent<PlayerController>().OnDeath();
 		} else {
-			Destroy(gameObject, 5f);
+			Destroy(gameObject);
+			//TODO: death animation + drop gold
+			float currentExp = GetComponent<Enemy>().GetExp();
+			GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>().UpdateExp(currentExp);
+			GetComponent<DropController>().DropItem();
 		}
 	}
 }

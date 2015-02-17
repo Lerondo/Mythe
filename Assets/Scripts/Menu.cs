@@ -29,7 +29,7 @@ public class Menu : MonoBehaviour
 	public void PlayButtonPressed ()
 	{
 		Debug.Log ("Startbutton clicked");
-		//Application.LoadLevel (1);
+		Application.LoadLevel (1);
 	}
 
 	//Quit Button

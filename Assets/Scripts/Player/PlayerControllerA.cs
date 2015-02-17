@@ -6,6 +6,7 @@ public class PlayerControllerA : MonoBehaviour {
 
 	//Player Visual and linking
 	private GameObject Player;
+	private UserInterface _bars;
 	private float fadeSpeed = 5f;
 	private Color _transparant;
 
@@ -16,7 +17,7 @@ public class PlayerControllerA : MonoBehaviour {
 	//Health, Stamina and Experience
 	public int _health = 100;
 	public int _stamina = 100;
-	public float experience = 0;
+	public int experience = 0;
 
 	//Death Timer Restart
 	private int onDeathRespawn = 250;
@@ -30,21 +31,29 @@ public class PlayerControllerA : MonoBehaviour {
 	void Start()
 	{
 		Player = GameObject.Find ("Player");
+		_bars = GameObject.Find ("Main Camera").GetComponent<UserInterface> ();
 		_transparant = new Color (0, 0, 0, 0);
 	}
 
 	void Update () 
 	{
+		if (this.gameObject.transform.position.y < -5)
+			Application.LoadLevel (Application.loadedLevel);
+
 		CheckHealth ();
+		UpdateBars ();
 
 		if (_health > 0)
 		{
 			if (Input.GetAxis ("Horizontal") != 0 || Input.GetKeyDown(KeyCode.Space))
-				CheckMovement ();
+				Movement ();
 
 			//Damage Test
 			if(Input.GetKeyDown(KeyCode.H) && _health > 0)
 				_health -= 20;
+
+			if (Input.GetKeyDown(KeyCode.X))
+				experience += 80;
 
 			//Stamina Refill
 			if (StaTimer > 0)
@@ -67,13 +76,20 @@ public class PlayerControllerA : MonoBehaviour {
 			isGrounded = true;
 	}
 
+	void UpdateBars()
+	{
+		_bars.UpdateBar ("staminabar", _stamina);
+		_bars.UpdateBar("healthbar", _health);
+		_bars.UpdateBar ("xpbar", experience);
+	}
+
 	void DecreaseStamina()
 	{
 		_stamina -= 20;
-		StaTimer = 200;
+		StaTimer = 1200;
 	}
 
-	void CheckMovement()
+	void Movement()
 	{
 		// Movement and Jumping
 		float x = Input.GetAxis ("Horizontal") * _speed * Time.smoothDeltaTime;
@@ -85,7 +101,7 @@ public class PlayerControllerA : MonoBehaviour {
 			DecreaseStamina();
 		}
 		
-		transform.Translate (0, 0, x, Space.Self);
+		transform.Translate (x, 0, 0, Space.Self);
 	}
 	
 	void CheckHealth()

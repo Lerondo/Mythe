@@ -3,6 +3,7 @@ using System.Collections;
 
 public class JoySticksController : MonoBehaviour {
 	public PlayerController playerController;
+	public PlayerMovement playerMovement;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	private int _currentFingerId;
@@ -18,6 +19,7 @@ public class JoySticksController : MonoBehaviour {
 		{
 			playerController.StartAttack(buttonID);
 		} else {
+			GetComponent<InventoryController>().ShowCurrentItems();
 			inventoryInterface.SetActive(true);
 			controllerMenu.SetActive(false);
 		}
@@ -51,34 +53,33 @@ public class JoySticksController : MonoBehaviour {
 						xOffSet = 1;
 					}
 					Vector3 movement = new Vector3(0,0,xOffSet);
-					playerController.Move(movement, isGoingRight);
+					playerMovement.Move(movement, isGoingRight);
 				} else {
-					if(playerController.GetIsMoving())
+					if(playerMovement.GetIsMoving())
 					{
-						playerController.StoppedMoving();
+						playerMovement.StoppedMoving();
 					}
 				}
-				if(playerController.GetIsClimbing())
+				if(playerMovement.GetIsClimbing())
 				{
 					float yOffSet = Input.GetTouch(_currentFingerId).position.y - movementJoyStickTransform.position.y;
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
-					playerController.Climb(climbMovement);
+					playerMovement.Climb(climbMovement);
 				}
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
-					playerController.Jump();
+					playerMovement.Jump();
 				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-20)
 				{
-					Debugger.log("trying to fall down",DebugInterests.M);
-					playerController.FallDown();
+					playerMovement.FallDown();
 				}
 			}
 		} else {
 			_currentFingerId = -1;
-			if(playerController.GetIsMoving())
+			if(playerMovement.GetIsMoving())
 			{
-				playerController.StoppedMoving();
+				playerMovement.StoppedMoving();
 			}
 		}
 	}

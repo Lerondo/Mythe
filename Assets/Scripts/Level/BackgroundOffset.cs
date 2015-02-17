@@ -4,26 +4,23 @@ using System.Collections;
 public class BackgroundOffset : MonoBehaviour {
 
 	private float speed;
-	private GameObject cam;
+	private GameObject _cam;
 
 	void Start()
 	{
-		cam = GameObject.Find ("Main Camera");
+		_cam = GameObject.FindGameObjectWithTag ("MainCamera");
 
-		if (this.gameObject.name == "FarBackground")
+		if (this.gameObject.name == "background-back")
 			speed = 0.05f;
-		else if (this.gameObject.name == "MedBackground")
-			speed = 0.010f;
-		else if (this.gameObject.name == "CloseBackground")
+		else if (this.gameObject.name == "background-close")
 			speed = 0.08f;
 	}
 
 	void Update()
 	{
-		if(Input.GetAxis("Horizontal") != 0)
-			renderer.material.mainTextureOffset = new Vector2 (GameObject.Find("Player").transform.position.x * speed, 0);
-		if (this.gameObject.name == "CloseBackground")
-			transform.position = new Vector3 (cam.transform.position.x, 0.7f, -2.56f);
-
+		renderer.material.mainTextureOffset = new Vector2 (_cam.transform.position.x * speed, 0);
+		
+		if (this.gameObject.name == "background-close")
+			transform.position = new Vector3 (_cam.transform.position.x, 4.3f, -8f);
 	}
 }
