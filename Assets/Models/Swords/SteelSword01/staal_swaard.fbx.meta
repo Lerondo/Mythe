@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0d19043450bd2484fbf549296c04c04e
+guid: a748863061ac5ec4aa9f1dd01b5cdeb3
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Bearded_axe
+    4300000: Cylinder_2
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -28,7 +28,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00100000005
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

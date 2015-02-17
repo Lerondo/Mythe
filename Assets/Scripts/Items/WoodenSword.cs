@@ -9,6 +9,9 @@ public class WoodenSword : Item {
 		itemQuality = ItemQuality.common;
 		_damage = 2;
 		_defence = 0;
+		_itemMesh = Resources.Load("Models/Items/woodenSword01", typeof(Mesh)) as Mesh;
+		_itemSprite = Resources.Load("Sprites/Items/woodenSword01", typeof(Sprite)) as Sprite;
+		_itemTexture = Resources.Load("Textures/Items/woodenSword01",typeof(Texture)) as Texture;
 	}
 
 }

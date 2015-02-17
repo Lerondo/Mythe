@@ -6,7 +6,8 @@ public class ItemDatabase : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		//add all curren usable items inside this list.
-		//itemList.Add(new WoodenSword());
+		itemList.Add(new WoodenSword());
 		itemList.Add(new Axe());
+		itemList.Add (new SteelSword ());
 	}
 }
