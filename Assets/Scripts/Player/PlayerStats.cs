@@ -9,6 +9,11 @@ public class PlayerStats : MonoBehaviour {
 	private float _maxExp;
 	private int _damage;
 	private int _defence;
+	private UserInterface _userInterface;
+	void Awake()
+	{
+		_userInterface = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<UserInterface>();
+	}
 	void Start()
 	{
 		//TODO: get save updatestats.
@@ -25,7 +30,13 @@ public class PlayerStats : MonoBehaviour {
 			_experience -= _maxExp;
 			_maxExp *= 1.75f;
 			_level++;
+			basicDamage += 5;
+			basicDefence += 1;
+			_damage += 5;
+			_defence += 5;
+			_userInterface.UpdateMaxValue(UserInterface.XPBAR, Mathf.FloorToInt(_maxExp));
 		}
+		_userInterface.UpdateBar(UserInterface.XPBAR, Mathf.FloorToInt(_experience));
 	}
 	public void UpdateDamage(int newDamage,int oldDamage)
 	{

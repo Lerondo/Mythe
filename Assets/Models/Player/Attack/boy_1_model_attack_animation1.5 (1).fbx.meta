@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e923f5814466e54aa81e576cbbf87ce
+guid: e1ccb0dfdc861784383ba4e97e20fe93
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -117,14 +117,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: .324894518
+      - time: .337552726
         functionName: Attack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: .675105512
+      - time: .556962013
         functionName: StopAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
