@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour 
 {
-	//Menu
-	
-	public AudioClip MenuMusic;
-	public AudioClip ClickSound;
-	
-	//BackGround Music
-	private AudioClip BackGroundMusic1;
-	
+	private float sliderValue;
+	public float valueEffects;
+	public float valueMusic;
 
+	public void OnValueChangedEffects(float newValueEffects)
+	{
+		valueEffects = newValueEffects;
+	}
 
-
+	public void OnValueChangedMusic(float newValueMusic)
+	{
+		valueMusic = newValueMusic;
+	}
 }
 
