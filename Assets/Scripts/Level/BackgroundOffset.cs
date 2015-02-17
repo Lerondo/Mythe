@@ -5,24 +5,21 @@ public class BackgroundOffset : MonoBehaviour {
 
 	private float speed;
 	private GameObject _cam;
-	private GameObject _player;
 
 	void Start()
 	{
-		_cam = GameObject.Find ("Main Camera");
-		_player = GameObject.Find ("Player");
+		_cam = GameObject.FindGameObjectWithTag ("MainCamera");
 
-		if (this.gameObject.name == "FarBackground")
+		if (this.gameObject.name == "background-back")
 			speed = 0.05f;
-		else if (this.gameObject.name == "CloseBackground")
+		else if (this.gameObject.name == "background-close")
 			speed = 0.08f;
 	}
 
 	void Update()
 	{
-		if(_cam.transform.position.x == _player.transform.position.x)
-			renderer.material.mainTextureOffset = new Vector2 (GameObject.Find("Player").transform.position.x * speed, 0);
-		if (this.gameObject.name == "CloseBackground")
+		renderer.material.mainTextureOffset = new Vector2 (_cam.transform.position.x * speed, 0);
+		if (this.gameObject.name == "background-close")
 			transform.position = new Vector3 (_cam.transform.position.x, 4.3f, -8f);
 
 	}
