@@ -55,6 +55,8 @@ public class HealthController : MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 			//TODO: death animation + drop gold
+			float currentExp = GetComponent<Enemy>().GetExp();
+			GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>().UpdateExp(currentExp);
 			GetComponent<DropController>().DropItem();
 		}
 	}

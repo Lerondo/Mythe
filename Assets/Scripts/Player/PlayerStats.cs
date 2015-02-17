@@ -4,6 +4,9 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour {
 	public int basicDamage;
 	public int basicDefence;
+	private int _level;
+	private float _experience;
+	private float _maxExp;
 	private int _damage;
 	private int _defence;
 	void Start()
@@ -13,6 +16,16 @@ public class PlayerStats : MonoBehaviour {
 	public int GetDamage()
 	{
 		return _damage;
+	}
+	public void UpdateExp(float exp)
+	{
+		_experience += exp;
+		if(_experience >= _maxExp)
+		{
+			_experience -= _maxExp;
+			_maxExp *= 1.75f;
+			_level++;
+		}
 	}
 	public void UpdateDamage(int newDamage,int oldDamage)
 	{
