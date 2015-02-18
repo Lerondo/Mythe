@@ -38,7 +38,7 @@ public class JoySticksController : MonoBehaviour {
 		{
 			if(_currentFingerId != -1)
 			{
-				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x+20 || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x-20)
+				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x+10 || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x-10)
 				{
 					float xOffSet = Input.GetTouch(_currentFingerId).position.x - movementJoyStickTransform.position.x;
 					bool isGoingRight = true;
@@ -70,7 +70,7 @@ public class JoySticksController : MonoBehaviour {
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
 					playerMovement.Jump();
-				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-20)
+				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
 				{
 					playerMovement.FallDown();
 				}

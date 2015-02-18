@@ -122,14 +122,14 @@ public class PlayerMovement : MonoBehaviour {
 	/// <summary>
 	/// Starts the climbing.
 	/// </summary>
-	public void StartClimbing()
+	public void StartClimbing(float z)
 	{
 		_isClimbing = true;
 		_playerAnimator.SetBool("Climbing",true);
 		rigidbody.useGravity = false;
 		rigidbody.velocity = new Vector3(0,0,0);
 		Vector3 newPos = this.transform.position;
-		newPos.z = -1.25f;
+		newPos.z = z - 0.1f;
 		this.transform.position = newPos;
 	}
 	/// <summary>
@@ -161,7 +161,6 @@ public class PlayerMovement : MonoBehaviour {
 			{
 				_playerAnimator.Play("Jump", 0, 0.30f);
 			}
-
 		}
 	}
 	/// <summary>
@@ -184,11 +183,11 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				if(!_isFalling)
 				{
-					_isGrounded = true;
 					if(!_justJumped && !_isGrounded)
 					{
 						_playerAnimator.SetTrigger("Idle");
 					}
+					_isGrounded = true;
 				}
 				break;
 			} else {
@@ -221,7 +220,6 @@ public class PlayerMovement : MonoBehaviour {
 				Physics.IgnoreCollision(myCollider,other.collider,true);
 			} else {
 				Physics.IgnoreCollision(myCollider,other.collider,false);
-				_playerAnimator.Play("Jump", 0, 0.52f);
 			}
 		}
 	}
