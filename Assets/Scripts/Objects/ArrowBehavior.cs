@@ -17,9 +17,14 @@ public class ArrowBehavior : MonoBehaviour {
 	{
 		if(other.transform.tag == "Player")
 		{
-			other.GetComponent<HealthController>().UpdateHealth(-_damage);
-			other.GetComponent<Unit>().KnockBack(this.transform.position);
-			ObjectPool.instance.PoolObject(this.gameObject);
+			bool isPlayerHit = other.GetComponent<PlayerController>().GetJustHit();
+			if(!isPlayerHit)
+			{
+				other.GetComponent<HealthController>().UpdateHealth(-_damage);
+				other.GetComponent<Unit>().KnockBack(this.transform.position);
+				ObjectPool.instance.PoolObject(this.gameObject);
+				other.GetComponent<PlayerController>().SetJustHit(true);
+			}
 		}
 	}
 	void PoolMyself()

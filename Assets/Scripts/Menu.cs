@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
 	private GameObject creditsPanel;
 	private GameObject optionsPanel;
 
+	private bool mainMenuPanelBool = true;
 	private bool creditsPanelBool = false;
 	private bool optionsPanelBool = false;
 
@@ -29,7 +30,7 @@ public class Menu : MonoBehaviour
 	public void PlayButtonPressed ()
 	{
 		Debug.Log ("Startbutton clicked");
-		Application.LoadLevel (0);
+		Application.LoadLevel (1);
 	}
 
 	//Quit Button
@@ -48,7 +49,8 @@ public class Menu : MonoBehaviour
 		optionsPanel.SetActive (true);
 
 		optionsPanel.transform.position = new Vector2 (0, 0);
-		
+
+		mainMenuPanelBool = false;
 		optionsPanelBool = true;
 	}
 
@@ -66,7 +68,6 @@ public class Menu : MonoBehaviour
 	//Back button
 	public void BackButtonPressed()
 	{
-
 		//Activates/Deactivates Panels
 		mainMenuPanel.SetActive (true);
 		creditsPanel.SetActive (false);
@@ -79,7 +80,6 @@ public class Menu : MonoBehaviour
 		} else if (optionsPanelBool == true) 
 		{
 			optionsPanel.transform.position = new Vector2 (-100,-100);
-			//optionsPanel.transform.position = Vector3.Lerp(optionsPanel.transform.position, 0f);
 		}
 	}
 }

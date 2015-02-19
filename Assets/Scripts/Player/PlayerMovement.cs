@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
-	public Collider myCollider;
-	
 	private Animator _playerAnimator;
 	private float _speed = 3f;
 	private float _climbSpeed = 3f;
@@ -11,14 +9,16 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _isTryingToClimb = false;
 	private bool _isClimbing = false;
 	private bool _isMoving = false;
-	private bool _isFalling = false;
 	private bool _justJumped = false;
 	private bool _death = false;
 	private float _jumpHeight = 25f;
-	private GameObject _currentFloor;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
+	}
+	public void SetIsTryingToClimb(bool tryingToClimb)
+	{
+		_isTryingToClimb = tryingToClimb;
 	}
 	public bool GetJustJumped()
 	{
@@ -27,10 +27,6 @@ public class PlayerMovement : MonoBehaviour {
 	public void SetIsGrounded(bool grounded)
 	{
 		_isGrounded = grounded;
-	}
-	public void SetCurrentFloor(GameObject floor)
-	{
-		_currentFloor = floor;
 	}
 	public bool GetIsMoving()
 	{
@@ -44,22 +40,18 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if(!_isClimbing)
 		{
-
+			_isTryingToClimb = false;
 			if(_isGrounded)
 				_playerAnimator.SetBool("Running", true);
 			_isMoving = true;
 			if(_speed <= 7.4f)
-			{
-				_speed += 0.01f;
-			}
+				_speed += 0.1f;
 			movement *= _speed * Time.deltaTime;
 			transform.Translate(movement);
 			Vector3 newRot = this.transform.eulerAngles;
 			newRot.y = 90f;
 			if(!isGoingRight)
-			{
 				newRot.y = 270f;
-			}
 			transform.eulerAngles = newRot;
 		}
 	}
@@ -71,15 +63,6 @@ public class PlayerMovement : MonoBehaviour {
 		_speed = 5f;
 		_playerAnimator.SetBool("Running", false);
 		_isMoving = false;
-	}
-	/// <summary>
-	/// Falls down.
-	/// </summary>
-	public void FallDown()
-	{
-		Physics.IgnoreCollision(_currentFloor.collider, myCollider, true);
-		_isGrounded = false;
-		_isFalling = true;
 	}
 	/// <summary>
 	/// Jump.
@@ -122,14 +105,18 @@ public class PlayerMovement : MonoBehaviour {
 	/// <summary>
 	/// Starts the climbing.
 	/// </summary>
-	public void StartClimbing(float z)
+	public void StartClimbing(Vector3 ladderPos)
 	{
 		_isClimbing = true;
 		_playerAnimator.SetBool("Climbing",true);
 		rigidbody.useGravity = false;
 		rigidbody.velocity = new Vector3(0,0,0);
+		Vector3 newRot = this.transform.eulerAngles;
+		newRot.y = 0;
+		this.transform.eulerAngles = newRot;
 		Vector3 newPos = this.transform.position;
-		newPos.z = z - 0.1f;
+		newPos.x = ladderPos.x - 0.2f;
+		newPos.z = ladderPos.z - 0.2f;
 		this.transform.position = newPos;
 	}
 	/// <summary>
@@ -140,6 +127,9 @@ public class PlayerMovement : MonoBehaviour {
 		_isClimbing = false;
 		_playerAnimator.SetBool("Climbing",false);
 		rigidbody.useGravity = true;
+		Vector3 newRot = this.transform.eulerAngles;
+		newRot.y = 90;
+		this.transform.eulerAngles = newRot;
 		Vector3 newPos = this.transform.position;
 		newPos.z = 0f;
 		this.transform.position = newPos;
@@ -175,52 +165,30 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if(col.transform.tag == "Floor" && !col.isTrigger) 
 			{
-				if(_currentFloor == null || col.gameObject != _currentFloor)
+				if(!_justJumped && !_isGrounded)
 				{
-					_isFalling = false;
-					_currentFloor = col.gameObject;
-					Physics.IgnoreCollision(col,myCollider,false);
+					_playerAnimator.SetTrigger("Idle");
 				}
-				if(!_isFalling)
-				{
-					if(!_justJumped && !_isGrounded)
-					{
-						_playerAnimator.SetTrigger("Idle");
-					}
-					_isGrounded = true;
-				}
+				_isGrounded = true;
 				break;
 			} else {
 				_isGrounded = false;
 			}
 		}
 	}
-	/// <summary>
-	/// Raises the trigger exit event.
-	/// </summary>
-	/// <param name="other">Other.</param>
 	void OnTriggerExit(Collider other)
 	{
-		if(other.transform.tag == "Ladder")
+		if(other.transform.tag == TagManager.Ladder && _isClimbing)
 		{
 			StopClimbing();
 		}
 	}
-	
-	/// <summary>
-	/// Raises the collision enter event.
-	/// </summary>
-	/// <param name="other">Other.</param>
-	void OnCollisionEnter(Collision other)
+
+	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Floor")
+		if(other.transform.tag == TagManager.Ladder && _isTryingToClimb)
 		{
-			if(!_isGrounded)
-			{
-				Physics.IgnoreCollision(myCollider,other.collider,true);
-			} else {
-				Physics.IgnoreCollision(myCollider,other.collider,false);
-			}
+			StartClimbing(other.transform.position);
 		}
 	}
 }
