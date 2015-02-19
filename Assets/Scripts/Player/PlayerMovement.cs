@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _isTryingToClimb = false;
 	private bool _isClimbing = false;
 	private bool _isMoving = false;
+	private bool _canMove = true;
 	private bool _justJumped = false;
 	private bool _death = false;
 	private float _jumpHeight = 25f;
@@ -32,13 +33,23 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		return _isMoving;
 	}
+	void FixedUpdate()
+	{
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+		if(!Physics.Raycast(transform.position, fwd, 1) && !Physics.Raycast(transform.position - new Vector3(0,1f,0), fwd, 1) && !Physics.Raycast(transform.position + new Vector3(0,1.5f,0), fwd, 1))
+		{
+			_canMove = true;
+		} else {
+			_canMove = false;
+		}
+	}
 	/// <summary>
 	/// Move the specified movement.
 	/// </summary>
 	/// <param name="movement">Movement.</param>
 	public void Move(Vector3 movement, bool isGoingRight)
 	{
-		if(!_isClimbing)
+		if(!_isClimbing && _canMove)
 		{
 			_isTryingToClimb = false;
 			if(_isGrounded)
@@ -84,6 +95,10 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			_isTryingToClimb = true;
 		}
+	}
+	public void SetPlayerAnimatorSpeed(float speed)
+	{
+		_playerAnimator.speed = speed;
 	}
 	/// <summary>
 	/// Climb the specified climbMovement.
@@ -133,6 +148,7 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 newPos = this.transform.position;
 		newPos.z = 0f;
 		this.transform.position = newPos;
+		_playerAnimator.speed = 1f;
 	}
 	void Update()
 	{

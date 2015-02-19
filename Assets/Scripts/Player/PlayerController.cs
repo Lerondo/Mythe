@@ -7,6 +7,7 @@ public class PlayerController : Unit {
 	public int[] allCooldowns = new int[5];
 
 	private bool _justHit;
+	private bool _isLastAttack;
 	private Animator _playerAnimator;
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
@@ -53,6 +54,7 @@ public class PlayerController : Unit {
 	public void OnDeath()
 	{
 		this.transform.position = _checkPoint;
+		rigidbody.velocity = Vector3.zero;
 		GetComponent<HealthController>().ResetHealth();
 		_death = false;
 	}
@@ -72,7 +74,17 @@ public class PlayerController : Unit {
 	{
 		myAttackCollider.enabled = true;
 		return base.Attack();
-
+	}
+	/// <summary>
+	/// lastattack via animationevent.
+	/// </summary>
+	/// <returns>The attack.</returns>
+	private AnimationEvent LastAttack()
+	{
+		myAttackCollider.enabled = true;
+		_justAttacked = false;
+		_isLastAttack = true;
+		return null;
 	}
 	/// <summary>
 	/// Stops the attack via AnimationEvent.
@@ -81,6 +93,7 @@ public class PlayerController : Unit {
 	protected override AnimationEvent StopAttack()
 	{
 		myAttackCollider.enabled = false;
+		_isLastAttack = false;
 		return base.StopAttack();
 	}
 
@@ -90,19 +103,28 @@ public class PlayerController : Unit {
 	/// <param name="other">Other.</param>
 	void OnTriggerStay(Collider other)
 	{
-		if(_attacking && !_justAttacked)
+		if(!other.isTrigger)
 		{
-			if(!other.isTrigger)
+			if(other.transform.tag == TagManager.Enemy)
 			{
-				if(other.transform.tag == TagManager.Enemy)
+				if(_attacking && !_justAttacked)
 				{
-					_justAttacked = true;	
-					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
-					other.GetComponent<Unit>().KnockBack(this.transform.position);
-					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<TextMessenger>();
-					txtMessenger.MakeText(_currentAttackDmg.ToString(), other.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+					DoDamage(other.gameObject, 2f, 2f);
+				} 
+				else if(_isLastAttack && !_justAttacked)
+				{
+					DoDamage(other.gameObject, 2f, 5f);
 				}
 			}
 		}
+	}
+	private void DoDamage(GameObject entity, float yPower, float xPower)
+	{
+		_justAttacked = true;	
+		_attacking = false;
+		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
+		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<TextMessenger>();
+		txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
 	}
 }

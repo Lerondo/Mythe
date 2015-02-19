@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : Unit {
 	protected Transform _target;
 	protected float _attackCooldown;
-	protected float _exp;
+	protected float _exp = 50;
 	/// <summary>
 	/// Raises the trigger enter event.
 	/// </summary>

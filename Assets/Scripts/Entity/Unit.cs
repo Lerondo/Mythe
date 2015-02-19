@@ -23,19 +23,16 @@ public class Unit : MonoBehaviour {
 	{
 		_death = death;
 	}
-	public void KnockBack(Vector3 position)
+	public void KnockBack(Vector3 position, float yPower, float xPower)
 	{
 		float side = this.transform.position.x - position.x;
 		Vector3 knockback = this.rigidbody.velocity;
-		knockback.y = 2;
+		knockback.y = yPower;
+		knockback.x = xPower;
 		if(side < 0)
 		{
-			knockback.x = -2;
+			knockback.x *= -1;
 		} 
-		else 
-		{
-			knockback.x = 2;
-		}
 		this.rigidbody.velocity = knockback;
 	}
 	/// <summary>

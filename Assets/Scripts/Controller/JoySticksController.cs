@@ -68,6 +68,14 @@ public class JoySticksController : MonoBehaviour {
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
 					playerMovement.Climb(climbMovement);
+					if(yOffSet >= 0.1f || yOffSet <= -0.1f)
+					{
+						playerMovement.SetPlayerAnimatorSpeed(2f);
+					}  
+					else 
+					{
+						playerMovement.SetPlayerAnimatorSpeed(0f);
+					}
 				}
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
@@ -82,6 +90,9 @@ public class JoySticksController : MonoBehaviour {
 			if(playerMovement.GetIsMoving())
 			{
 				playerMovement.StoppedMoving();
+			} else if(playerMovement.GetIsClimbing())
+			{
+				playerMovement.SetPlayerAnimatorSpeed(0f);
 			}
 		}
 	}

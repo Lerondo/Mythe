@@ -24,7 +24,7 @@ public class Melee : Enemy {
 				{
 					_justAttacked = true;				
 					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
-					other.GetComponent<Unit>().KnockBack(this.transform.position);
+					other.GetComponent<Unit>().KnockBack(this.transform.position, 2f, 2f);
 					other.GetComponent<PlayerController>().SetJustHit(true);
 				}
 			}
