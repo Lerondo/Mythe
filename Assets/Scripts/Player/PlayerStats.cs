@@ -5,8 +5,8 @@ public class PlayerStats : MonoBehaviour {
 	public int basicDamage;
 	public int basicDefence;
 	private int _level;
-	private float _experience;
-	private float _maxExp;
+	private float _experience = 0;
+	private float _maxExp = 125;
 	private int _damage;
 	private int _defence;
 	private UserInterface _userInterface;

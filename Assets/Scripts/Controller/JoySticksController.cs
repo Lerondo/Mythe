@@ -42,19 +42,21 @@ public class JoySticksController : MonoBehaviour {
 				{
 					float xOffSet = Input.GetTouch(_currentFingerId).position.x - movementJoyStickTransform.position.x;
 					bool isGoingRight = true;
-					xOffSet *= 0.01f;
 					if(xOffSet < 0)
 					{
 						isGoingRight = false;
+						xOffSet = -1f;
 					}
 					xOffSet = Mathf.Abs(xOffSet);
-					if(xOffSet > 1)
+					if(xOffSet > 0)
 					{
-						xOffSet = 1;
+						xOffSet = 1f;
 					}
 					Vector3 movement = new Vector3(0,0,xOffSet);
 					playerMovement.Move(movement, isGoingRight);
-				} else {
+				} 
+				else 
+				{
 					if(playerMovement.GetIsMoving())
 					{
 						playerMovement.StoppedMoving();
@@ -66,13 +68,21 @@ public class JoySticksController : MonoBehaviour {
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
 					playerMovement.Climb(climbMovement);
+					if(yOffSet >= 0.1f || yOffSet <= -0.1f)
+					{
+						playerMovement.SetPlayerAnimatorSpeed(2f);
+					}  
+					else 
+					{
+						playerMovement.SetPlayerAnimatorSpeed(0f);
+					}
 				}
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
 					playerMovement.Jump();
-				} else if(Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
+				} else if (Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
 				{
-					playerMovement.FallDown();
+					playerMovement.SetIsTryingToClimb(true);
 				}
 			}
 		} else {
@@ -80,6 +90,9 @@ public class JoySticksController : MonoBehaviour {
 			if(playerMovement.GetIsMoving())
 			{
 				playerMovement.StoppedMoving();
+			} else if(playerMovement.GetIsClimbing())
+			{
+				playerMovement.SetPlayerAnimatorSpeed(0f);
 			}
 		}
 	}
