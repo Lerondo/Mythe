@@ -6,13 +6,26 @@ public class PlayerStats : MonoBehaviour {
 	public int basicDefence;
 	private int _damage;
 	private int _defence;
+	private int _goldValue = 100;
 	void Start()
 	{
 		//TODO: get save updatestats.
 	}
+	void Update()
+	{
+		Debug.Log (_goldValue);
+	}
 	public int GetDamage()
 	{
 		return _damage;
+	}
+	public void UpdateGold (int gold)
+	{
+		_goldValue += gold;
+	}
+	public int GetGold()
+	{
+		return _goldValue;
 	}
 	public void UpdateDamage(int newDamage,int oldDamage)
 	{

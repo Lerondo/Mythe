@@ -22,6 +22,8 @@ public class Item{
 	public ItemQuality itemQuality;
 	protected int _damage;
 	protected int _defence;
+	protected int _buyValue;
+	protected int _sellValue;
 	protected bool _equiped = false;
 	protected Mesh _itemMesh;
 	protected Texture _itemTexture;
@@ -42,6 +44,14 @@ public class Item{
 	public int GetItemDefence()
 	{
 		return _defence;
+	}
+	public int GetItemBuyValue()
+	{
+		return _buyValue;
+	}
+	public int GetItemSellValue()
+	{
+		return _sellValue;
 	}
 	public Mesh GetItemMesh()
 	{
