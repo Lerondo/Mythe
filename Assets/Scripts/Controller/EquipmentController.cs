@@ -7,7 +7,7 @@ public class EquipmentController : MonoBehaviour {
 	public List<Item> equipedItems = new List<Item>();
 
 	//all items for player
-	public Item _sword = new Item();
+	public Item _sword;
 	public Item _shield = new Item();
 	public Item _helm = new Item();
 	public Item _legs = new Item();
@@ -18,9 +18,9 @@ public class EquipmentController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_playerStats = GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>();
-
+		_sword = new WoodenSword();
+		EquipItem(_sword);
 		//making fake items! (gets replaced by real items later on)
-		_sword.itemSort = Item.ItemSort.sword;
 		_shield.itemSort = Item.ItemSort.shield;
 		_helm.itemSort = Item.ItemSort.helm;
 		_legs.itemSort = Item.ItemSort.legs;

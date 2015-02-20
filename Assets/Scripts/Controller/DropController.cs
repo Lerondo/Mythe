@@ -2,14 +2,10 @@
 using System.Collections;
 
 public class DropController : MonoBehaviour {
-	public int commonDropRate;
-	public int uncommonDropRate;
-	public int rareDropRate;
-	public int legendaryDropRate;
+	public int dropRate;
 	public void DropItem()
 	{
-		//common droprate
-		if(Random.Range(0,100) <= commonDropRate)
+		if(Random.Range(0,100) <= dropRate)
 		{
 			int randomItem = Random.Range(0,ItemDatabase.itemList.Count);
 			GameObject newDrop = ObjectPool.instance.GetObjectForType("Item", false);
