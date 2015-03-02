@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour {
 	private float _maxExp = 125;
 	private int _damage;
 	private int _defence;
+	private int _goldValue = 100;
 	private UserInterface _userInterface;
 	void Awake()
 	{
@@ -18,9 +19,21 @@ public class PlayerStats : MonoBehaviour {
 	{
 		//TODO: get save updatestats.
 	}
+	void Update()
+	{
+		Debug.Log (_goldValue);
+	}
 	public int GetDamage()
 	{
 		return _damage;
+	}
+	public void UpdateGold (int gold)
+	{
+		_goldValue += gold;
+	}
+	public int GetGold()
+	{
+		return _goldValue;
 	}
 	public void UpdateExp(float exp)
 	{

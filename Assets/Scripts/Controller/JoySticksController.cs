@@ -6,6 +6,7 @@ public class JoySticksController : MonoBehaviour {
 	public PlayerMovement playerMovement;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
+	public GameObject shopInterface;
 	private int _currentFingerId;
 	public RectTransform movementJoyStickTransform;
 
@@ -18,9 +19,12 @@ public class JoySticksController : MonoBehaviour {
 		if(buttonID <= 6)
 		{
 			playerController.StartSkill(buttonID);
-		} else {
+		} else if (buttonID == 7){
 			GetComponent<InventoryController>().ShowCurrentItems();
 			inventoryInterface.SetActive(true);
+			controllerMenu.SetActive(false);
+		}else{
+			shopInterface.SetActive(true);
 			controllerMenu.SetActive(false);
 		}
 	}
