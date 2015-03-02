@@ -19,10 +19,6 @@ public class PlayerStats : MonoBehaviour {
 	{
 		//TODO: get save updatestats.
 	}
-	void Update()
-	{
-		Debug.Log (_goldValue);
-	}
 	public int GetDamage()
 	{
 		return _damage;

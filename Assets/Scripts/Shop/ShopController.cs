@@ -11,6 +11,10 @@ public class ShopController : MonoBehaviour {
 	{
 		_shopInterface = GetComponent<ShopInterface>();
 	}
+	void Start()
+	{
+		_buyButton.SetActive (false);
+	}
 	public void RemovePlayerItem(Item item)
 	{
 		_playerItems.Remove(item);

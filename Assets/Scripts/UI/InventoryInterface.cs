@@ -4,16 +4,19 @@ using UnityEngine.UI;
 
 public class InventoryInterface : MonoBehaviour {
 	public Text statText;
+	public Text goldText;
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 
+	private PlayerStats _playerStats;
 	private InventoryController _playerInventory;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[30];
 	void Awake()
 	{
+		_playerStats = GameObject.Find ("Player").GetComponent<PlayerStats> ();
 		_playerInventory = GetComponent<InventoryController>();
 	}
 	void Start()
@@ -29,6 +32,10 @@ public class InventoryInterface : MonoBehaviour {
 			allButtons[i] = allItemSlots[i].GetComponent<Button>();
 		}
 		inventoryInterface.SetActive(false);
+	}
+	public void UpdateInterface()
+	{
+		goldText.text = "Gold : " + _playerStats.GetGold ();
 	}
 	public void Back()
 	{

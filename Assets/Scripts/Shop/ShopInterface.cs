@@ -7,11 +7,11 @@ public class ShopInterface : MonoBehaviour {
 	public Text statText;
 	public Text goldText;
 	public Text costText;
+	public Text insufficientText;
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject shopInterface;
 
-	private List<Item> _shopList = new List<Item> ();
 	private InventoryController _playerInventory;
 	private PlayerStats _playerStats;
 	private int selectedButtonId;
@@ -37,6 +37,7 @@ public class ShopInterface : MonoBehaviour {
 			SetShopSpace(i,newShopItem);
 		}
 		shopInterface.SetActive (false);
+		insufficientText.enabled = false;
 	}
 	public void Back()
 	{
@@ -61,22 +62,35 @@ public class ShopInterface : MonoBehaviour {
 		stats += item.GetItemSort() + "\n";
 		stats += item.GetItemQuality() + "\n";
 		stats += item.GetItemDamage() + "\n";
-		stats += item.GetItemDefence() + "\n";
-		stats += item.GetItemBuyValue ();
+		stats += item.GetItemDefence ();
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
+		costText.text = "Cost : " + item.GetItemBuyValue ();
+		goldText.text = "Gold : " + _playerStats.GetGold () + " > " + (_playerStats.GetGold () - item.GetItemBuyValue ());
+		if (_playerStats.GetGold() - item.GetItemBuyValue() < 0)
+			insufficientText.enabled = true;
+		else 
+			insufficientText.enabled = false;
 	}
 	public void BuyCurrentSelected()
 	{
 		Item item = selectedItem;
-		if (item.GetItemBuyValue() <= _playerStats.GetGold())
+		if (selectedItem != null)
 		{
-			_playerStats.UpdateGold(-item.GetItemBuyValue());
-			_playerInventory.AddItem(selectedItem);
-			ResetShopSpace(selectedButtonId);
-		}else {
-			Debug.Log("Not Enough Gold");
+			if (item.GetItemBuyValue() <= _playerStats.GetGold())
+			{
+				_playerStats.UpdateGold(-item.GetItemBuyValue());
+				_playerInventory.AddItem(selectedItem);
+				ResetShopSpace(selectedButtonId);
+				ResetTexts();
+				selectedItem = null;
+			}
 		}
+	}
+	public void ResetTexts()
+	{
+		costText.text = "Cost : ";
+		goldText.text = "Gold : " + _playerStats.GetGold ();
 	}
 }
