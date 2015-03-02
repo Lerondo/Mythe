@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerController : Unit {
 	public Collider myAttackCollider;
-	public int[] allDamages = new int[5];
-	public int[] allCooldowns = new int[5];
+	//TODO: list skills
 
 	private bool _justHit;
 	private bool _isLastAttack;
@@ -59,13 +58,18 @@ public class PlayerController : Unit {
 		_death = false;
 	}
 	/// <summary>
-	/// Attack with the specified skillNumber.
+	/// start a skill with the specified skillNumber.
 	/// </summary>
 	/// <param name="skillNumber">Skill number.</param>
-	public void StartAttack(int skillNumber)
+	public void StartSkill(int skillNumber)
 	{
-		_currentAttackDmg = allDamages[skillNumber] + _stats.GetDamage();
-		_playerAnimator.SetTrigger("Attack");
+		if(skillNumber == 0)
+		{
+			GetComponent<SkillController>().ActivateSkill(skillNumber);
+		} else {
+			_playerAnimator.SetTrigger("Attack");
+		}
+		//set trigger to current skill
 	}
 	/// <summary>
 	/// Attack via AnimationEvent.
@@ -118,7 +122,7 @@ public class PlayerController : Unit {
 			}
 		}
 	}
-	private void DoDamage(GameObject entity, float yPower, float xPower)
+	public void DoDamage(GameObject entity, float yPower, float xPower)
 	{
 		_justAttacked = true;	
 		_attacking = false;

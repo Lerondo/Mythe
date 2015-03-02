@@ -17,7 +17,7 @@ public class JoySticksController : MonoBehaviour {
 	{
 		if(buttonID <= 6)
 		{
-			playerController.StartAttack(buttonID);
+			playerController.StartSkill(buttonID);
 		} else {
 			GetComponent<InventoryController>().ShowCurrentItems();
 			inventoryInterface.SetActive(true);
