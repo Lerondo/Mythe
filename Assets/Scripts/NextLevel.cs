@@ -21,14 +21,11 @@ public class NextLevel : MonoBehaviour {
 
 	}
 
-	void Update()
+	void GoNextLevel()
 	{
-		if (_startNextLvl == true)
-		{
-			_darkness.color = Color.Lerp(_darkness.color, Color.black, Time.deltaTime);
-			_nextLvlTimer++;
-		}
-
+		_darkness.color = Color.Lerp(_darkness.color, Color.black, Time.deltaTime);
+		_nextLvlTimer++;
+		
 		if (_nextLvlTimer > 225)
 		{
 			if(PlayerPrefs.GetInt("next_lvl") >= 3)
@@ -47,7 +44,7 @@ public class NextLevel : MonoBehaviour {
 		if (other.gameObject.name == "Player")
 		{
 			_playerController.enabled = false;
-			_startNextLvl = true;
+			GoNextLevel();
 			PlayerPrefs.SetInt("next_lvl", _nextLvl + 1);
 			_nextLvl = PlayerPrefs.GetInt("next_lvl");
 		}
