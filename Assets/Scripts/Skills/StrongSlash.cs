@@ -15,7 +15,7 @@ public class StrongSlash : Skill {
 		{
 			if(col.tag == TagManager.Enemy)
 			{
-				GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,10,10);
+				GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3);
 			}
 		}
 	}
