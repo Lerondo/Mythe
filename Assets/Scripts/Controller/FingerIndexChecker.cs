@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-public class MovementJoystick : MonoBehaviour, IPointerDownHandler {
+public class FingerIndexChecker : MonoBehaviour, IPointerDownHandler {
 	public JoySticksController joySticksController;
 	public void OnPointerDown(PointerEventData data) 
 	{
