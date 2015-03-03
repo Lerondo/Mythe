@@ -5,9 +5,11 @@ public class SteelSword : Item {
 
 	public SteelSword()
 	{
-		itemSort = ItemSort.sword;
-		itemQuality = ItemQuality.uncommon;
+		itemSort = ItemSort.Weapon;
+		itemQuality = ItemQuality.Uncommon;
+		_name = "Steel Sword";
 		_damage = 9;
+		_magicDamage = 0;
 		_defence = 0;
 		_buyValue = (_damage + _defence) * 3;
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
