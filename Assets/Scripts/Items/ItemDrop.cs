@@ -14,5 +14,7 @@ public class ItemDrop : MonoBehaviour {
 	public void SetItem(Item item)
 	{
 		currentItem = item;
+		this.gameObject.GetComponent<MeshFilter>().mesh = currentItem.GetItemMesh();
+		this.gameObject.renderer.material.mainTexture = currentItem.GetItemTexture();
 	}
 }
