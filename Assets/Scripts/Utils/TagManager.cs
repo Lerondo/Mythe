@@ -11,4 +11,7 @@ public class TagManager : MonoBehaviour {
 	public const string ItemSlot = "ItemSlot";
 	public const string CheckPoint = "CheckPoint";
 	public const string DontDestroyObject = "DontDestroy";
+	public const string Prop = "Prop";
+	public const string Lever = "Lever";
+	public const string ObjectButton = "ObjectButton";
 }
