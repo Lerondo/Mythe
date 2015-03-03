@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class StrongSlash : Skill {
+	public StrongSlash()
+	{
+		animationName = "attack";
+		type = skillType.offensive;
+	}
 	public override void Activate (Vector3 playerPos, Vector3 playerEuler)
 	{
 		Vector3 spherePosition = playerPos;
