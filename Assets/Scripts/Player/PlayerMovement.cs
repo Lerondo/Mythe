@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 	private Animator _playerAnimator;
 	private float _speed = 3f;
-	private float _climbSpeed = 3f;
+	private float _climbSpeed = 5f;
 	private bool _isGrounded = false;
 	private bool _isTryingToClimb = false;
 	private bool _isClimbing = false;
@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _canMove = true;
 	private bool _justJumped = false;
 	private bool _death = false;
-	private float _jumpHeight = 25f;
+	private float _jumpHeight = 50f;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();

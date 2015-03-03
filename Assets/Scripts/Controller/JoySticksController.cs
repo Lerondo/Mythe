@@ -7,12 +7,14 @@ public class JoySticksController : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject shopInterface;
+	public GameObject followButton;
 	private int _currentFingerId;
 	public RectTransform movementJoyStickTransform;
 
 	void Start()
 	{
 		_currentFingerId = -1;
+		followButton.SetActive(false);
 	}
 	public void PressButton(int buttonID)
 	{
@@ -42,6 +44,12 @@ public class JoySticksController : MonoBehaviour {
 		{
 			if(_currentFingerId != -1)
 			{
+				followButton.SetActive(true);
+				Vector2 buttonPos = Input.GetTouch(_currentFingerId).position;
+				buttonPos.x = Mathf.Clamp(Input.GetTouch(_currentFingerId).position.x, movementJoyStickTransform.position.x-50,movementJoyStickTransform.position.x+50);
+				buttonPos.y = Mathf.Clamp(Input.GetTouch(_currentFingerId).position.y, movementJoyStickTransform.position.y-50,movementJoyStickTransform.position.y+50);
+				followButton.GetComponent<RectTransform>().position = buttonPos;
+
 				if(Input.GetTouch(_currentFingerId).position.x > movementJoyStickTransform.position.x+10 || Input.GetTouch(_currentFingerId).position.x < movementJoyStickTransform.position.x-10)
 				{
 					float xOffSet = Input.GetTouch(_currentFingerId).position.x - movementJoyStickTransform.position.x;
@@ -91,6 +99,7 @@ public class JoySticksController : MonoBehaviour {
 			}
 		} else {
 			_currentFingerId = -1;
+			followButton.SetActive(false);
 			if(playerMovement.GetIsMoving())
 			{
 				playerMovement.StoppedMoving();

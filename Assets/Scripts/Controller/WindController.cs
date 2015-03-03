@@ -19,10 +19,13 @@ public class WindController : MonoBehaviour {
 		}
 	}
 	void OnMouseDown() {
+		//clear lijst
 		startTime = Time.time;
 		startPos = Input.mousePosition;
+		//draw collider and get all rigidbodys in collider
 		startPos.z = transform.position.z - Camera.main.transform.position.z;
 		startPos = Camera.main.ScreenToWorldPoint(startPos);
+		//set al rigidbodys in list
 	}
 	
 	void OnMouseUp() {
@@ -33,7 +36,8 @@ public class WindController : MonoBehaviour {
 		Vector3 force = endPos - startPos;
 		force.z = force.magnitude;
 		force /= (Time.time - startTime);
-		
+
+		//loop trough all rigidbodys
 		rigidbody.AddForce(force * factor);
 	}
 }
