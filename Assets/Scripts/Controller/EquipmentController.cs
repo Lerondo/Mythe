@@ -33,6 +33,7 @@ public class EquipmentController : MonoBehaviour {
 		equipedItems.Add(_body);
 		equipedItems.Add(_boots);
 		//TODO: get save file and equip items.
+		//foreach(Item item in equipedItems){ EquipItem(item); }
 	}
 	/// <summary>
 	/// Equips a item.
@@ -47,7 +48,6 @@ public class EquipmentController : MonoBehaviour {
 				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
 				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
 				equipedItems[i] = item;
-
 			}
 		}
 		if(item.itemSort == Item.ItemSort.Weapon)
