@@ -9,6 +9,14 @@ public class InventoryController : MonoBehaviour {
 	{
 		_inventoryInterface = GetComponent<InventoryInterface>();
 	}
+	public List<Item> GetInventory()
+	{
+		return _playerItems;
+	}
+	public void SetInventory(List<Item> inventory)
+	{
+		_playerItems = inventory;
+	}
 	public void RemovePlayerItem(Item item)
 	{
 		_playerItems.Remove(item);

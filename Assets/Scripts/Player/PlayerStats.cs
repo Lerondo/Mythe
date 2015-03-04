@@ -5,6 +5,7 @@ public class PlayerStats : MonoBehaviour {
 	public int basicDamage;
 	public int basicDefence;
 	private int _level;
+	private string _username;
 	private float _experience = 0;
 	private float _maxExp = 125;
 	private int _damage;
@@ -19,6 +20,54 @@ public class PlayerStats : MonoBehaviour {
 	{
 		//TODO: get save updatestats.
 	}
+	public string GetUsername()
+	{
+		return _username;
+	}
+	public void SetUsername(string name)
+	{
+		_username = name;
+	}
+	public float GetExperience()
+	{
+		return _experience;
+	}
+	public void SetExperience(float exp)
+	{
+		_experience = exp;
+	}
+	public void SetMaxExperience(float exp)
+	{
+		_maxExp = exp;
+	}
+	public int GetLevel()
+	{
+		return _level;
+	}
+	public void SetLevel(int lvl)
+	{
+		_level = lvl;
+	}
+	public float GetMaxExperience()
+	{
+		return _maxExp;
+	}
+	public int GetBasicDamage()
+	{
+		return basicDamage;
+	}
+	public void SetBasicDamage(int dmg)
+	{
+		basicDamage = dmg;
+	}
+	public void SetBasicDefence(int def)
+	{
+		basicDefence = def;
+	}
+	public int GetBasicDefence()
+	{
+		return basicDefence;
+	}
 	public int GetDamage()
 	{
 		return _damage;
@@ -30,6 +79,10 @@ public class PlayerStats : MonoBehaviour {
 	public int GetGold()
 	{
 		return _goldValue;
+	}
+	public void SetGold(int gold)
+	{
+		_goldValue = gold;
 	}
 	public void UpdateExp(float exp)
 	{
