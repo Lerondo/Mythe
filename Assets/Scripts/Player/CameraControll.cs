@@ -24,24 +24,26 @@ public class CameraControll : MonoBehaviour {
 	}
 	public IEnumerator MoveCloser()
 	{
-		float closeTime = 0;
-		//transform.position = new Vector3(_playerPos.x + 1, _playerPos.y + 0.5f, -3);
-		while(closeTime < 225)
+		for(int i = 0; i < 2500; i++)
 		{
+			int noOfFramesToWait = (int)(0.16f * Application.targetFrameRate);
+			for (int j = 0; j < noOfFramesToWait; j++) 
+			{
+				yield return null;
+			}
 			transform.position = Vector3.Lerp (_camPos, new Vector3 (_playerPos.x + 1, _playerPos.y + 0.5f, -3), 0.05f);
-			closeTime++;
-			yield return new WaitForSeconds(0.16f);
 		}
 	}
 	public IEnumerator MoveAway()
 	{
-		float closeTime = 0;
-		//transform.position = new Vector3(_playerPos.x + 1, _playerPos.y + 0.5f, -3);
-		while(closeTime < 225)
+		for(int i = 0; i < 2500; i++)
 		{
+			int noOfFramesToWait = (int)(0.16f * Application.targetFrameRate);
+			for (int j = 0; j < noOfFramesToWait; j++)
+			{
+				yield return null;
+			}
 			transform.position = Vector3.Lerp (_camPos, _oldCamPos, Time.deltaTime);
-			closeTime++;
-			yield return new WaitForSeconds(0.16f);
 		}
 	}
 	void FollowPlayer()
