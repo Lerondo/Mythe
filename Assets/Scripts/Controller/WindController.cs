@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WindController : MonoBehaviour {
 	float factor = 5.0f;
@@ -18,22 +19,46 @@ public class WindController : MonoBehaviour {
 			OnMouseUp();
 		}
 	}
-	void OnMouseDown() {
+
+	List<Rigidbody> rigidbodies = new List<Rigidbody>();
+
+
+	void OnMouseDown() 
+	{
+		//clear list
+		rigidbodies.Clear ();
+
 		startTime = Time.time;
 		startPos = Input.mousePosition;
+		startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		startPos.z = transform.position.z - Camera.main.transform.position.z;
-		startPos = Camera.main.ScreenToWorldPoint(startPos);
+
+		//Draw collider & add rigidbodies inside the drawn collider to the list
+		Vector3 spherePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		spherePos.z = 0;
+		Collider[] touchedRigidbodies = Physics.OverlapSphere (spherePos, 0.5f);
+
+		foreach(Collider col in touchedRigidbodies)
+		{
+			if(col.rigidbody)
+			{
+				rigidbodies.Add(col.rigidbody);
+			}
+		}
 	}
 	
 	void OnMouseUp() {
 		Vector3 endPos = Input.mousePosition;
-		endPos.z = transform.position.z - Camera.main.transform.position.z;
+		endPos.y = transform.position.y - Camera.main.transform.position.y;
 		endPos = Camera.main.ScreenToWorldPoint(endPos);
-		
+
 		Vector3 force = endPos - startPos;
-		force.z = force.magnitude;
+		force.y = force.magnitude;
 		force /= (Time.time - startTime);
-		
-		rigidbody.AddForce(force * factor);
+
+		foreach(Rigidbody rbody in rigidbodies)
+		{
+			rbody.AddForce(force * factor);
+		}
 	}
 }
