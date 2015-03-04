@@ -45,7 +45,6 @@ public class WindController : MonoBehaviour {
 				rigidbodies.Add(col.rigidbody);
 			}
 		}
-	}
 	
 	void OnMouseUp() {
 		Vector3 endPos = Input.mousePosition;
@@ -55,6 +54,7 @@ public class WindController : MonoBehaviour {
 		Vector3 force = endPos - startPos;
 		force.y = force.magnitude;
 		force /= (Time.time - startTime);
+
 
 		foreach(Rigidbody rbody in rigidbodies)
 		{

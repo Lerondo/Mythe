@@ -4,24 +4,24 @@ using System.Collections.Generic;
 
 public class SkillController : MonoBehaviour {
 	private List<Skill> _currentSkills = new List<Skill>();
+	private Animator playerAnimator;
 	void Awake()
 	{
+		playerAnimator = GetComponent<Animator>();
 		AddSkill(new StrongSlash());
 	}
 	public void ActivateSkill(int skillNumber)
 	{
 		_currentSkills[skillNumber].Activate(this.transform.position,this.transform.eulerAngles);
-	}
-	 void OnDrawGizmos()
-	{
-		Vector3 spherePosition = this.transform.position;
-		spherePosition.x += 1;
-		if(this.transform.eulerAngles.y == 270)
+		if(_currentSkills[skillNumber].type == Skill.skillType.buff)
 		{
-			spherePosition.x -= 2;
+			//TODO: buff stuff
+		} else if(_currentSkills[skillNumber].type == Skill.skillType.debuff)
+		{
+			//TODO: debuff stuff.
+		} else {
+			//TODO: offensive stuff.
 		}
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawSphere(spherePosition, 1f);
 	}
 	public void AddSkill(Skill skill)
 	{

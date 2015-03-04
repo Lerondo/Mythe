@@ -30,6 +30,7 @@ public class Menu : MonoBehaviour
 	public void PlayButtonPressed ()
 	{
 		Debug.Log ("Startbutton clicked");
+		GetComponent<LoadingScreen>().LoadScreen();
 		Application.LoadLevel (1);
 	}
 

@@ -4,23 +4,25 @@ using System.Collections;
 public class Item{
 	public enum ItemSort
 	{
-		helm,
-		sword,
-		shield,
-		body,
-		legs,
-		boots
+		Helm,
+		Weapon,
+		Shield,
+		Body,
+		Legs,
+		Boots
 	}
 	public enum ItemQuality
 	{
-		common,
-		uncommon,
-		rare,
-		legendary
+		Common,
+		Uncommon,
+		Rare,
+		Legendary
 	}
 	public ItemSort itemSort;
 	public ItemQuality itemQuality;
+	protected string _name;
 	protected int _damage;
+	protected int _magicDamage;
 	protected int _defence;
 	protected int _buyValue;
 	protected int _sellValue;
@@ -29,6 +31,10 @@ public class Item{
 	protected Texture _itemTexture;
 	protected Sprite _itemSprite;
 
+	public string GetItemName()
+	{
+		return _name;
+	}
 	public ItemSort GetItemSort()
 	{
 		return itemSort;
@@ -40,6 +46,10 @@ public class Item{
 	public int GetItemDamage()
 	{
 		return _damage;
+	}
+	public int GetItemMagicDamage()
+	{
+		return _magicDamage;
 	}
 	public int GetItemDefence()
 	{

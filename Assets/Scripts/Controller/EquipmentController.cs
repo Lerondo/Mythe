@@ -21,11 +21,11 @@ public class EquipmentController : MonoBehaviour {
 		_sword = new WoodenSword();
 		EquipItem(_sword);
 		//making fake items! (gets replaced by real items later on)
-		_shield.itemSort = Item.ItemSort.shield;
-		_helm.itemSort = Item.ItemSort.helm;
-		_legs.itemSort = Item.ItemSort.legs;
-		_body.itemSort = Item.ItemSort.body;
-		_boots.itemSort = Item.ItemSort.boots;
+		_shield.itemSort = Item.ItemSort.Shield;
+		_helm.itemSort = Item.ItemSort.Helm;
+		_legs.itemSort = Item.ItemSort.Legs;
+		_body.itemSort = Item.ItemSort.Body;
+		_boots.itemSort = Item.ItemSort.Boots;
 		equipedItems.Add(_sword);
 		equipedItems.Add(_shield);
 		equipedItems.Add(_helm);
@@ -33,6 +33,7 @@ public class EquipmentController : MonoBehaviour {
 		equipedItems.Add(_body);
 		equipedItems.Add(_boots);
 		//TODO: get save file and equip items.
+		//foreach(Item item in equipedItems){ EquipItem(item); }
 	}
 	/// <summary>
 	/// Equips a item.
@@ -47,10 +48,9 @@ public class EquipmentController : MonoBehaviour {
 				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
 				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
 				equipedItems[i] = item;
-
 			}
 		}
-		if(item.itemSort == Item.ItemSort.sword)
+		if(item.itemSort == Item.ItemSort.Weapon)
 		{
 			playerSword.GetComponent<MeshFilter>().mesh = item.GetItemMesh();
 			playerSword.renderer.material.mainTexture = item.GetItemTexture();

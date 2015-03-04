@@ -1,17 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UserInterface : MonoBehaviour {
 	public const string HEALTHBAR = "healthbar";
 	public const string STAMINABAR = "staminabar";
-	public const string XPBAR = "xpbar";
+	public const string EXPERIENCEBAR = "xpbar";
 
 	//Ingame bars
 	[SerializeField]private Slider _healthBar;
 	[SerializeField]private Slider _staminaBar;
-	[SerializeField]private Slider _XPBar;
+	[SerializeField]private Slider _experienceBar;
 
+	private Dictionary<string, Slider> _allBars = new Dictionary<string, Slider>();
+
+	void Start()
+	{
+		_allBars.Add(HEALTHBAR, _healthBar);
+		_allBars.Add(STAMINABAR, _staminaBar);
+		_allBars.Add(EXPERIENCEBAR, _experienceBar);
+	}
 	/// <summary>
 	/// Updates a userinterface slider.
 	/// </summary>
@@ -19,20 +28,7 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="value">Value.</param>
 	public void UpdateBar(string bar, int value)
 	{
-		if(bar == HEALTHBAR)
-		{
-			_healthBar.value = value;
-		}
-		else if(bar == STAMINABAR)
-		{
-			_staminaBar.value = value;
-		}
-		else if(bar == XPBAR)
-		{
-			_XPBar.value = value;
-		} else {
-			Debug.LogWarning("bar does not exist");
-		}
+		_allBars[bar].value += value;
 	}
 	/// <summary>
 	/// Updates the max value.
@@ -41,20 +37,7 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="value">Value.</param>
 	public void UpdateMaxValue(string bar, int value)
 	{
-		if(bar == HEALTHBAR)
-		{
-			_healthBar.maxValue += value;
-		}
-		else if(bar == STAMINABAR)
-		{
-			_staminaBar.maxValue += value;
-		}
-		else if(bar == XPBAR)
-		{
-			_XPBar.maxValue += value;
-		} else {
-			Debug.LogWarning("bar does not exist");
-		}
+		_allBars[bar].maxValue += value;
 	}
 	/// <summary>
 	/// Sets the max value.
@@ -63,20 +46,7 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="value">Value.</param>
 	public void SetMaxValue(string bar,int value)
 	{
-		if(bar == HEALTHBAR)
-		{
-			_healthBar.maxValue = value;
-		}
-		else if(bar == STAMINABAR)
-		{
-			_staminaBar.maxValue = value;
-		}
-		else if(bar == XPBAR)
-		{
-			_XPBar.maxValue = value;
-		} else {
-			Debug.LogWarning("bar does not exist");
-		}
+		_allBars[bar].maxValue = value;
 	}
 	/// <summary>
 	/// Gets the max value.
@@ -85,20 +55,6 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="bar">Bar.</param>
 	public float GetMaxValue(string bar)
 	{
-		if(bar == HEALTHBAR)
-		{
-			return _healthBar.maxValue;
-		}
-		else if(bar == STAMINABAR)
-		{
-			return _staminaBar.maxValue;
-		}
-		else if(bar == XPBAR)
-		{
-			return _XPBar.maxValue;
-		} else {
-			Debug.LogWarning("bar does not exist");
-		}
-		return 0;
+		return _allBars[bar].maxValue;
 	}
 }

@@ -5,9 +5,11 @@ public class Axe : Item {
 
 	public Axe()
 	{
-		itemSort = ItemSort.sword;
-		itemQuality = ItemQuality.common;
+		itemSort = ItemSort.Weapon;
+		itemQuality = ItemQuality.Common;
+		_name = "Hunter's Axe";
 		_damage = 5;
+		_magicDamage = 0;
 		_defence = 0;
 		_buyValue = (_damage + _defence) * 3;
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);

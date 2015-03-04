@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour {
 	private int buttonHeight = 50;
 	private int groupWidth = 200;
 	private int groupHeight = 290;
-	private bool _paused = false;
+	public bool _paused = false;
 	private bool _inOptions = false;
 
 	private static int _gameQuality;
@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if(_paused)
 		{
-			GUI.BeginGroup(new Rect(100 , 100 , groupWidth, groupHeight), _optionsStyle);
+			GUI.BeginGroup(new Rect(500 , 100 , groupWidth, groupHeight), _optionsStyle);
 			if (GUI.Button(new Rect(0,0,buttonWidth, buttonHeight), "Return to Game"))
 				_paused = togglePause();
 			if (_inOptions == false)
@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour {
 
 			if (_inOptions)
 			{
-				GUI.BeginGroup(new Rect(325 , 100 , groupWidth, groupHeight));
+				GUI.BeginGroup(new Rect(725 , 100 , groupWidth, groupHeight));
 				if (GUI.Button(new Rect(0,0, buttonWidth, buttonHeight), "Increase Quality"))
 				{
 					if (_gameQuality < 5)
@@ -68,6 +68,7 @@ public class PauseMenu : MonoBehaviour {
 				GUI.Label(new Rect(0,120, buttonWidth, buttonHeight), "Volume");
 				
 				_gameVolume = GUI.HorizontalSlider(new Rect(0, 180, buttonWidth, buttonHeight), _gameVolume, 0.0f, 1.0f);
+				UpdatePrefs();
 				GUI.EndGroup();
 			}
 		}
@@ -75,13 +76,14 @@ public class PauseMenu : MonoBehaviour {
 
 	void Update()
 	{
-		_gameQuality = PlayerPrefs.GetInt ("game_Quality", _gameQuality);
-		QualitySettings.SetQualityLevel (_gameQuality);
-		Debug.Log (_gameVolume.ToString("F1"));
-
 		if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
 			_paused = togglePause();
+	}
 
+	void UpdatePrefs()
+	{
+		_gameQuality = PlayerPrefs.GetInt ("game_Quality", _gameQuality);
+		QualitySettings.SetQualityLevel (_gameQuality);
 		AudioListener.volume = _gameVolume;
 	}
 

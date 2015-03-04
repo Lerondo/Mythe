@@ -60,9 +60,14 @@ public class ShopInterface : MonoBehaviour {
 	{
 		string stats = "";
 		stats += item.GetItemSort() + "\n";
+		stats += item.GetItemName() + "\n";
 		stats += item.GetItemQuality() + "\n";
-		stats += item.GetItemDamage() + "\n";
-		stats += item.GetItemDefence ();
+		if (!CheckIfZero(item.GetItemDamage()))
+			stats += "Damage : " + item.GetItemDamage() + "\n";
+		if (!CheckIfZero(item.GetItemMagicDamage()))
+			stats += "Magic Dmg : " + item.GetItemMagicDamage() + "\n";
+		if (!CheckIfZero(item.GetItemDefence()))
+			stats += "Defence : " + item.GetItemDefence ();
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
@@ -72,6 +77,14 @@ public class ShopInterface : MonoBehaviour {
 			insufficientText.enabled = true;
 		else 
 			insufficientText.enabled = false;
+	}
+	public bool CheckIfZero(float currentStat)
+	{
+		if(currentStat > 0)
+		{
+			return false;
+		}
+		return true;
 	}
 	public void BuyCurrentSelected()
 	{
