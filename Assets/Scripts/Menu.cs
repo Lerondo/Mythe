@@ -2,38 +2,74 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class Menu : MonoBehaviour 
 {
-	private GameObject mainMenuPanel;
-	private GameObject creditsPanel;
-	private GameObject optionsPanel;
+	public Text characterTextA;
+	public Text characterTextB;
+	public Text characterTextC;
 
-	private bool mainMenuPanelBool = true;
-	private bool creditsPanelBool = false;
-	private bool optionsPanelBool = false;
+	private GameObject _mainMenuPanel;
+	private GameObject _creditsPanel;
+	private GameObject _optionsPanel;
+	private GameObject _characterPanel;
+
+	private Dictionary<int, string> loadPath = new Dictionary<int, string>();
+	private Dictionary<int, Text> characterTexts = new Dictionary<int, Text>();
+	private SaveLoadDataSerialized _saveLoadData;
+
+	private bool _mainMenuPanelBool = true;
+	private bool _creditsPanelBool = false;
+	private bool _optionsPanelBool = false;
 
 	void Awake()
 	{
-		mainMenuPanel 	= GameObject.Find ("MenuPanel");
-		creditsPanel 	= GameObject.Find ("CreditsPanel");
-		optionsPanel 	= GameObject.Find ("OptionsPanel");
+		_saveLoadData = GameObject.FindGameObjectWithTag(TagManager.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
+		_mainMenuPanel 	= GameObject.Find ("MenuPanel");
+		_creditsPanel 	= GameObject.Find ("CreditsPanel");
+		_optionsPanel 	= GameObject.Find ("OptionsPanel");
+		_characterPanel  = GameObject.Find ("CharacterSelection");
 	}
 
 	void Start()
 	{
-		creditsPanel.SetActive (false);
-		optionsPanel.SetActive (false);
+		_creditsPanel.SetActive (false);
+		_optionsPanel.SetActive (false);
+		_characterPanel.SetActive (false);
+		loadPath.Add(0,SavePaths.SavePathA);
+		loadPath.Add(1,SavePaths.SavePathB);
+		loadPath.Add(2,SavePaths.SavePathC);
+		characterTexts.Add(0, characterTextA);
+		characterTexts.Add(1, characterTextB);
+		characterTexts.Add(2, characterTextC);
+		for(int i = 0; i < 3; i++)
+		{
+			_saveLoadData.LoadCharacterPanel(loadPath[i], i);
+		}
 	}
-	
+	public void SetCharacterText(int id, string text)
+	{
+		characterTexts[id].text = text;
+	}
 	//Play Button
 	public void PlayButtonPressed ()
 	{
 		Debug.Log ("Startbutton clicked");
+		_characterPanel.SetActive (true);
+		_mainMenuPanel.SetActive (false);
+		/*
 		GetComponent<LoadingScreen>().LoadScreen();
-		Application.LoadLevel (1);
+		Application.LoadLevel (1); */
 	}
-
+	public void DeleteCharacter(int charId)
+	{
+		_saveLoadData.DeleteSave(loadPath[charId]);
+	}
+	public void LoadCharacter(int charId)
+	{
+		_saveLoadData.StartCoroutine(_saveLoadData.Load(loadPath[charId]));
+	}
 	//Quit Button
 	public void QuitButtonPressed ()
 	{
@@ -45,42 +81,42 @@ public class Menu : MonoBehaviour
 	public void OptionsButtonPressed()
 	{
 		//Activates/Deactivates Panels
-		mainMenuPanel.SetActive (false);
-		creditsPanel.SetActive (false);
-		optionsPanel.SetActive (true);
+		_mainMenuPanel.SetActive (false);
+		_creditsPanel.SetActive (false);
+		_optionsPanel.SetActive (true);
 
-		optionsPanel.transform.position = new Vector2 (0, 0);
+		_optionsPanel.transform.position = new Vector2 (0, 0);
 
-		mainMenuPanelBool = false;
-		optionsPanelBool = true;
+		_mainMenuPanelBool = false;
+		_optionsPanelBool = true;
 	}
 
 	//Credits Button
 	public void CreditsButtonPressed()
 	{
 		//Activates/Deactivates Panels
-		mainMenuPanel.SetActive (false);
-		creditsPanel.SetActive (true);
-		optionsPanel.SetActive (false);
+		_mainMenuPanel.SetActive (false);
+		_creditsPanel.SetActive (true);
+		_optionsPanel.SetActive (false);
 
-		creditsPanel.transform.position = new Vector2 (0, 0);
+		_creditsPanel.transform.position = new Vector2 (0, 0);
 	}
 
 	//Back button
 	public void BackButtonPressed()
 	{
 		//Activates/Deactivates Panels
-		mainMenuPanel.SetActive (true);
-		creditsPanel.SetActive (false);
-		optionsPanel.SetActive (false);
+		_mainMenuPanel.SetActive (true);
+		_creditsPanel.SetActive (false);
+		_optionsPanel.SetActive (false);
 
-		if (creditsPanelBool == true) 
+		if (_creditsPanelBool == true) 
 		{
-			creditsPanel.transform.position = new Vector2 (100, 100);
+			_creditsPanel.transform.position = new Vector2 (100, 100);
 
-		} else if (optionsPanelBool == true) 
+		} else if (_optionsPanelBool == true) 
 		{
-			optionsPanel.transform.position = new Vector2 (-100,-100);
+			_optionsPanel.transform.position = new Vector2 (-100,-100);
 		}
 	}
 }

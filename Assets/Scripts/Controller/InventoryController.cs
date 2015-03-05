@@ -29,6 +29,15 @@ public class InventoryController : MonoBehaviour {
 	{
 		_playerItems.Add(newItem);
 	}
+	public List<int> GetInventoryItemIds()
+	{
+		List<int> newItemList = new List<int>();
+		for(int i = 0; i < _playerItems.Count;i++)
+		{
+			newItemList.Add(_playerItems[i].itemId);
+		}
+		return newItemList;
+	}
 	public void ShowCurrentItems()
 	{
 		for (int i = 0; i < _playerItems.Count; i++) {

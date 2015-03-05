@@ -45,6 +45,7 @@ public class WindController : MonoBehaviour {
 				rigidbodies.Add(col.rigidbody);
 			}
 		}
+	}
 	
 	void OnMouseUp() {
 		Vector3 endPos = Input.mousePosition;

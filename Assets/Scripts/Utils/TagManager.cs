@@ -14,4 +14,5 @@ public class TagManager : MonoBehaviour {
 	public const string Prop = "Prop";
 	public const string Lever = "Lever";
 	public const string ObjectButton = "ObjectButton";
+	public const string SaveLoadObject = "SaveLoadObject";
 }

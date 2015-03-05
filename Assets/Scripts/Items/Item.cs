@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class Item{
 	public enum ItemSort
 	{
@@ -20,6 +21,7 @@ public class Item{
 	}
 	public ItemSort itemSort;
 	public ItemQuality itemQuality;
+	public int itemId;
 	protected string _name;
 	protected int _damage;
 	protected int _magicDamage;

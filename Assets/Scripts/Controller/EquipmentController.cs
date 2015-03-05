@@ -35,6 +35,19 @@ public class EquipmentController : MonoBehaviour {
 		//TODO: get save file and equip items.
 		//foreach(Item item in equipedItems){ EquipItem(item); }
 	}
+	public List<Item> GetEquipedItem()
+	{
+		return equipedItems;
+	}
+	public List<int> GetEquipedItemIds()
+	{
+		List<int> newItemList = new List<int>();
+		for(int i = 0; i < equipedItems.Count;i++)
+		{
+			newItemList.Add(equipedItems[i].itemId);
+		}
+		return newItemList;
+	}
 	/// <summary>
 	/// Equips a item.
 	/// </summary>
