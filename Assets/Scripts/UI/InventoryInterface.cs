@@ -35,7 +35,7 @@ public class InventoryInterface : MonoBehaviour {
 	}
 	public void UpdateInterface()
 	{
-		goldText.text = "Gold : " + _playerStats.GetGold ();
+		goldText.text = "Gold : " + _playerStats.gold;
 	}
 	public void Back()
 	{

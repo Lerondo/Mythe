@@ -17,14 +17,15 @@ public class HealthController : MonoBehaviour {
 		_health = _maxHealth;
 		UpdateInterface();
 	}
-	public int GetHealth()
+	public int health
 	{
-		return _health;
-	}
-	public void SetHealth(int health)
-	{
-		_health = health;
-		UpdateInterface();
+		get{
+			return _health;
+		}
+		set{
+			_health = value;
+			UpdateInterface();
+		}
 	}
 	public void UpdateMaxHealth(int health)
 	{

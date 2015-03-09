@@ -54,24 +54,24 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.loadedlevel = Application.loadedLevel;
 
 		//player Stats
-		saveData.exp = _playerStats.GetExperience();
-		saveData.maxExp = _playerStats.GetMaxExperience();
-		saveData.gold = _playerStats.GetGold();
-		saveData.health = _healthController.GetHealth();
-		saveData.level = _playerStats.GetLevel();
-		saveData.damage = _playerStats.GetBasicDamage();
-		saveData.defence = _playerStats.GetBasicDefence();
+		saveData.exp = _playerStats.experience;
+		saveData.maxExp = _playerStats.maxExperience;
+		saveData.gold = _playerStats.gold;
+		saveData.health = _healthController.health;
+		saveData.level = _playerStats.level;
+		saveData.damage = _playerStats.basicDamage;
+		saveData.defence = _playerStats.basicDefence;
 
 		//Player Position
 		saveData.playerX = _player.transform.position.x;
 		saveData.playerY = _player.transform.position.y;
 		saveData.playerZ = _player.transform.position.z;
 		//player username
-		saveData.username = _playerStats.GetUsername();
+		saveData.username = _playerStats.username;
 
 		//Inventory Items
 		//saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
-		saveData.inventoryItems = _inventory.GetInventory();
+		saveData.inventoryItems = _inventory.inventory;
 
 		//Equiped Items
 		//saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
@@ -122,19 +122,19 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_skills = _player.GetComponent<SkillController>();
 
 			//setting all values
-			_playerStats.SetBasicDamage(saveData.damage);
-			_playerStats.SetBasicDefence(saveData.defence);
-			_playerStats.SetExperience(saveData.exp);
-			_playerStats.SetMaxExperience(saveData.maxExp);
-			_playerStats.SetGold(saveData.gold);
-			_healthController.SetHealth(saveData.health);
-			_playerStats.SetLevel(saveData.level);
+			_playerStats.basicDamage = saveData.damage;
+			_playerStats.basicDefence = saveData.defence;
+			_playerStats.experience = saveData.exp;
+			_playerStats.maxExperience = saveData.maxExp;
+			_playerStats.gold = saveData.gold;
+			_healthController.health = saveData.health;
+			_playerStats.level = saveData.level;
 			_player.transform.position = new Vector3(saveData.playerX,saveData.playerY,saveData.playerZ);
-			_playerStats.SetUsername(saveData.username);
+			_playerStats.username = saveData.username;
 			_skills.currentSkills = saveData.equipedSkills;
 
 			_equipment.equipedItems = saveData.equipedItems;
-			_inventory.SetInventory(saveData.inventoryItems);
+			_inventory.inventory = saveData.inventoryItems;
 
 			file.Close();
 		} else

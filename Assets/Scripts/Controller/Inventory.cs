@@ -9,13 +9,14 @@ public class Inventory : MonoBehaviour {
 	{
 		_inventoryInterface = GetComponent<InventoryInterface>();
 	}
-	public List<Item> GetInventory()
+	public List<Item> inventory
 	{
-		return _playerItems;
-	}
-	public void SetInventory(List<Item> inventory)
-	{
-		_playerItems = inventory;
+		set{
+			_playerItems = value;
+		}
+		get{
+			return _playerItems;
+		}
 	}
 	public void RemovePlayerItem(Item item)
 	{

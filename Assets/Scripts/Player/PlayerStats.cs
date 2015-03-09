@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PlayerStats : MonoBehaviour {
-	public int basicDamage;
-	public int basicDefence;
+	private int _basicDamage;
+	private int _basicDefence;
 	private int _level;
 	private string _username;
 	private float _experience = 0;
@@ -20,69 +20,78 @@ public class PlayerStats : MonoBehaviour {
 	{
 		//TODO: get save updatestats.
 	}
-	public string GetUsername()
+	public string username
 	{
-		return _username;
+		get{
+			return _username;
+		}
+		set{
+			_username = value;
+		}
 	}
-	public void SetUsername(string name)
+	public float experience
 	{
-		_username = name;
+		get{
+			return _experience;
+		}
+		set{
+			_experience = value;
+		}
 	}
-	public float GetExperience()
+	public float maxExperience
 	{
-		return _experience;
+		set{
+			_maxExp = value;
+		}
+		get{
+			return _maxExp;
+		}
 	}
-	public void SetExperience(float exp)
+	public int level
 	{
-		_experience = exp;
+		get{
+			return _level;
+		}
+		set{
+			_level = value;
+		}
 	}
-	public void SetMaxExperience(float exp)
+	public int basicDamage
 	{
-		_maxExp = exp;
+		get{
+			return _basicDamage;
+		}
+		set{
+			_basicDamage = value;
+		}
 	}
-	public int GetLevel()
+	public int basicDefence
 	{
-		return _level;
+		get{
+			return _basicDefence;
+		}
+		set{
+			_basicDefence = value;
+		}
 	}
-	public void SetLevel(int lvl)
+	public int damage
 	{
-		_level = lvl;
-	}
-	public float GetMaxExperience()
-	{
-		return _maxExp;
-	}
-	public int GetBasicDamage()
-	{
-		return basicDamage;
-	}
-	public void SetBasicDamage(int dmg)
-	{
-		basicDamage = dmg;
-	}
-	public void SetBasicDefence(int def)
-	{
-		basicDefence = def;
-	}
-	public int GetBasicDefence()
-	{
-		return basicDefence;
-	}
-	public int GetDamage()
-	{
+		get{
 		return _damage;
+		}
 	}
 	public void UpdateGold (int gold)
 	{
 		_goldValue += gold;
 	}
-	public int GetGold()
+	public int gold
 	{
+		get{
 		return _goldValue;
-	}
-	public void SetGold(int gold)
-	{
-		_goldValue = gold;
+		}
+		set{
+			_goldValue = value;
+		}
 	}
 	public void UpdateExp(float exp)
 	{

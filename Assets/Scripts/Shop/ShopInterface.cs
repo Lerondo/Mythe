@@ -72,8 +72,8 @@ public class ShopInterface : MonoBehaviour {
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
 		costText.text = "Cost : " + item.itemBuyValue;
-		goldText.text = "Gold : " + _playerStats.GetGold () + " > " + (_playerStats.GetGold () - item.itemBuyValue);
-		if (_playerStats.GetGold() - item.itemBuyValue < 0)
+		goldText.text = "Gold : " + _playerStats.gold + " > " + (_playerStats.gold - item.itemBuyValue);
+		if (_playerStats.gold - item.itemBuyValue < 0)
 			insufficientText.enabled = true;
 		else 
 			insufficientText.enabled = false;
@@ -91,7 +91,7 @@ public class ShopInterface : MonoBehaviour {
 		Item item = selectedItem;
 		if (selectedItem != null)
 		{
-			if (item.itemBuyValue <= _playerStats.GetGold())
+			if (item.itemBuyValue <= _playerStats.gold)
 			{
 				_playerStats.UpdateGold(-item.itemBuyValue);
 				_playerInventory.AddItem(selectedItem);
@@ -104,6 +104,6 @@ public class ShopInterface : MonoBehaviour {
 	public void ResetTexts()
 	{
 		costText.text = "Cost : ";
-		goldText.text = "Gold : " + _playerStats.GetGold ();
+		goldText.text = "Gold : " + _playerStats.gold;
 	}
 }
