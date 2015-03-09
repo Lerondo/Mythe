@@ -10,6 +10,17 @@ public class SkillController : MonoBehaviour {
 		playerAnimator = GetComponent<Animator>();
 		AddSkill(new StrongSlash());
 	}
+	public List<Skill> currentSkills
+	{
+		get
+		{
+			return _currentSkills;
+		}
+		set
+		{
+			_currentSkills = value;
+		}
+	}
 	public void ActivateSkill(int skillNumber)
 	{
 		_currentSkills[skillNumber].Activate(this.transform.position,this.transform.eulerAngles);

@@ -8,6 +8,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 	private PlayerStats _playerStats;
 	private Equipment _equipment;
 	private Inventory _inventory;
+	private SkillController _skills;
 	private HealthController _healthController;
 	private GameObject _player;
 	public static SaveLoadDataSerialized Instance;
@@ -46,6 +47,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		_healthController = _player.GetComponent<HealthController>();
 		_equipment = gameController.GetComponent<Equipment>();
 		_inventory = gameController.GetComponent<Inventory>();
+		_skills = _player.GetComponent<SkillController>();
 
 		//get all values
 		//Loaded level
@@ -68,10 +70,15 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.username = _playerStats.GetUsername();
 
 		//Inventory Items
-		saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
+		//saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
+		saveData.inventoryItems = _inventory.GetInventory();
 
 		//Equiped Items
-		saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
+		//saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
+		saveData.equipedItems = _equipment.equipedItems;
+
+		//skills
+		saveData.equipedSkills = _skills.currentSkills;
 
 		binaryFormatter.Serialize(file,saveData);
 		file.Close();
@@ -112,6 +119,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_healthController = _player.GetComponent<HealthController>();
 			_equipment = gameController.GetComponent<Equipment>();
 			_inventory = gameController.GetComponent<Inventory>();
+			_skills = _player.GetComponent<SkillController>();
 
 			//setting all values
 			_playerStats.SetBasicDamage(saveData.damage);
@@ -123,9 +131,10 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.SetLevel(saveData.level);
 			_player.transform.position = new Vector3(saveData.playerX,saveData.playerY,saveData.playerZ);
 			_playerStats.SetUsername(saveData.username);
+			_skills.currentSkills = saveData.equipedSkills;
 
-			_equipment.equipedItems = ItemDatabase.GetItemsViaId(saveData.equipedItemsIds);
-			_inventory.SetInventory(ItemDatabase.GetItemsViaId(saveData.inventoryItemsIds));
+			_equipment.equipedItems = saveData.equipedItems;
+			_inventory.SetInventory(saveData.inventoryItems);
 
 			file.Close();
 		} else
@@ -150,13 +159,8 @@ public class SaveData
 	public float playerX;
 	public float playerY;
 	public float playerZ;
-	public List<int> equipedItemsIds = new List<int>();
-	public List<int> equipedItemDmgs = new List<int>();
-	public List<int> equipedItemDefs = new List<int>();
-	public List<int> equipedItemMagDmgs = new List<int>();
-	public List<int> inventoryItemsIds = new List<int>();
-	public List<int> inventoryItemDmgs = new List<int>();
-	public List<int> inventoryItemDefs = new List<int>();
-	public List<int> inventoryItemMagDmgs = new List<int>();
+	public List<Item> equipedItems = new List<Item>();
+	public List<Item> inventoryItems = new List<Item>();
+	public List<Skill> equipedSkills = new List<Skill>();
 	//TODO: time
 }

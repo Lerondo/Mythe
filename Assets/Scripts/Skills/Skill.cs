@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Skill {
+[System.Serializable]
+public class Skill : System.Object {
 	protected string _animationName;
 	public enum skillType
 	{

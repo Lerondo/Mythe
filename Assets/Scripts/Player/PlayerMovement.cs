@@ -132,6 +132,7 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 newPos = this.transform.position;
 		newPos.x = ladderPos.x - 0.2f;
 		newPos.z = ladderPos.z - 0.2f;
+		rigidbody.velocity = new Vector3(0,0,0);
 		this.transform.position = newPos;
 	}
 	/// <summary>
@@ -149,6 +150,7 @@ public class PlayerMovement : MonoBehaviour {
 		newPos.z = 0f;
 		this.transform.position = newPos;
 		_playerAnimator.speed = 1f;
+		rigidbody.velocity = new Vector3(0,0,0);
 	}
 	void Update()
 	{

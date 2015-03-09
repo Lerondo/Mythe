@@ -58,15 +58,15 @@ public class Equipment : MonoBehaviour {
 			if(item.itemSort == equipedItems[i].itemSort)
 			{
 				oldItem = equipedItems[i];
-				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
-				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
+				_playerStats.UpdateDamage(item.itemDamage,equipedItems[i].itemDamage);
+				_playerStats.UpdateDefence(item.itemDefence,equipedItems[i].itemDefence);
 				equipedItems[i] = item;
 			}
 		}
 		if(item.itemSort == Item.ItemSort.Weapon)
 		{
-			playerSword.GetComponent<MeshFilter>().mesh = item.GetItemMesh();
-			playerSword.renderer.material.mainTexture = item.GetItemTexture();
+			playerSword.GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
+			playerSword.renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		}
 		return oldItem;
 	}
