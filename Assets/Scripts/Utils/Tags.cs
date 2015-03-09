@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TagManager : MonoBehaviour {
+public class Tags : MonoBehaviour {
 	public const string GameController = "GameController";
 	public const string Player = "Player";
 	public const string Floor = "Floor";
@@ -14,4 +14,5 @@ public class TagManager : MonoBehaviour {
 	public const string Prop = "Prop";
 	public const string Lever = "Lever";
 	public const string ObjectButton = "ObjectButton";
+	public const string SaveLoadObject = "SaveLoadObject";
 }

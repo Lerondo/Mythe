@@ -12,14 +12,14 @@ public class ShopInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject shopInterface;
 
-	private InventoryController _playerInventory;
+	private Inventory _playerInventory;
 	private PlayerStats _playerStats;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[15];
 	void Awake()
 	{
-		_playerInventory = GetComponent<InventoryController>();
+		_playerInventory = GetComponent<Inventory>();
 		_playerStats = GameObject.Find("Player").GetComponent<PlayerStats> ();
 	}
 	void Start()
@@ -46,7 +46,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	public void SetShopSpace(int slot, Item item)
 	{
-		Sprite itemSprite = item.GetItemSprite();
+		Sprite itemSprite = Resources.Load (item.itemSprite, typeof(Sprite)) as Sprite;
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(slot,item));
 	}
@@ -59,21 +59,21 @@ public class ShopInterface : MonoBehaviour {
 	public void ShowStats(int buttonSlot, Item item)
 	{
 		string stats = "";
-		stats += item.GetItemSort() + "\n";
-		stats += item.GetItemName() + "\n";
-		stats += item.GetItemQuality() + "\n";
-		if (!CheckIfZero(item.GetItemDamage()))
-			stats += "Damage : " + item.GetItemDamage() + "\n";
-		if (!CheckIfZero(item.GetItemMagicDamage()))
-			stats += "Magic Dmg : " + item.GetItemMagicDamage() + "\n";
-		if (!CheckIfZero(item.GetItemDefence()))
-			stats += "Defence : " + item.GetItemDefence ();
+		stats += item.itemSort + "\n";
+		stats += item.itemName + "\n";
+		stats += item.itemQuality + "\n";
+		if (!CheckIfZero(item.itemDamage))
+			stats += "Damage : " + item.itemDamage + "\n";
+		if (!CheckIfZero(item.itemMagicDamage))
+			stats += "Magic Dmg : " + item.itemMagicDamage + "\n";
+		if (!CheckIfZero(item.itemDefence))
+			stats += "Defence : " + item.itemDefence;
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
-		costText.text = "Cost : " + item.GetItemBuyValue ();
-		goldText.text = "Gold : " + _playerStats.GetGold () + " > " + (_playerStats.GetGold () - item.GetItemBuyValue ());
-		if (_playerStats.GetGold() - item.GetItemBuyValue() < 0)
+		costText.text = "Cost : " + item.itemBuyValue;
+		goldText.text = "Gold : " + _playerStats.GetGold () + " > " + (_playerStats.GetGold () - item.itemBuyValue);
+		if (_playerStats.GetGold() - item.itemBuyValue < 0)
 			insufficientText.enabled = true;
 		else 
 			insufficientText.enabled = false;
@@ -91,9 +91,9 @@ public class ShopInterface : MonoBehaviour {
 		Item item = selectedItem;
 		if (selectedItem != null)
 		{
-			if (item.GetItemBuyValue() <= _playerStats.GetGold())
+			if (item.itemBuyValue <= _playerStats.GetGold())
 			{
-				_playerStats.UpdateGold(-item.GetItemBuyValue());
+				_playerStats.UpdateGold(-item.itemBuyValue);
 				_playerInventory.AddItem(selectedItem);
 				ResetShopSpace(selectedButtonId);
 				ResetTexts();

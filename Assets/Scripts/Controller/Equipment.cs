@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EquipmentController : MonoBehaviour {
+public class Equipment : MonoBehaviour {
 	public GameObject playerSword;
 	public List<Item> equipedItems = new List<Item>();
 
@@ -17,7 +17,7 @@ public class EquipmentController : MonoBehaviour {
 	private PlayerStats _playerStats;
 	// Use this for initialization
 	void Start () {
-		_playerStats = GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>();
+		_playerStats = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>();
 		_sword = new WoodenSword();
 		EquipItem(_sword);
 		//making fake items! (gets replaced by real items later on)
@@ -35,6 +35,19 @@ public class EquipmentController : MonoBehaviour {
 		//TODO: get save file and equip items.
 		//foreach(Item item in equipedItems){ EquipItem(item); }
 	}
+	public List<Item> GetEquipedItem()
+	{
+		return equipedItems;
+	}
+	public List<int> GetEquipedItemIds()
+	{
+		List<int> newItemList = new List<int>();
+		for(int i = 0; i < equipedItems.Count;i++)
+		{
+			newItemList.Add(equipedItems[i].itemId);
+		}
+		return newItemList;
+	}
 	/// <summary>
 	/// Equips a item.
 	/// </summary>
@@ -45,15 +58,15 @@ public class EquipmentController : MonoBehaviour {
 			if(item.itemSort == equipedItems[i].itemSort)
 			{
 				oldItem = equipedItems[i];
-				_playerStats.UpdateDamage(item.GetItemDamage(),equipedItems[i].GetItemDamage());
-				_playerStats.UpdateDefence(item.GetItemDefence(),equipedItems[i].GetItemDefence());
+				_playerStats.UpdateDamage(item.itemDamage,equipedItems[i].itemDamage);
+				_playerStats.UpdateDefence(item.itemDefence,equipedItems[i].itemDefence);
 				equipedItems[i] = item;
 			}
 		}
 		if(item.itemSort == Item.ItemSort.Weapon)
 		{
-			playerSword.GetComponent<MeshFilter>().mesh = item.GetItemMesh();
-			playerSword.renderer.material.mainTexture = item.GetItemTexture();
+			playerSword.GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
+			playerSword.renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		}
 		return oldItem;
 	}

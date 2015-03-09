@@ -10,14 +10,14 @@ public class InventoryInterface : MonoBehaviour {
 	public GameObject inventoryInterface;
 
 	private PlayerStats _playerStats;
-	private InventoryController _playerInventory;
+	private Inventory _playerInventory;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[30];
 	void Awake()
 	{
 		_playerStats = GameObject.Find ("Player").GetComponent<PlayerStats> ();
-		_playerInventory = GetComponent<InventoryController>();
+		_playerInventory = GetComponent<Inventory>();
 	}
 	void Start()
 	{
@@ -44,7 +44,7 @@ public class InventoryInterface : MonoBehaviour {
 	}
 	public void SetInventorySpace(int slot, Item item)
 	{
-		Sprite itemSprite = item.GetItemSprite();
+		Sprite itemSprite = Resources.Load(item.itemSprite, typeof(Sprite)) as Sprite;
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(slot,item));
 	}
@@ -57,17 +57,17 @@ public class InventoryInterface : MonoBehaviour {
 	public void ShowStats(int buttonSlot, Item item)
 	{
 		string stats = "";
-		stats += item.GetItemSort() + "\n";
-		stats += item.GetItemQuality() + "\n";
-		stats += item.GetItemDamage() + "\n";
-		stats += item.GetItemDefence();
+		stats += item.itemSort + "\n";
+		stats += item.itemQuality + "\n";
+		stats += item.itemDamage + "\n";
+		stats += item.itemDefence;
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
 	}
 	public void EquipCurrentSelected()
 	{
-		Item oldItem = GetComponent<EquipmentController>().EquipItem(selectedItem);
+		Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
 		_playerInventory.RemovePlayerItem(selectedItem);
 		SetInventorySpace(selectedButtonId, oldItem);
 	}

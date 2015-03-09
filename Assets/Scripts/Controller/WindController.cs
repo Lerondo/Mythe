@@ -41,6 +41,7 @@ public class WindController : MonoBehaviour
 			{
 				rigidbodies.Add (col.rigidbody);
 			}
+<<<<<<< HEAD
 		}*/
 
 		rigidbodies.Clear ();
@@ -56,6 +57,12 @@ public class WindController : MonoBehaviour
 
 	void OnMouseUp() 
 	{
+=======
+		}
+	}
+	
+	void OnMouseUp() {
+>>>>>>> origin/master
 		Vector3 endPos = Input.mousePosition;
 		endPos.z = 0;
 		endPos = Camera.main.ScreenToWorldPoint(endPos);

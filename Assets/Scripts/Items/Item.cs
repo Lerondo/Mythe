@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Item{
+[System.Serializable]
+public class Item : System.Object{
 	public enum ItemSort
 	{
 		Helm,
@@ -20,6 +22,7 @@ public class Item{
 	}
 	public ItemSort itemSort;
 	public ItemQuality itemQuality;
+	public int itemId;
 	protected string _name;
 	protected int _damage;
 	protected int _magicDamage;
@@ -27,52 +30,108 @@ public class Item{
 	protected int _buyValue;
 	protected int _sellValue;
 	protected bool _equiped = false;
-	protected Mesh _itemMesh;
-	protected Texture _itemTexture;
-	protected Sprite _itemSprite;
-
-	public string GetItemName()
+	protected string _itemMesh;
+	protected string _itemTexture;
+	protected string _itemSprite;
+	public string itemName
 	{
-		return _name;
+		get{
+			return _name;
+		}
+		set{
+			_name = value;
+		}
 	}
-	public ItemSort GetItemSort()
+	public ItemSort currentItemSort
 	{
-		return itemSort;
+		get
+		{
+			return itemSort;
+		}
+		set
+		{
+			itemSort = value;
+		}
 	}
-	public ItemQuality GetItemQuality()
+	public ItemQuality currentItemQuality
 	{
+		get{
 		return itemQuality;
+		}
+		set{
+			itemQuality = value;
+		}
 	}
-	public int GetItemDamage()
+	public int itemDamage
 	{
+		get{
 		return _damage;
+		}
+		set{
+			_damage = value;
+		}
 	}
-	public int GetItemMagicDamage()
+	public int itemMagicDamage
 	{
-		return _magicDamage;
+		get{
+			return _magicDamage;
+		}
+		set{
+			_magicDamage = value;
+		}
 	}
-	public int GetItemDefence()
+	public int itemDefence
 	{
-		return _defence;
+		get{
+			return _defence;
+		}
+		set{
+			_defence = value;
+		}
 	}
-	public int GetItemBuyValue()
+	public int itemBuyValue
 	{
-		return _buyValue;
+		get{
+			return _buyValue;
+		}
+		set{
+			_buyValue = value;
+		}
 	}
-	public int GetItemSellValue()
+	public int itemSellValue
 	{
-		return _sellValue;
+		get{
+			return _sellValue;
+		}
+		set{
+			_sellValue = value;
+		}
 	}
-	public Mesh GetItemMesh()
+	public string itemMesh
 	{
-		return _itemMesh;
+		get{
+			return _itemMesh;
+		}
+		set{
+			_itemMesh = value;
+		}
 	}
-	public Texture GetItemTexture()
+	public string itemTexture
 	{
-		return _itemTexture;
+		get{
+			return _itemTexture;
+		}
+		set{
+			_itemTexture = value;
+		}
 	}
-	public Sprite GetItemSprite()
+	public string itemSprite
 	{
-		return _itemSprite;
+		get{
+			return _itemSprite;
+		}
+		set{
+			_itemSprite = value;
+		}
 	}
 }

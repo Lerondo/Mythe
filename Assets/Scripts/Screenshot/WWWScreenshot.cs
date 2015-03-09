@@ -4,10 +4,10 @@ using System.Collections;
 public class WWWScreenshot : MonoBehaviour {
 	// Grab a screen shot and upload it to a CGI script.
 	// The CGI script must be able to hande form uploads.
-	public string username;
-	public float score;
+	public string username = "Menno";
+	public float score = 130;
 	private string screenShotURL= "16710.hosts.ma-cloud.nl/mythe/uploadImage.php";
-	IEnumerator UploadPNG() {
+	public IEnumerator UploadPNG() {
 		// We should only read the screen after all rendering is complete
 		yield return new WaitForEndOfFrame();
 		// Create a texture the size of the screen, RGB24 format
