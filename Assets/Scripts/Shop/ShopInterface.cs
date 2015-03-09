@@ -12,14 +12,14 @@ public class ShopInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject shopInterface;
 
-	private InventoryController _playerInventory;
+	private Inventory _playerInventory;
 	private PlayerStats _playerStats;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[15];
 	void Awake()
 	{
-		_playerInventory = GetComponent<InventoryController>();
+		_playerInventory = GetComponent<Inventory>();
 		_playerStats = GameObject.Find("Player").GetComponent<PlayerStats> ();
 	}
 	void Start()

@@ -25,7 +25,7 @@ public class JoySticksController : MonoBehaviour {
 		{
 			playerController.StartSkill(buttonID);
 		} else if (buttonID == 7){
-			GetComponent<InventoryController>().ShowCurrentItems();
+			GetComponent<Inventory>().ShowCurrentItems();
 			inventoryInterface.SetActive(true);
 			controllerMenu.SetActive(false);
 		}else{

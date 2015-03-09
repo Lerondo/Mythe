@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 public class SaveLoadDataSerialized : MonoBehaviour {
 	private PlayerStats _playerStats;
-	private EquipmentController _equipment;
-	private InventoryController _inventory;
+	private Equipment _equipment;
+	private Inventory _inventory;
 	private HealthController _healthController;
 	private GameObject _player;
 	public static SaveLoadDataSerialized Instance;
@@ -40,12 +40,12 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		SaveData saveData = new SaveData();
 
 		//get all components
-		GameObject gameController = GameObject.FindGameObjectWithTag(TagManager.GameController);
-		_player = GameObject.FindGameObjectWithTag(TagManager.Player);
+		GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
+		_player = GameObject.FindGameObjectWithTag(Tags.Player);
 		_playerStats = _player.GetComponent<PlayerStats>();
 		_healthController = _player.GetComponent<HealthController>();
-		_equipment = gameController.GetComponent<EquipmentController>();
-		_inventory = gameController.GetComponent<InventoryController>();
+		_equipment = gameController.GetComponent<Equipment>();
+		_inventory = gameController.GetComponent<Inventory>();
 
 		//get all values
 		//Loaded level
@@ -106,12 +106,12 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 				yield return new WaitForEndOfFrame();
 			}
 			//get all components
-			GameObject gameController = GameObject.FindGameObjectWithTag(TagManager.GameController);
-			_player = GameObject.FindGameObjectWithTag(TagManager.Player);
+			GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
+			_player = GameObject.FindGameObjectWithTag(Tags.Player);
 			_playerStats = _player.GetComponent<PlayerStats>();
 			_healthController = _player.GetComponent<HealthController>();
-			_equipment = gameController.GetComponent<EquipmentController>();
-			_inventory = gameController.GetComponent<InventoryController>();
+			_equipment = gameController.GetComponent<Equipment>();
+			_inventory = gameController.GetComponent<Inventory>();
 
 			//setting all values
 			_playerStats.SetBasicDamage(saveData.damage);

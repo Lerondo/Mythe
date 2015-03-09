@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour {
 	private UserInterface _userInterface;
 	void Awake()
 	{
-		_userInterface = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<UserInterface>();
+		_userInterface = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<UserInterface>();
 	}
 	void Start()
 	{

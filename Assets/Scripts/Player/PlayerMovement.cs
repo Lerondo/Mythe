@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void OnTriggerExit(Collider other)
 	{
-		if(other.transform.tag == TagManager.Ladder && _isClimbing)
+		if(other.transform.tag == Tags.Ladder && _isClimbing)
 		{
 			StopClimbing();
 		}
@@ -202,7 +202,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == TagManager.Ladder && _isTryingToClimb)
+		if(other.transform.tag == Tags.Ladder && _isTryingToClimb)
 		{
 			StartClimbing(other.transform.position);
 		}

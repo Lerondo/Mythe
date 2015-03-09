@@ -5,9 +5,9 @@ public class ItemDrop : MonoBehaviour {
 	public Item currentItem;
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Player")
+		if(other.transform.tag == Tags.Player)
 		{
-			GameObject.FindGameObjectWithTag("GameController").GetComponent<InventoryController>().AddItem(currentItem);
+			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Inventory>().AddItem(currentItem);
 			Destroy(this.gameObject);
 		} 
 	}

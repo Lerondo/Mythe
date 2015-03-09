@@ -10,14 +10,14 @@ public class InventoryInterface : MonoBehaviour {
 	public GameObject inventoryInterface;
 
 	private PlayerStats _playerStats;
-	private InventoryController _playerInventory;
+	private Inventory _playerInventory;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[30];
 	void Awake()
 	{
 		_playerStats = GameObject.Find ("Player").GetComponent<PlayerStats> ();
-		_playerInventory = GetComponent<InventoryController>();
+		_playerInventory = GetComponent<Inventory>();
 	}
 	void Start()
 	{
@@ -67,7 +67,7 @@ public class InventoryInterface : MonoBehaviour {
 	}
 	public void EquipCurrentSelected()
 	{
-		Item oldItem = GetComponent<EquipmentController>().EquipItem(selectedItem);
+		Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
 		_playerInventory.RemovePlayerItem(selectedItem);
 		SetInventorySpace(selectedButtonId, oldItem);
 	}

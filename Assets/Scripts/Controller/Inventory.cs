@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class InventoryController : MonoBehaviour {
+public class Inventory : MonoBehaviour {
 	private List<Item> _playerItems = new List<Item>();
 	private InventoryInterface _inventoryInterface;
 	void Awake()

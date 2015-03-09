@@ -25,7 +25,7 @@ public class Menu : MonoBehaviour
 
 	void Awake()
 	{
-		_saveLoadData = GameObject.FindGameObjectWithTag(TagManager.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
+		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
 		_mainMenuPanel 	= GameObject.Find ("MenuPanel");
 		_creditsPanel 	= GameObject.Find ("CreditsPanel");
 		_optionsPanel 	= GameObject.Find ("OptionsPanel");

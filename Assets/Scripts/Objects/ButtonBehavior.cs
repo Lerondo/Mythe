@@ -15,7 +15,7 @@ public class ButtonBehavior : InteractiveObject {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == TagManager.Prop || other.transform.tag == TagManager.Player)
+		if(other.transform.tag == Tags.Prop || other.transform.tag == Tags.Player)
 		{
 			Activate();
 		}

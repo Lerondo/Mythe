@@ -13,7 +13,7 @@ public class Enemy : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if (other.tag == TagManager.Player) 
+			if (other.tag == Tags.Player) 
 			{
 				_target = other.transform;
 			}
@@ -28,7 +28,7 @@ public class Enemy : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if (other.tag == TagManager.Player) 
+			if (other.tag == Tags.Player) 
 			{
 				_target = null;
 			}
@@ -92,7 +92,7 @@ public class Enemy : Unit {
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, 10f))
 		{
-			if(hit.transform.tag == TagManager.Player)
+			if(hit.transform.tag == Tags.Player)
 			{
 				return true;
 			}

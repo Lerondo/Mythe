@@ -109,7 +109,7 @@ public class PlayerController : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if(other.transform.tag == TagManager.Enemy)
+			if(other.transform.tag == Tags.Enemy)
 			{
 				if(_attacking && !_justAttacked)
 				{
@@ -128,7 +128,7 @@ public class PlayerController : Unit {
 		_attacking = false;
 		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
-		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<TextMessenger>();
+		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
 		txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
 	}
 }

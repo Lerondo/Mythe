@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EquipmentController : MonoBehaviour {
+public class Equipment : MonoBehaviour {
 	public GameObject playerSword;
 	public List<Item> equipedItems = new List<Item>();
 
@@ -17,7 +17,7 @@ public class EquipmentController : MonoBehaviour {
 	private PlayerStats _playerStats;
 	// Use this for initialization
 	void Start () {
-		_playerStats = GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>();
+		_playerStats = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>();
 		_sword = new WoodenSword();
 		EquipItem(_sword);
 		//making fake items! (gets replaced by real items later on)

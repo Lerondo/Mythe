@@ -14,8 +14,8 @@ public class NextLevel : MonoBehaviour {
 
 	void Awake()
 	{
-		_loadingScreen = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<LoadingScreen>();
-		_saveLoadData = GameObject.FindGameObjectWithTag(TagManager.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
+		_loadingScreen = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<LoadingScreen>();
+		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
 	}
 	void Start()
 	{

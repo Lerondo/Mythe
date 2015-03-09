@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PauseController : MonoBehaviour {
+public class PlayBack : MonoBehaviour {
 
 	public GameObject pauseInterface;
 	private CameraControll _camControll;
