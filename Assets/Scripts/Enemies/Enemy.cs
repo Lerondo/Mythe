@@ -39,15 +39,9 @@ public class Enemy : Unit {
 	/// </summary>
 	protected override void Update() 
 	{
-		if(!_death)
+		if(!_death && _target && IsSeeingPlayer())
 		{
-			if (_target) 
-			{
-				if(IsSeeingPlayer())
-				{
-					MoveTowardsPlayer();
-				}
-			}
+			MoveTowardsPlayer();
 		}
 	}
 
