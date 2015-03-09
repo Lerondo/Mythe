@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Melee : Enemy {
-
+	private HealthController _playerHealth;
+	private Unit _playerUnit;
+	private PlayerController _playerController;
 	protected override void Start()
 	{
 		_range = 2f;
@@ -15,18 +17,21 @@ public class Melee : Enemy {
 	/// <param name="other">Other.</param>
 	void OnTriggerStay(Collider other)
 	{
-		if(_attacking && !_justAttacked)
+		if(_attacking && !_justAttacked && other.transform.tag == Tags.Player)
 		{
-			if(other.transform.tag == "Player")
+			if(_playerHealth == null || _playerUnit == null || _playerController == null)
 			{
-				bool isPlayerHit = other.GetComponent<PlayerController>().justHit;
-				if(!isPlayerHit)
-				{
-					_justAttacked = true;				
-					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
-					other.GetComponent<Unit>().KnockBack(this.transform.position, 2f, 2f);
-					other.GetComponent<PlayerController>().justHit = true;
-				}
+				_playerController = other.GetComponent<PlayerController>();
+				_playerUnit = other.GetComponent<Unit>();
+				_playerHealth = other.GetComponent<HealthController>();
+			}
+			bool isPlayerHit = _playerController.justHit;
+			if(!isPlayerHit)
+			{
+				_justAttacked = true;				
+				_playerHealth.UpdateHealth(-_currentAttackDmg);
+				_playerUnit.KnockBack(this.transform.position, 2f, 2f);
+				_playerController.justHit = true;
 			}
 		}
 	}
