@@ -65,6 +65,7 @@ public class Menu : MonoBehaviour
 	public void DeleteCharacter(int charId)
 	{
 		_saveLoadData.DeleteSave(loadPath[charId]);
+		SetCharacterText(charId, "New Character");
 	}
 	public void LoadCharacter(int charId)
 	{

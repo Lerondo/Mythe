@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
-public class Item{
+public class Item : System.Object{
 	public enum ItemSort
 	{
 		Helm,
@@ -32,7 +33,6 @@ public class Item{
 	protected Mesh _itemMesh;
 	protected Texture _itemTexture;
 	protected Sprite _itemSprite;
-
 	public string GetItemName()
 	{
 		return _name;

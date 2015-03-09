@@ -32,7 +32,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator Save (string path) 
+	public void Save (string path) 
 	{
 		BinaryFormatter binaryFormatter = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + path);
@@ -48,24 +48,33 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		_inventory = gameController.GetComponent<InventoryController>();
 
 		//get all values
+		//Loaded level
 		saveData.loadedlevel = Application.loadedLevel;
-		saveData.damage = _playerStats.GetBasicDamage();
-		saveData.defence = _playerStats.GetBasicDefence();
-		saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
+
+		//player Stats
 		saveData.exp = _playerStats.GetExperience();
 		saveData.maxExp = _playerStats.GetMaxExperience();
 		saveData.gold = _playerStats.GetGold();
 		saveData.health = _healthController.GetHealth();
-		saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
 		saveData.level = _playerStats.GetLevel();
+		saveData.damage = _playerStats.GetBasicDamage();
+		saveData.defence = _playerStats.GetBasicDefence();
+
+		//Player Position
 		saveData.playerX = _player.transform.position.x;
 		saveData.playerY = _player.transform.position.y;
 		saveData.playerZ = _player.transform.position.z;
+		//player username
 		saveData.username = _playerStats.GetUsername();
+
+		//Inventory Items
+		saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
+
+		//Equiped Items
+		saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
 
 		binaryFormatter.Serialize(file,saveData);
 		file.Close();
-		return null;
 	}
 	public void LoadCharacterPanel(string path, int id)
 	{
@@ -119,9 +128,8 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_inventory.SetInventory(ItemDatabase.GetItemsViaId(saveData.inventoryItemsIds));
 
 			file.Close();
-		} else {
-			Debug.LogWarning("Save data not found!");
-			Debug.Log("Making new character");
+		} else
+		{
 			Application.LoadLevel(1);
 		}
 		SavePaths.currentPath = path;
@@ -143,6 +151,12 @@ public class SaveData
 	public float playerY;
 	public float playerZ;
 	public List<int> equipedItemsIds = new List<int>();
+	public List<int> equipedItemDmgs = new List<int>();
+	public List<int> equipedItemDefs = new List<int>();
+	public List<int> equipedItemMagDmgs = new List<int>();
 	public List<int> inventoryItemsIds = new List<int>();
+	public List<int> inventoryItemDmgs = new List<int>();
+	public List<int> inventoryItemDefs = new List<int>();
+	public List<int> inventoryItemMagDmgs = new List<int>();
 	//TODO: time
 }
