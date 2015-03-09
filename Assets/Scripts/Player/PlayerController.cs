@@ -15,10 +15,6 @@ public class PlayerController : Unit {
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
 	}
-	protected override void Start ()
-	{
-		_currentAttackDmg = 10;
-	}
 	protected override void Update()
 	{
 		if(!_death)
@@ -131,9 +127,9 @@ public class PlayerController : Unit {
 	{
 		_justAttacked = true;	
 		_attacking = false;
-		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+		entity.GetComponent<HealthController>().UpdateHealth(-_stats.damage);
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
 		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
-		txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+		txtMessenger.MakeText(_stats.damage.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
 	}
 }

@@ -11,6 +11,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 	private SkillController _skills;
 	private HealthController _healthController;
 	private GameObject _player;
+	private string _currentUsername;
 	public static SaveLoadDataSerialized Instance;
 
 	void Awake()
@@ -68,6 +69,10 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.playerZ = _player.transform.position.z;
 		//player username
 		saveData.username = _playerStats.username;
+		if(saveData.username == null)
+		{
+			saveData.username = _currentUsername;
+		}
 
 		//Inventory Items
 		//saveData.inventoryItemsIds = _inventory.GetInventoryItemIds();
@@ -83,9 +88,13 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		binaryFormatter.Serialize(file,saveData);
 		file.Close();
 	}
+	public void SetUsername(string username)
+	{
+		_currentUsername = username;
+	}
 	public void LoadCharacterPanel(string path, int id)
 	{
-		Menu menu = GameObject.Find("MenuPanel").GetComponent<Menu>();
+		Menu menu = GameObject.FindGameObjectWithTag(Tags.Menu).GetComponent<Menu>();
 		if(File.Exists(Application.persistentDataPath + path))
 		{
 			BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -139,7 +148,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			file.Close();
 		} else
 		{
-			Application.LoadLevel(1);
+			GameObject.FindGameObjectWithTag(Tags.Menu).GetComponent<Menu>().ShowNewCharacter();
 		}
 		SavePaths.currentPath = path;
 	}

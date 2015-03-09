@@ -46,23 +46,11 @@ public class WindController : MonoBehaviour
 
 		rigidbodies.Clear ();
 
-		startTime = startTime.time;
+		startTime = Time.time;
 		startPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		startPos.z = 0;
-
-
-
-
 	}
-
-	void OnMouseUp() 
-	{
-=======
-		}
-	}
-	
 	void OnMouseUp() {
->>>>>>> origin/master
 		Vector3 endPos = Input.mousePosition;
 		endPos.z = 0;
 		endPos = Camera.main.ScreenToWorldPoint(endPos);

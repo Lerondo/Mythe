@@ -15,4 +15,5 @@ public class Tags : MonoBehaviour {
 	public const string Lever = "Lever";
 	public const string ObjectButton = "ObjectButton";
 	public const string SaveLoadObject = "SaveLoadObject";
+	public const string Menu = "Menu";
 }

@@ -14,6 +14,8 @@ public class Menu : MonoBehaviour
 	private GameObject _creditsPanel;
 	private GameObject _optionsPanel;
 	private GameObject _characterPanel;
+	private GameObject _deletionPanel;
+	private GameObject _usernamePanel;
 
 	private Dictionary<int, string> loadPath = new Dictionary<int, string>();
 	private Dictionary<int, Text> characterTexts = new Dictionary<int, Text>();
@@ -29,7 +31,9 @@ public class Menu : MonoBehaviour
 		_mainMenuPanel 	= GameObject.Find ("MenuPanel");
 		_creditsPanel 	= GameObject.Find ("CreditsPanel");
 		_optionsPanel 	= GameObject.Find ("OptionsPanel");
-		_characterPanel  = GameObject.Find ("CharacterSelection");
+		_characterPanel  = GameObject.Find ("CharacterPanel");
+		_deletionPanel = GameObject.Find("DeletionPanel");
+		_usernamePanel = GameObject.Find("UsernamePanel");
 	}
 
 	void Start()
@@ -37,6 +41,8 @@ public class Menu : MonoBehaviour
 		_creditsPanel.SetActive (false);
 		_optionsPanel.SetActive (false);
 		_characterPanel.SetActive (false);
+		_deletionPanel.SetActive (false);
+		_usernamePanel.SetActive(false);
 		loadPath.Add(0,SavePaths.SavePathA);
 		loadPath.Add(1,SavePaths.SavePathB);
 		loadPath.Add(2,SavePaths.SavePathC);
@@ -55,12 +61,24 @@ public class Menu : MonoBehaviour
 	//Play Button
 	public void PlayButtonPressed ()
 	{
-		Debug.Log ("Startbutton clicked");
 		_characterPanel.SetActive (true);
+		_deletionPanel.SetActive (true);
 		_mainMenuPanel.SetActive (false);
 		/*
 		GetComponent<LoadingScreen>().LoadScreen();
 		Application.LoadLevel (1); */
+	}
+	public void ShowNewCharacter()
+	{
+		_deletionPanel.SetActive(false);
+		_characterPanel.SetActive(false);
+		_usernamePanel.SetActive(true);
+	}
+	public void SetUsername()
+	{
+		string username = GameObject.Find("Username").GetComponent<Text>().text;
+		_saveLoadData.SetUsername(username);
+		Application.LoadLevel(1);
 	}
 	public void DeleteCharacter(int charId)
 	{
