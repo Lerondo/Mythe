@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PlayerStats : MonoBehaviour {
-	private int _basicDamage;
-	private int _basicDefence;
+	private int _basicDamage = 10;
+	private int _basicDefence = 3;
 	private int _level;
 	private string _username;
 	private float _experience = 0;
@@ -15,10 +15,6 @@ public class PlayerStats : MonoBehaviour {
 	void Awake()
 	{
 		_userInterface = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<UserInterface>();
-	}
-	void Start()
-	{
-		//TODO: get save updatestats.
 	}
 	public string username
 	{

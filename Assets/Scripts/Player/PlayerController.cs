@@ -127,9 +127,18 @@ public class PlayerController : Unit {
 	{
 		_justAttacked = true;	
 		_attacking = false;
-		entity.GetComponent<HealthController>().UpdateHealth(-_stats.damage);
+		_currentAttackDmg = _stats.damage;
+		if(Random.Range(0,100) <= 25)
+		{
+			_currentAttackDmg = Mathf.FloorToInt(_currentAttackDmg * 1.5f);
+			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+		} else {
+			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);
+		}
+		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
-		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
-		txtMessenger.MakeText(_stats.damage.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+
 	}
 }
