@@ -81,12 +81,12 @@ public class JoySticksController : MonoBehaviour {
 				} 
 				else 
 				{
-					if(playerMovement.GetIsMoving())
+					if(playerMovement.isMoving)
 					{
 						playerMovement.StoppedMoving();
 					}
 				}
-				if(playerMovement.GetIsClimbing())
+				if(playerMovement.isClimbing)
 				{
 					float yOffSet = Input.GetTouch(_currentFingerId).position.y - movementJoyStickTransform.position.y;
 					yOffSet *= 0.01f;
@@ -106,16 +106,16 @@ public class JoySticksController : MonoBehaviour {
 					playerMovement.Jump();
 				} else if (Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
 				{
-					playerMovement.SetIsTryingToClimb(true);
+					playerMovement.isTryingToClimb = true;
 				}
 			}
 		} else {
 			_currentFingerId = -1;
 			followButton.SetActive(false);
-			if(playerMovement.GetIsMoving())
+			if(playerMovement.isMoving)
 			{
 				playerMovement.StoppedMoving();
-			} else if(playerMovement.GetIsClimbing())
+			} else if(playerMovement.isClimbing)
 			{
 				playerMovement.SetPlayerAnimatorSpeed(0f);
 			}

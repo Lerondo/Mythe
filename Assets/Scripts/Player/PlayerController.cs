@@ -27,18 +27,23 @@ public class PlayerController : Unit {
 				OnDeath();
 		}
 	}
-	public bool GetIsDeath()
+	public bool isDeath
 	{
-		return _death;
+		get
+		{
+			return _death;
+		}
 	}
-	public bool GetJustHit()
+	public bool justHit
 	{
-		return _justHit;
-	}
-	public void SetJustHit(bool justHit)
-	{
-		_justHit = justHit;
-		Invoke("CanGetHitAgain", 0.5f);
+		get
+		{
+			return _justHit;
+		}
+		set{
+			_justHit = value;
+			Invoke("CanGetHitAgain", 0.5f);
+		}
 	}
 	private void CanGetHitAgain()
 	{

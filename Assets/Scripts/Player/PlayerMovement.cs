@@ -17,21 +17,41 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		_playerAnimator = GetComponent<Animator>();
 	}
-	public void SetIsTryingToClimb(bool tryingToClimb)
+	public bool isTryingToClimb
 	{
-		_isTryingToClimb = tryingToClimb;
+		get{
+			return _isTryingToClimb;
+		}
+		set{
+			_isTryingToClimb = value;
+		}
 	}
-	public bool GetJustJumped()
+	public bool justJumped
 	{
-		return _justJumped;
+		get{
+			return _justJumped;
+		}
+		set{
+			_justJumped = value;
+		}
 	}
-	public void SetIsGrounded(bool grounded)
+	public bool isGrounded
 	{
-		_isGrounded = grounded;
+		get{
+			return _isGrounded;
+		}
+		set{
+			_isGrounded = value;
+		}
 	}
-	public bool GetIsMoving()
+	public bool isMoving
 	{
+		get{
 		return _isMoving;
+		}
+		set {
+			_isMoving = value;
+		}
 	}
 	void FixedUpdate()
 	{
@@ -110,12 +130,17 @@ public class PlayerMovement : MonoBehaviour {
 		transform.Translate(climbMovement);
 	}
 	/// <summary>
-	/// Gets the is climbing.
+	/// Gets or sets the is climbing boolean.
 	/// </summary>
 	/// <returns><c>true</c>, if is climbing was gotten, <c>false</c> otherwise.</returns>
-	public bool GetIsClimbing()
+	public bool isClimbing
 	{
+		get{
 		return _isClimbing;
+		}
+		set{
+			_isClimbing = value;
+		}
 	}
 	/// <summary>
 	/// Starts the climbing.
@@ -154,7 +179,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void Update()
 	{
-		_death = GetComponent<PlayerController>().GetIsDeath();
+		_death = GetComponent<PlayerController>().isDeath;
 		if(!_death)
 		{ 
 			if(!_justJumped)

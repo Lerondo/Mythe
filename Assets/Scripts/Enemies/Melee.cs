@@ -19,13 +19,13 @@ public class Melee : Enemy {
 		{
 			if(other.transform.tag == "Player")
 			{
-				bool isPlayerHit = other.GetComponent<PlayerController>().GetJustHit();
+				bool isPlayerHit = other.GetComponent<PlayerController>().justHit;
 				if(!isPlayerHit)
 				{
 					_justAttacked = true;				
 					other.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 					other.GetComponent<Unit>().KnockBack(this.transform.position, 2f, 2f);
-					other.GetComponent<PlayerController>().SetJustHit(true);
+					other.GetComponent<PlayerController>().justHit = true;
 				}
 			}
 		}
