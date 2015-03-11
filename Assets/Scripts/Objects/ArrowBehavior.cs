@@ -17,13 +17,13 @@ public class ArrowBehavior : MonoBehaviour {
 	{
 		if(other.transform.tag == "Player")
 		{
-			bool isPlayerHit = other.GetComponent<PlayerController>().GetJustHit();
+			bool isPlayerHit = other.GetComponent<PlayerController>().justHit;
 			if(!isPlayerHit)
 			{
 				other.GetComponent<HealthController>().UpdateHealth(-_damage);
 				other.GetComponent<Unit>().KnockBack(this.transform.position, 1f, 2f);
 				ObjectPool.instance.PoolObject(this.gameObject);
-				other.GetComponent<PlayerController>().SetJustHit(true);
+				other.GetComponent<PlayerController>().justHit = true;
 			}
 		}
 	}

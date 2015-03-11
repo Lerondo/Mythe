@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class StrongSlash : Skill {
 	public StrongSlash()
 	{
@@ -18,9 +19,9 @@ public class StrongSlash : Skill {
 		Collider[] colliders = Physics.OverlapSphere (spherePosition,  1f);
 		foreach(Collider col in colliders)
 		{
-			if(col.tag == TagManager.Enemy)
+			if(col.tag == Tags.Enemy)
 			{
-				GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3);
+				GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3);
 			}
 		}
 	}

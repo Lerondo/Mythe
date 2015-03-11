@@ -13,7 +13,7 @@ public class Enemy : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if (other.tag == "Player") 
+			if (other.tag == Tags.Player) 
 			{
 				_target = other.transform;
 			}
@@ -28,7 +28,7 @@ public class Enemy : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if (other.tag == "Player") 
+			if (other.tag == Tags.Player) 
 			{
 				_target = null;
 			}
@@ -39,15 +39,9 @@ public class Enemy : Unit {
 	/// </summary>
 	protected override void Update() 
 	{
-		if(!_death)
+		if(!_death && _target && IsSeeingPlayer())
 		{
-			if (_target) 
-			{
-				if(IsSeeingPlayer())
-				{
-					MoveTowardsPlayer();
-				}
-			}
+			MoveTowardsPlayer();
 		}
 	}
 
@@ -92,7 +86,7 @@ public class Enemy : Unit {
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, 10f))
 		{
-			if(hit.transform.tag == "Player")
+			if(hit.transform.tag == Tags.Player)
 			{
 				return true;
 			}

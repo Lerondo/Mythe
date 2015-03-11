@@ -15,10 +15,6 @@ public class PlayerController : Unit {
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
 	}
-	protected override void Start ()
-	{
-		_currentAttackDmg = 10;
-	}
 	protected override void Update()
 	{
 		if(!_death)
@@ -27,18 +23,23 @@ public class PlayerController : Unit {
 				OnDeath();
 		}
 	}
-	public bool GetIsDeath()
+	public bool isDeath
 	{
-		return _death;
+		get
+		{
+			return _death;
+		}
 	}
-	public bool GetJustHit()
+	public bool justHit
 	{
-		return _justHit;
-	}
-	public void SetJustHit(bool justHit)
-	{
-		_justHit = justHit;
-		Invoke("CanGetHitAgain", 0.5f);
+		get
+		{
+			return _justHit;
+		}
+		set{
+			_justHit = value;
+			Invoke("CanGetHitAgain", 0.5f);
+		}
 	}
 	private void CanGetHitAgain()
 	{
@@ -109,7 +110,7 @@ public class PlayerController : Unit {
 	{
 		if(!other.isTrigger)
 		{
-			if(other.transform.tag == TagManager.Enemy)
+			if(other.transform.tag == Tags.Enemy)
 			{
 				if(_attacking && !_justAttacked)
 				{
@@ -126,9 +127,18 @@ public class PlayerController : Unit {
 	{
 		_justAttacked = true;	
 		_attacking = false;
+		_currentAttackDmg = _stats.damage;
+		if(Random.Range(0,100) <= 25)
+		{
+			_currentAttackDmg = Mathf.FloorToInt(_currentAttackDmg * 1.5f);
+			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+		} else {
+			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);
+		}
 		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
-		TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<TextMessenger>();
-		txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+
 	}
 }

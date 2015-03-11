@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class PlayerStats : MonoBehaviour {
-	public int basicDamage;
-	public int basicDefence;
+	private int _basicDamage = 10;
+	private int _basicDefence = 3;
 	private int _level;
+	private string _username;
 	private float _experience = 0;
 	private float _maxExp = 125;
 	private int _damage;
@@ -13,23 +14,80 @@ public class PlayerStats : MonoBehaviour {
 	private UserInterface _userInterface;
 	void Awake()
 	{
-		_userInterface = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<UserInterface>();
+		_userInterface = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<UserInterface>();
 	}
-	void Start()
+	public string username
 	{
-		//TODO: get save updatestats.
+		get{
+			return _username;
+		}
+		set{
+			_username = value;
+		}
 	}
-	public int GetDamage()
+	public float experience
 	{
+		get{
+			return _experience;
+		}
+		set{
+			_experience = value;
+		}
+	}
+	public float maxExperience
+	{
+		set{
+			_maxExp = value;
+		}
+		get{
+			return _maxExp;
+		}
+	}
+	public int level
+	{
+		get{
+			return _level;
+		}
+		set{
+			_level = value;
+		}
+	}
+	public int basicDamage
+	{
+		get{
+			return _basicDamage;
+		}
+		set{
+			_basicDamage = value;
+		}
+	}
+	public int basicDefence
+	{
+		get{
+			return _basicDefence;
+		}
+		set{
+			_basicDefence = value;
+		}
+	}
+	public int damage
+	{
+		get{
 		return _damage;
+		}
 	}
 	public void UpdateGold (int gold)
 	{
 		_goldValue += gold;
 	}
-	public int GetGold()
+	public int gold
 	{
+		get{
 		return _goldValue;
+		}
+		set{
+			_goldValue = value;
+		}
 	}
 	public void UpdateExp(float exp)
 	{
@@ -43,9 +101,9 @@ public class PlayerStats : MonoBehaviour {
 			basicDefence += 1;
 			_damage += 5;
 			_defence += 5;
-			_userInterface.UpdateMaxValue(UserInterface.XPBAR, Mathf.FloorToInt(_maxExp));
+			_userInterface.UpdateMaxValue(UserInterface.EXPERIENCEBAR, Mathf.FloorToInt(_maxExp));
 		}
-		_userInterface.UpdateBar(UserInterface.XPBAR, Mathf.FloorToInt(_experience));
+		_userInterface.UpdateBar(UserInterface.EXPERIENCEBAR, Mathf.FloorToInt(_experience));
 	}
 	public void UpdateDamage(int newDamage,int oldDamage)
 	{
@@ -56,46 +114,5 @@ public class PlayerStats : MonoBehaviour {
 	{
 		_defence -= oldDefence;
 		_defence += newDefence;
-	}
-	public void UpdateStats(int swordId, int shieldId, int helmId, int legsId, int bodyId, int bootsId)
-	{
-		_damage = basicDamage;
-		_defence = basicDefence;
-		for (int i = 0; i < 6; i++) 
-		{
-			int dmg = 0;
-			int def = 0;
-			switch(i)
-			{
-			case 1:
-				dmg = ItemDatabase.itemList[swordId].GetItemDamage();
-				def = ItemDatabase.itemList[swordId].GetItemDefence();
-				break;
-			case 2:
-				dmg = ItemDatabase.itemList[shieldId].GetItemDamage();
-				def = ItemDatabase.itemList[shieldId].GetItemDefence();
-				break;
-			case 3:
-				dmg = ItemDatabase.itemList[helmId].GetItemDamage();
-				def = ItemDatabase.itemList[helmId].GetItemDefence();
-				break;
-			case 4:
-				dmg = ItemDatabase.itemList[legsId].GetItemDamage();
-				def = ItemDatabase.itemList[legsId].GetItemDefence();
-				break;
-			case 5:
-				dmg = ItemDatabase.itemList[bodyId].GetItemDamage();
-				def = ItemDatabase.itemList[bodyId].GetItemDefence();
-				break;
-			case 6:
-				dmg = ItemDatabase.itemList[bootsId].GetItemDamage();
-				def = ItemDatabase.itemList[bootsId].GetItemDefence();
-				break;
-			default:
-				break;
-			}
-			_defence += def;
-			_damage += dmg;
-		}
 	}
 }

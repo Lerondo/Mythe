@@ -17,14 +17,15 @@ public class HealthController : MonoBehaviour {
 		_health = _maxHealth;
 		UpdateInterface();
 	}
-	public int GetHealth()
+	public int health
 	{
-		return _health;
-	}
-	public void SetHealth(int health)
-	{
-		_health = health;
-		UpdateInterface();
+		get{
+			return _health;
+		}
+		set{
+			_health = value;
+			UpdateInterface();
+		}
 	}
 	public void UpdateMaxHealth(int health)
 	{
@@ -56,7 +57,7 @@ public class HealthController : MonoBehaviour {
 			Destroy(gameObject);
 			//TODO: death animation + drop gold
 			float currentExp = GetComponent<Enemy>().GetExp();
-			GameObject.FindGameObjectWithTag(TagManager.Player).GetComponent<PlayerStats>().UpdateExp(currentExp);
+			GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>().UpdateExp(currentExp);
 			GetComponent<DropController>().DropItem();
 		}
 	}
