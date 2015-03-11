@@ -11,7 +11,7 @@ public class ShopController : MonoBehaviour {
 
 	void Awake()
 	{
-		_dialogueController = GameObject.FindGameObjectWithTag (TagManager.GameController).GetComponent<DialogueController> ();
+		_dialogueController = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<DialogueController> ();
 		_shopInterface = GetComponent<ShopInterface>();
 	}
 	void Start()

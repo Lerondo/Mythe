@@ -23,7 +23,7 @@ public class TextBehavior : MonoBehaviour {
 	}
 	private void PoolMyself()
 	{
-		GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<ObjectPool>().PoolObject(this.gameObject);
+		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().PoolObject(this.gameObject);
 	}
 	// Update is called once per frame
 	void Update () 

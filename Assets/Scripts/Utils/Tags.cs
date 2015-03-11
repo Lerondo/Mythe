@@ -11,13 +11,10 @@ public class Tags : MonoBehaviour {
 	public const string ItemSlot = "ItemSlot";
 	public const string CheckPoint = "CheckPoint";
 	public const string DontDestroyObject = "DontDestroy";
-<<<<<<< HEAD:Assets/Scripts/Utils/TagManager.cs
 	public const string Merchant = "Merchant";
-=======
 	public const string Prop = "Prop";
 	public const string Lever = "Lever";
 	public const string ObjectButton = "ObjectButton";
 	public const string SaveLoadObject = "SaveLoadObject";
 	public const string Menu = "Menu";
->>>>>>> origin/master:Assets/Scripts/Utils/Tags.cs
 }

@@ -24,7 +24,7 @@ public class DialogueController : MonoBehaviour {
 	}
 	public IEnumerator CreateDialogue(string text, Vector3 position)
 	{
-		GameObject newText = GameObject.FindGameObjectWithTag(TagManager.GameController).GetComponent<ObjectPool>().GetObjectForType("Text", false);
+		GameObject newText = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("Text", false);
 		TextBehavior textScript = newText.GetComponent<TextBehavior>();
 		textScript.SetPosition(position);
 		textScript.SetAbleToMove(false);
