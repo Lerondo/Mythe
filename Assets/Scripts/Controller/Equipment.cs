@@ -23,7 +23,7 @@ public class Equipment : MonoBehaviour {
 	}
 	void Start () {
 		//Dictionary for changing the gameobjects etc.;
-		_itemObject.Add(_sword.itemSort, playerSword);
+		_itemObject.Add(Item.ItemSort.Weapon, playerSword);
 		if(_playerStats.username == "")
 		{
 			_sword = new WoodenSword();
@@ -41,6 +41,15 @@ public class Equipment : MonoBehaviour {
 			equipedItems.Add(_body);
 			equipedItems.Add(_boots);
 		}
+	}
+	public int GetDamage()
+	{
+		int damage = 0;
+		foreach(Item item in equipedItems)
+		{
+			damage += item.itemDamage;
+		}
+		return damage;
 	}
 	public List<Item> GetEquipedItem()
 	{
@@ -67,13 +76,12 @@ public class Equipment : MonoBehaviour {
 	/// </summary>
 	public Item EquipItem(Item item)
 	{
+		Debug.Log(_itemObject[item.itemSort]);
 		Item oldItem = null;
 		for (int i = 0; i < equipedItems.Count; i++) {
 			if(item.itemSort == equipedItems[i].itemSort)
 			{
 				oldItem = equipedItems[i];
-				_playerStats.UpdateDamage(item.itemDamage,equipedItems[i].itemDamage);
-				_playerStats.UpdateDefence(item.itemDefence,equipedItems[i].itemDefence);
 				equipedItems[i] = item;
 			}
 		}
