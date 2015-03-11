@@ -66,7 +66,7 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void StartSkill(int skillNumber)
 	{
-		if(skillNumber == 0)
+		if(skillNumber == 1)
 		{
 			GetComponent<SkillController>().ActivateSkill(skillNumber);
 		} else {

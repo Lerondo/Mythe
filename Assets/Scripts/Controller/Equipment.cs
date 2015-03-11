@@ -76,7 +76,6 @@ public class Equipment : MonoBehaviour {
 	/// </summary>
 	public Item EquipItem(Item item)
 	{
-		Debug.Log(_itemObject[item.itemSort]);
 		Item oldItem = null;
 		for (int i = 0; i < equipedItems.Count; i++) {
 			if(item.itemSort == equipedItems[i].itemSort)
