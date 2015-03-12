@@ -51,7 +51,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	public void SetShopSpace(int slot, Item item)
 	{
-		Sprite itemSprite = item.itemSprite;
+		Sprite itemSprite = Resources.Load(item.itemSprite, typeof(Sprite)) as Sprite;
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(slot,item));
 	}
@@ -67,6 +67,10 @@ public class ShopInterface : MonoBehaviour {
 		stats += item.currentItemSort + "\n";
 		stats += item.itemName + "\n";
 		stats += item.currentItemQuality + "\n";
+		stats += item.itemSort + "\n";
+		stats += item.itemName + "\n";
+		stats += item.itemQuality + "\n";
+
 		if (!CheckIfZero(item.itemDamage))
 			stats += "Damage : " + item.itemDamage + "\n";
 		if (!CheckIfZero(item.itemMagicDamage))

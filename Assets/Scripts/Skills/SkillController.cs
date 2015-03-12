@@ -8,6 +8,7 @@ public class SkillController : MonoBehaviour {
 	void Awake()
 	{
 		playerAnimator = GetComponent<Animator>();
+		AddSkill(new Skill());
 		AddSkill(new StrongSlash());
 	}
 	public List<Skill> currentSkills

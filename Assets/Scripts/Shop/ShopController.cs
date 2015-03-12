@@ -8,11 +8,9 @@ public class ShopController : MonoBehaviour {
 	private List<Item> _playerItems = new List<Item>();
 	private ShopInterface _shopInterface;
 	private DialogueController _dialogueController;
-	private HighScore _highScore;
 
 	void Awake()
 	{
-		_highScore = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<HighScore> ();
 		_dialogueController = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<DialogueController> ();
 		_shopInterface = GetComponent<ShopInterface>();
 	}

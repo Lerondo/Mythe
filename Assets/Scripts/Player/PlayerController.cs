@@ -5,6 +5,7 @@ public class PlayerController : Unit {
 	public Collider myAttackCollider;
 	//TODO: list skills
 
+	private Equipment _equipment;
 	private bool _justHit;
 	private bool _isLastAttack;
 	private Animator _playerAnimator;
@@ -14,6 +15,7 @@ public class PlayerController : Unit {
 	{
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
+		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
 	}
 	protected override void Update()
 	{
@@ -64,7 +66,7 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void StartSkill(int skillNumber)
 	{
-		if(skillNumber == 0)
+		if(skillNumber == 1)
 		{
 			GetComponent<SkillController>().ActivateSkill(skillNumber);
 		} else {
@@ -127,7 +129,7 @@ public class PlayerController : Unit {
 	{
 		_justAttacked = true;	
 		_attacking = false;
-		_currentAttackDmg = _stats.damage;
+		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
 		if(Random.Range(0,100) <= 25)
 		{
 			_currentAttackDmg = Mathf.FloorToInt(_currentAttackDmg * 1.5f);

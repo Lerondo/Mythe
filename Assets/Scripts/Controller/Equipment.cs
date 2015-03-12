@@ -14,26 +14,42 @@ public class Equipment : MonoBehaviour {
 	public Item _body = new Item();
 	public Item _boots = new Item();
 
+	private Dictionary<Item.ItemSort, GameObject> _itemObject = new Dictionary<Item.ItemSort, GameObject>();
 	private PlayerStats _playerStats;
 	// Use this for initialization
-	void Start () {
+	void Awake()
+	{
 		_playerStats = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>();
-		_sword = new WoodenSword();
-		EquipItem(_sword);
-		//making fake items! (gets replaced by real items later on)
-		_shield.itemSort = Item.ItemSort.Shield;
-		_helm.itemSort = Item.ItemSort.Helm;
-		_legs.itemSort = Item.ItemSort.Legs;
-		_body.itemSort = Item.ItemSort.Body;
-		_boots.itemSort = Item.ItemSort.Boots;
-		equipedItems.Add(_sword);
-		equipedItems.Add(_shield);
-		equipedItems.Add(_helm);
-		equipedItems.Add(_legs);
-		equipedItems.Add(_body);
-		equipedItems.Add(_boots);
-		//TODO: get save file and equip items.
-		//foreach(Item item in equipedItems){ EquipItem(item); }
+	}
+	void Start () {
+		//Dictionary for changing the gameobjects etc.;
+		_itemObject.Add(Item.ItemSort.Weapon, playerSword);
+		if(_playerStats.username == "")
+		{
+			_sword = new WoodenSword();
+			EquipItem(_sword);
+			//making fake items! (gets replaced by real items later on)
+			_shield.itemSort = Item.ItemSort.Shield;
+			_helm.itemSort = Item.ItemSort.Helm;
+			_legs.itemSort = Item.ItemSort.Legs;
+			_body.itemSort = Item.ItemSort.Body;
+			_boots.itemSort = Item.ItemSort.Boots;
+			equipedItems.Add(_sword);
+			equipedItems.Add(_shield);
+			equipedItems.Add(_helm);
+			equipedItems.Add(_legs);
+			equipedItems.Add(_body);
+			equipedItems.Add(_boots);
+		}
+	}
+	public int GetDamage()
+	{
+		int damage = 0;
+		foreach(Item item in equipedItems)
+		{
+			damage += item.itemDamage;
+		}
+		return damage;
 	}
 	public List<Item> GetEquipedItem()
 	{
@@ -48,6 +64,13 @@ public class Equipment : MonoBehaviour {
 		}
 		return newItemList;
 	}
+	public void EquipAllItems(List<Item> itemList)
+	{
+		foreach(Item item in itemList)
+		{
+			EquipItem(item);
+		}
+	}
 	/// <summary>
 	/// Equips a item.
 	/// </summary>
@@ -58,15 +81,13 @@ public class Equipment : MonoBehaviour {
 			if(item.itemSort == equipedItems[i].itemSort)
 			{
 				oldItem = equipedItems[i];
-				_playerStats.UpdateDamage(item.itemDamage,equipedItems[i].itemDamage);
-				_playerStats.UpdateDefence(item.itemDefence,equipedItems[i].itemDefence);
 				equipedItems[i] = item;
 			}
 		}
-		if(item.itemSort == Item.ItemSort.Weapon)
+		if(_itemObject.ContainsKey(item.itemSort))
 		{
-			playerSword.GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
-			playerSword.renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+			_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
+			_itemObject[item.itemSort].renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		}
 		return oldItem;
 	}

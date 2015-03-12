@@ -142,7 +142,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.username = saveData.username;
 			_skills.currentSkills = saveData.equipedSkills;
 
-			_equipment.equipedItems = saveData.equipedItems;
+			_equipment.EquipAllItems(saveData.equipedItems);
 			_inventory.inventory = saveData.inventoryItems;
 
 			file.Close();

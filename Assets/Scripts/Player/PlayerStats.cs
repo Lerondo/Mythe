@@ -5,7 +5,7 @@ public class PlayerStats : MonoBehaviour {
 	private int _basicDamage = 10;
 	private int _basicDefence = 3;
 	private int _level;
-	private string _username;
+	private string _username = "";
 	private float _experience = 0;
 	private float _maxExp = 125;
 	private int _damage;
@@ -99,20 +99,8 @@ public class PlayerStats : MonoBehaviour {
 			_level++;
 			basicDamage += 5;
 			basicDefence += 1;
-			_damage += 5;
-			_defence += 5;
 			_userInterface.UpdateMaxValue(UserInterface.EXPERIENCEBAR, Mathf.FloorToInt(_maxExp));
 		}
 		_userInterface.UpdateBar(UserInterface.EXPERIENCEBAR, Mathf.FloorToInt(_experience));
-	}
-	public void UpdateDamage(int newDamage,int oldDamage)
-	{
-		_damage -= oldDamage;
-		_damage += newDamage;
-	}
-	public void UpdateDefence(int newDefence,int oldDefence)
-	{
-		_defence -= oldDefence;
-		_defence += newDefence;
 	}
 }
