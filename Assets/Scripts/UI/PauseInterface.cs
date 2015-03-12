@@ -10,7 +10,7 @@ public class PauseInterface : MonoBehaviour {
 	private SaveLoadDataSerialized _saveLoadData;
 	void Awake()
 	{
-		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
+		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<SaveLoadDataSerialized>();
 	}
 	void Start()
 	{

@@ -7,17 +7,14 @@ public class JoySticksController : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject shopInterface;
-	//public GameObject followButton;
 	private int _currentFingerId;
 	public GameObject followButton;
 	public RectTransform movementJoyStickTransform;
 	private Vector2 _movementJoystickOriginalPos;
 
-
 	void Start()
 	{
 		_currentFingerId = -1;
-		//followButton.SetActive(false);
 		_movementJoystickOriginalPos = movementJoyStickTransform.position;
 		followButton.SetActive(false);
 	}

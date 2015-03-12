@@ -23,7 +23,7 @@ public class ShopInterface : MonoBehaviour {
 	{
 		_dialogueController = GetComponent<DialogueController> ();
 		_playerInventory = GetComponent<Inventory>();
-		_playerStats = GameObject.Find("Player").GetComponent<PlayerStats> ();
+		_playerStats = GameObject.Find(Tags.Player).GetComponent<PlayerStats> ();
 	}
 	void Start()
 	{
