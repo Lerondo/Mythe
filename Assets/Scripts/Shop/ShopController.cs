@@ -8,10 +8,12 @@ public class ShopController : MonoBehaviour {
 	private List<Item> _playerItems = new List<Item>();
 	private ShopInterface _shopInterface;
 	private DialogueController _dialogueController;
+	private HighScore _highScore;
 
 	void Awake()
 	{
-		_dialogueController = GameObject.FindGameObjectWithTag (TagManager.GameController).GetComponent<DialogueController> ();
+		_highScore = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<HighScore> ();
+		_dialogueController = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<DialogueController> ();
 		_shopInterface = GetComponent<ShopInterface>();
 	}
 	void Start()
@@ -40,6 +42,7 @@ public class ShopController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player")
 		{
+			_highScore.ScoreToSend = 10;
 			_buyButton.SetActive(true);
 			_dialogueController.WelcomeMessage(this.transform.position + new Vector3(0,3,0));
 		}

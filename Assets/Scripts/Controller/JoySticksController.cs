@@ -11,7 +11,6 @@ public class JoySticksController : MonoBehaviour {
 	private int _currentFingerId;
 	public GameObject followButton;
 	public RectTransform movementJoyStickTransform;
-	private int _currentFingerId;
 	private Vector2 _movementJoystickOriginalPos;
 
 
@@ -57,7 +56,7 @@ public class JoySticksController : MonoBehaviour {
 				//followButton.GetComponent<RectTransform>().position = buttonPos;
 				followButton.SetActive(true);
 
-				Vector2 buttonPos = Input.GetTouch(_currentFingerId).position;
+				//Vector2 buttonPos = Input.GetTouch(_currentFingerId).position;
 				float distance = Vector2.Distance(buttonPos,movementJoyStickTransform.position);
 				float range = 50;
 				if (distance > range) 
@@ -119,11 +118,9 @@ public class JoySticksController : MonoBehaviour {
 			}
 		} else {
 			_currentFingerId = -1;
-			//followButton.SetActive(false);
-			if(playerMovement.GetIsMoving())
-			followButton.SetActive(false);
 			if(playerMovement.isMoving)
 			{
+				followButton.SetActive(false);
 				playerMovement.StoppedMoving();
 			} else if(playerMovement.isClimbing)
 			{
