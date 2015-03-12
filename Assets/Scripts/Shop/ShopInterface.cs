@@ -11,6 +11,8 @@ public class ShopInterface : MonoBehaviour {
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject shopInterface;
+	private DialogueController _dialogueController;
+	public GameObject merchant;
 
 	private Inventory _playerInventory;
 	private PlayerStats _playerStats;
@@ -19,11 +21,13 @@ public class ShopInterface : MonoBehaviour {
 	private Button[] allButtons = new Button[15];
 	void Awake()
 	{
+		_dialogueController = GetComponent<DialogueController> ();
 		_playerInventory = GetComponent<Inventory>();
 		_playerStats = GameObject.Find("Player").GetComponent<PlayerStats> ();
 	}
 	void Start()
 	{
+		merchant = GameObject.Find (Tags.Merchant);
 		float counter = 0;
 		GameObject[] allItemSlots = new GameObject[15];
 		for (int i = 0; i < allItemSlots.Length; i++) 
@@ -43,10 +47,11 @@ public class ShopInterface : MonoBehaviour {
 	{
 		controllerMenu.SetActive(true);
 		shopInterface.SetActive (false);
+		_dialogueController.LeaveMessage (merchant.transform.position + new Vector3(0,3,0));
 	}
 	public void SetShopSpace(int slot, Item item)
 	{
-		Sprite itemSprite = Resources.Load (item.itemSprite, typeof(Sprite)) as Sprite;
+		Sprite itemSprite = Resources.Load(item.itemSprite, typeof(Sprite)) as Sprite;
 		allButtons[slot].GetComponent<Image>().sprite = itemSprite;
 		allButtons[slot].onClick.AddListener(() => ShowStats(slot,item));
 	}
@@ -59,9 +64,13 @@ public class ShopInterface : MonoBehaviour {
 	public void ShowStats(int buttonSlot, Item item)
 	{
 		string stats = "";
+		stats += item.currentItemSort + "\n";
+		stats += item.itemName + "\n";
+		stats += item.currentItemQuality + "\n";
 		stats += item.itemSort + "\n";
 		stats += item.itemName + "\n";
 		stats += item.itemQuality + "\n";
+
 		if (!CheckIfZero(item.itemDamage))
 			stats += "Damage : " + item.itemDamage + "\n";
 		if (!CheckIfZero(item.itemMagicDamage))

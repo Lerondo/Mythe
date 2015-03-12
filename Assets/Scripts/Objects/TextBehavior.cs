@@ -16,12 +16,14 @@ public class TextBehavior : MonoBehaviour {
 	{
 		Vector3 rectPos = Camera.main.WorldToScreenPoint(pos);
 		_rectTransform.position = rectPos;
-
-		Invoke ("PoolMyself", 2f);
+	}
+	public void SetResetTime(float time)
+	{
+		Invoke ("PoolMyself", time);
 	}
 	private void PoolMyself()
 	{
-		GameObject.FindGameObjectWithTag("GameController").GetComponent<ObjectPool>().PoolObject(this.gameObject);
+		GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().PoolObject(this.gameObject);
 	}
 	// Update is called once per frame
 	void Update () 

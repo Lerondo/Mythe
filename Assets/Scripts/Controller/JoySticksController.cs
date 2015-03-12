@@ -7,15 +7,17 @@ public class JoySticksController : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject shopInterface;
+	//public GameObject followButton;
+	private int _currentFingerId;
 	public GameObject followButton;
 	public RectTransform movementJoyStickTransform;
-	private int _currentFingerId;
 	private Vector2 _movementJoystickOriginalPos;
 
 
 	void Start()
 	{
 		_currentFingerId = -1;
+		//followButton.SetActive(false);
 		_movementJoystickOriginalPos = movementJoyStickTransform.position;
 		followButton.SetActive(false);
 	}
@@ -47,9 +49,12 @@ public class JoySticksController : MonoBehaviour {
 		{
 			if(_currentFingerId != -1)
 			{
-				followButton.SetActive(true);
-
+				//followButton.SetActive(true);
 				Vector2 buttonPos = Input.GetTouch(_currentFingerId).position;
+				buttonPos.x = Mathf.Clamp(Input.GetTouch(_currentFingerId).position.x, movementJoyStickTransform.position.x-50,movementJoyStickTransform.position.x+50);
+				buttonPos.y = Mathf.Clamp(Input.GetTouch(_currentFingerId).position.y, movementJoyStickTransform.position.y-50,movementJoyStickTransform.position.y+50);
+				//followButton.GetComponent<RectTransform>().position = buttonPos;
+				followButton.SetActive(true);
 				float distance = Vector2.Distance(buttonPos,movementJoyStickTransform.position);
 				float range = 50;
 				if (distance > range) 
@@ -57,7 +62,7 @@ public class JoySticksController : MonoBehaviour {
 					Vector2 step = buttonPos - _movementJoystickOriginalPos;
 					step.Normalize();
 					step *= range;
-					
+
 					buttonPos = _movementJoystickOriginalPos + step;
 				}
 				followButton.GetComponent<RectTransform>().position = buttonPos;
@@ -111,11 +116,13 @@ public class JoySticksController : MonoBehaviour {
 			}
 		} else {
 			_currentFingerId = -1;
-			followButton.SetActive(false);
 			if(playerMovement.isMoving)
 			{
+				followButton.SetActive(false);
 				playerMovement.StoppedMoving();
-			} else if(playerMovement.isClimbing)
+				followButton.SetActive(false);
+			}
+			else if(playerMovement.isClimbing)
 			{
 				playerMovement.SetPlayerAnimatorSpeed(0f);
 			}

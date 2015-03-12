@@ -145,14 +145,14 @@ public class PlayerMovement : MonoBehaviour {
 	/// <summary>
 	/// Starts the climbing.
 	/// </summary>
-	public void StartClimbing(Vector3 ladderPos)
+	public void StartClimbing(Vector3 ladderPos, Vector3 ladderEuler)
 	{
 		_isClimbing = true;
 		_playerAnimator.SetBool("Climbing",true);
 		rigidbody.useGravity = false;
 		rigidbody.velocity = new Vector3(0,0,0);
-		Vector3 newRot = this.transform.eulerAngles;
-		newRot.y = 0;
+		Vector3 newRot = ladderEuler;
+		newRot.y += 90;
 		this.transform.eulerAngles = newRot;
 		Vector3 newPos = this.transform.position;
 		newPos.x = ladderPos.x - 0.2f;
@@ -231,7 +231,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if(other.transform.tag == Tags.Ladder && _isTryingToClimb)
 		{
-			StartClimbing(other.transform.position);
+			StartClimbing(other.transform.position, other.transform.eulerAngles);
 		}
 	}
 }

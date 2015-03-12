@@ -7,8 +7,11 @@ public class ShopController : MonoBehaviour {
 	public GameObject _buyButton;
 	private List<Item> _playerItems = new List<Item>();
 	private ShopInterface _shopInterface;
+	private DialogueController _dialogueController;
+
 	void Awake()
 	{
+		_dialogueController = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<DialogueController> ();
 		_shopInterface = GetComponent<ShopInterface>();
 	}
 	void Start()
@@ -36,7 +39,11 @@ public class ShopController : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
+		{
+			_highScore.ScoreToSend = 10;
 			_buyButton.SetActive(true);
+			_dialogueController.WelcomeMessage(this.transform.position + new Vector3(0,3,0));
+		}
 	}
 	void OnTriggerExit(Collider other)
 	{
