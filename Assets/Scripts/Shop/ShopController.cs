@@ -40,7 +40,6 @@ public class ShopController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			//_highScore.ScoreToSend = 10;
 			_buyButton.SetActive(true);
 			_dialogueController.WelcomeMessage(this.transform.position + new Vector3(0,3,0));
 		}

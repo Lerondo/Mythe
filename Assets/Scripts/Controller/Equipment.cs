@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Equipment : MonoBehaviour {
-	public GameObject playerSword;
+	public GameObject playerRH;
+	public GameObject playerLH;
+	public GameObject playerHelm;
 	public List<Item> equipedItems = new List<Item>();
 
 	//all items for player
 	public Item _sword;
-	public Item _shield = new Item();
+	public Item _offHand = new Item();
 	public Item _helm = new Item();
 	public Item _legs = new Item();
 	public Item _body = new Item();
@@ -23,19 +25,21 @@ public class Equipment : MonoBehaviour {
 	}
 	void Start () {
 		//Dictionary for changing the gameobjects etc.;
-		_itemObject.Add(Item.ItemSort.Weapon, playerSword);
+		_itemObject.Add(Item.ItemSort.Weapon, playerRH);
+		_itemObject.Add(Item.ItemSort.OffHand, playerLH);
+		_itemObject.Add(Item.ItemSort.Helm, playerHelm);
 		if(_playerStats.username == "")
 		{
 			_sword = new WoodenSword();
 			EquipItem(_sword);
 			//making fake items! (gets replaced by real items later on)
-			_shield.itemSort = Item.ItemSort.Shield;
+			_offHand.itemSort = Item.ItemSort.OffHand;
 			_helm.itemSort = Item.ItemSort.Helm;
 			_legs.itemSort = Item.ItemSort.Legs;
 			_body.itemSort = Item.ItemSort.Body;
 			_boots.itemSort = Item.ItemSort.Boots;
 			equipedItems.Add(_sword);
-			equipedItems.Add(_shield);
+			equipedItems.Add(_offHand);
 			equipedItems.Add(_helm);
 			equipedItems.Add(_legs);
 			equipedItems.Add(_body);

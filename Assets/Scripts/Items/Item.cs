@@ -8,7 +8,7 @@ public class Item : System.Object{
 	{
 		Helm,
 		Weapon,
-		Shield,
+		OffHand,
 		Body,
 		Legs,
 		Boots
