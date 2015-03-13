@@ -10,7 +10,7 @@ public class PauseInterface : MonoBehaviour {
 	private SaveLoadDataSerialized _saveLoadData;
 	void Awake()
 	{
-		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<SaveLoadDataSerialized>();
+		//_saveLoadData = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<SaveLoadDataSerialized>();
 	}
 	void Start()
 	{
@@ -19,8 +19,9 @@ public class PauseInterface : MonoBehaviour {
 	}
 	public void ReturnToGame()
 	{
-		_saveLoadData.Save(SavePaths.currentPath);
+		//_saveLoadData.Save(SavePaths.currentPath);
 		pauseInterface.SetActive (false);
+		Time.timeScale = 1;
 		controllerMenu.SetActive(true);
 	}
 	public void Options()
