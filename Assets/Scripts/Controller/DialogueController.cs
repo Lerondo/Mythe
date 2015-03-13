@@ -12,7 +12,7 @@ public class DialogueController : MonoBehaviour {
 	
 	public string[] merchantWelcomeText = new string[0];
 	public string[] merchantLeaveText = new string[0];
-	public Text merchantText;
+	//public Text merchantText;
 
 	public void WelcomeMessage(Vector3 position)
 	{

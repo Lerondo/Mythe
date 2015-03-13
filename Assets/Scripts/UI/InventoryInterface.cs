@@ -13,7 +13,7 @@ public class InventoryInterface : MonoBehaviour {
 	private Inventory _playerInventory;
 	private int selectedButtonId;
 	private Item selectedItem;
-	private Button[] allButtons = new Button[30];
+	private Button[] allButtons = new Button[24];
 	void Awake()
 	{
 		_playerStats = GameObject.Find ("Player").GetComponent<PlayerStats> ();
@@ -22,7 +22,7 @@ public class InventoryInterface : MonoBehaviour {
 	void Start()
 	{
 		float counter = 0;
-		GameObject[] allItemSlots = new GameObject[30];
+		GameObject[] allItemSlots = new GameObject[24];
 		for (int i = 0; i < allItemSlots.Length; i++) 
 		{
 			counter++;

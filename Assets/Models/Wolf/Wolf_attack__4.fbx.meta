@@ -1,0 +1,218 @@
+fileFormatVersion: 2
+guid: 35166acd887a691429c0312da063f8a8
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Floor
+    100002: Head
+    100004: LBL_Paw
+    100006: LBM_Paw
+    100008: LBU_Paw
+    100010: LFL_Paw
+    100012: LFM_Paw
+    100014: LFU_Paw
+    100016: Null
+    100018: RBL_Paw
+    100020: RBM_Paw
+    100022: RBU_Paw
+    100024: RFL_Paw
+    100026: RFM_Paw
+    100028: RFU_Paw
+    100030: Tail
+    100032: Torso
+    100034: //RootNode
+    400000: Floor
+    400002: Head
+    400004: LBL_Paw
+    400006: LBM_Paw
+    400008: LBU_Paw
+    400010: LFL_Paw
+    400012: LFM_Paw
+    400014: LFU_Paw
+    400016: Null
+    400018: RBL_Paw
+    400020: RBM_Paw
+    400022: RBU_Paw
+    400024: RFL_Paw
+    400026: RFM_Paw
+    400028: RFU_Paw
+    400030: Tail
+    400032: Torso
+    400034: //RootNode
+    2300000: Head
+    2300002: LBL_Paw
+    2300004: LBM_Paw
+    2300006: LBU_Paw
+    2300008: LFL_Paw
+    2300010: LFM_Paw
+    2300012: LFU_Paw
+    2300014: RBL_Paw
+    2300016: RBM_Paw
+    2300018: RBU_Paw
+    2300020: RFL_Paw
+    2300022: RFM_Paw
+    2300024: RFU_Paw
+    2300026: Tail
+    2300028: Torso
+    3300000: Head
+    3300002: LBL_Paw
+    3300004: LBM_Paw
+    3300006: LBU_Paw
+    3300008: LFL_Paw
+    3300010: LFM_Paw
+    3300012: LFU_Paw
+    3300014: RBL_Paw
+    3300016: RBM_Paw
+    3300018: RBU_Paw
+    3300020: RFL_Paw
+    3300022: RFM_Paw
+    3300024: RFU_Paw
+    3300026: Tail
+    3300028: Torso
+    4300000: Torso
+    4300002: RFU_Paw
+    4300004: RFM_Paw
+    4300006: RFL_Paw
+    4300008: LFU_Paw
+    4300010: LFM_Paw
+    4300012: LFL_Paw
+    4300014: Head
+    4300016: RBU_Paw
+    4300018: RBM_Paw
+    4300020: RBL_Paw
+    4300022: LBU_Paw
+    4300024: LBM_Paw
+    4300026: LBL_Paw
+    4300028: Tail
+    7400000: WolfAttack
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WolfAttack
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .252100825
+        functionName: Attack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .424369752
+        functionName: StopAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Floor
+        weight: 1
+      - path: Null
+        weight: 1
+      - path: Null/Torso
+        weight: 1
+      - path: Null/Torso/Head
+        weight: 1
+      - path: Null/Torso/LBU_Paw
+        weight: 1
+      - path: Null/Torso/LBU_Paw/LBM_Paw
+        weight: 1
+      - path: Null/Torso/LBU_Paw/LBM_Paw/LBL_Paw
+        weight: 1
+      - path: Null/Torso/LFU_Paw
+        weight: 1
+      - path: Null/Torso/LFU_Paw/LFM_Paw
+        weight: 1
+      - path: Null/Torso/LFU_Paw/LFM_Paw/LFL_Paw
+        weight: 1
+      - path: Null/Torso/RBU_Paw
+        weight: 1
+      - path: Null/Torso/RBU_Paw/RBM_Paw
+        weight: 1
+      - path: Null/Torso/RBU_Paw/RBM_Paw/RBL_Paw
+        weight: 1
+      - path: Null/Torso/RFU_Paw
+        weight: 1
+      - path: Null/Torso/RFU_Paw/RFM_Paw
+        weight: 1
+      - path: Null/Torso/RFU_Paw/RFM_Paw/RFL_Paw
+        weight: 1
+      - path: Null/Torso/Tail
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

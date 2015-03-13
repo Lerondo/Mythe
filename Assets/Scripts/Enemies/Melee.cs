@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Melee : Enemy {
+public class Melee : Enemy 
+{
+	private Animator _enemyAnimator;
+
 	private HealthController _playerHealth;
 	private Unit _playerUnit;
 	private PlayerController _playerController;
@@ -10,6 +13,12 @@ public class Melee : Enemy {
 		_range = 2f;
 		_speed = 2.5f;
 		_currentAttackDmg = 10;
+		_enemyAnimator.SetBool ("Idle", true);
+	}
+
+	void Awake()
+	{
+		_enemyAnimator = GetComponent<Animator> ();
 	}
 	/// <summary>
 	/// Raises the trigger stay event.
@@ -19,6 +28,8 @@ public class Melee : Enemy {
 	{
 		if(_attacking && !_justAttacked && other.transform.tag == Tags.Player)
 		{
+			_enemyAnimator.SetBool("Attack", true);
+
 			if(_playerHealth == null || _playerUnit == null || _playerController == null)
 			{
 				_playerController = other.GetComponent<PlayerController>();
