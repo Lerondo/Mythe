@@ -12,7 +12,7 @@ public class ShopInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject shopInterface;
 	private DialogueController _dialogueController;
-	public GameObject merchant;
+	private GameObject _merchant;
 
 	private Inventory _playerInventory;
 	private PlayerStats _playerStats;
@@ -27,7 +27,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	void Start()
 	{
-		merchant = GameObject.Find (Tags.Merchant);
+		_merchant = GameObject.Find (Tags.Merchant);
 		float counter = 0;
 		GameObject[] allItemSlots = new GameObject[15];
 		for (int i = 0; i < allItemSlots.Length; i++) 
@@ -47,7 +47,7 @@ public class ShopInterface : MonoBehaviour {
 	{
 		controllerMenu.SetActive(true);
 		shopInterface.SetActive (false);
-		_dialogueController.LeaveMessage (merchant.transform.position + new Vector3(0,3,0));
+		_dialogueController.LeaveMessage (_merchant.transform.position + new Vector3(0,3,0));
 	}
 	public void SetShopSpace(int slot, Item item)
 	{
