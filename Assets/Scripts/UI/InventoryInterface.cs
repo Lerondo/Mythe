@@ -60,15 +60,21 @@ public class InventoryInterface : MonoBehaviour {
 		stats += item.itemSort + "\n";
 		stats += item.itemQuality + "\n";
 		stats += item.itemDamage + "\n";
-		stats += item.itemDefence;
+		stats += item.itemDefence + "\n";
+		stats += "LevelRequirement: " + item.levelRequirement;
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
 	}
 	public void EquipCurrentSelected()
 	{
-		Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
-		_playerInventory.RemovePlayerItem(selectedItem);
-		SetInventorySpace(selectedButtonId, oldItem);
+		if(_playerStats.level >= selectedItem.levelRequirement)
+		{
+			Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
+			_playerInventory.RemovePlayerItem(selectedItem);
+			SetInventorySpace(selectedButtonId, oldItem);
+		} else {
+			//TODO: return error level not high enough
+		}
 	}
 }

@@ -8,11 +8,12 @@ public class ObsidianDagger : Item {
 		itemSort = ItemSort.Weapon;
 		if(Random.Range(0,100) <= 50)
 			itemSort = ItemSort.OffHand;
-		itemQuality = ItemQuality.Uncommon;
+		itemQuality = ItemQuality.Rare;
 		_name = "Obsidian Dagger";
 		_damage = 7;
 		_magicDamage = 0;
 		_defence = 0;
+		_levelRequirement = 5;
 		_buyValue = (_damage + _defence) * 3;
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/Obsidian_dagger(1)";

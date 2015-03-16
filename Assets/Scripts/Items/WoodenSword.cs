@@ -12,6 +12,7 @@ public class WoodenSword : Item {
 		_damage = 2;
 		_magicDamage = 0;
 		_defence = 0;
+		_levelRequirement = 1;
 		_buyValue = (_damage + _defence) * 3;
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/woodenSword01";

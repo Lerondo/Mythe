@@ -1,0 +1,1048 @@
+fileFormatVersion: 2
+guid: 2859fe0e49b279349a01a3cdeb836d57
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wind_animation0020.png
+    21300002: wind_animation0011.png
+    21300004: wind_animation0002.png
+    21300006: wind_animation0076.png
+    21300008: wind_animation0067.png
+    21300010: wind_animation0058.png
+    21300012: wind_animation0049.png
+    21300014: wind_animation0086.png
+    21300016: wind_animation0050.png
+    21300018: wind_animation0041.png
+    21300020: wind_animation0032.png
+    21300022: wind_animation0023.png
+    21300024: wind_animation0014.png
+    21300026: wind_animation0005.png
+    21300028: wind_animation0079.png
+    21300030: wind_animation0089.png
+    21300032: wind_animation0080.png
+    21300034: wind_animation0071.png
+    21300036: wind_animation0062.png
+    21300038: wind_animation0053.png
+    21300040: wind_animation0044.png
+    21300042: wind_animation0035.png
+    21300044: wind_animation0026.png
+    21300046: wind_animation0017.png
+    21300048: wind_animation0008.png
+    21300050: wind_animation0000.png
+    21300052: wind_animation0074.png
+    21300054: wind_animation0065.png
+    21300056: wind_animation0056.png
+    21300058: wind_animation0047.png
+    21300060: wind_animation0038.png
+    21300062: wind_animation0029.png
+    21300064: wind_animation0083.png
+    21300066: wind_animation0088.png
+    21300068: wind_animation0030.png
+    21300070: wind_animation0021.png
+    21300072: wind_animation0012.png
+    21300074: wind_animation0003.png
+    21300076: wind_animation0077.png
+    21300078: wind_animation0068.png
+    21300080: wind_animation0059.png
+    21300082: wind_animation0060.png
+    21300084: wind_animation0051.png
+    21300086: wind_animation0042.png
+    21300088: wind_animation0033.png
+    21300090: wind_animation0024.png
+    21300092: wind_animation0015.png
+    21300094: wind_animation0006.png
+    21300096: wind_animation0087.png
+    21300098: wind_animation0090.png
+    21300100: wind_animation0081.png
+    21300102: wind_animation0072.png
+    21300104: wind_animation0063.png
+    21300106: wind_animation0054.png
+    21300108: wind_animation0045.png
+    21300110: wind_animation0036.png
+    21300112: wind_animation0027.png
+    21300114: wind_animation0018.png
+    21300116: wind_animation0009.png
+    21300118: wind_animation0084.png
+    21300120: wind_animation0085.png
+    21300122: wind_animation0010.png
+    21300124: wind_animation0001.png
+    21300126: wind_animation0075.png
+    21300128: wind_animation0066.png
+    21300130: wind_animation0057.png
+    21300132: wind_animation0048.png
+    21300134: wind_animation0039.png
+    21300136: wind_animation0040.png
+    21300138: wind_animation0031.png
+    21300140: wind_animation0022.png
+    21300142: wind_animation0013.png
+    21300144: wind_animation0004.png
+    21300146: wind_animation0078.png
+    21300148: wind_animation0069.png
+    21300150: wind_animation0070.png
+    21300152: wind_animation0061.png
+    21300154: wind_animation0052.png
+    21300156: wind_animation0043.png
+    21300158: wind_animation0034.png
+    21300160: wind_animation0025.png
+    21300162: wind_animation0016.png
+    21300164: wind_animation0007.png
+    21300166: wind_animation0082.png
+    21300168: wind_animation0073.png
+    21300170: wind_animation0064.png
+    21300172: wind_animation0055.png
+    21300174: wind_animation0046.png
+    21300176: wind_animation0037.png
+    21300178: wind_animation0028.png
+    21300180: wind_animation0019.png
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: wind_animation0020.png
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 1960
+        width: 116
+        height: 86
+      alignment: 1
+      pivot: {x: 1569, y: 45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0011.png
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1954
+        width: 82
+        height: 92
+      alignment: 1
+      pivot: {x: 684, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0002.png
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 2040
+        width: 6
+        height: 6
+      alignment: 1
+      pivot: {x: 10, y: 5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0076.png
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 1028
+        width: 110
+        height: 146
+      alignment: 1
+      pivot: {x: 1321, y: 947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0067.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 992
+        width: 162
+        height: 182
+      alignment: 1
+      pivot: {x: 83, y: 965}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0058.png
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 1228
+        width: 182
+        height: 128
+      alignment: 1
+      pivot: {x: 453, y: 756}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0049.png
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1360
+        width: 278
+        height: 120
+      alignment: 1
+      pivot: {x: 431, y: 628}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0086.png
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 854
+        width: 94
+        height: 138
+      alignment: 1
+      pivot: {x: 371, y: 1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0050.png
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 1358
+        width: 264
+        height: 122
+      alignment: 1
+      pivot: {x: 702, y: 629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0041.png
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1622
+        width: 302
+        height: 138
+      alignment: 1
+      pivot: {x: 1761, y: 357}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0032.png
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 1760
+        width: 196
+        height: 146
+      alignment: 1
+      pivot: {x: 1320, y: 215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0023.png
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 1906
+        width: 146
+        height: 140
+      alignment: 1
+      pivot: {x: 1964, y: 72}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0014.png
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 1954
+        width: 94
+        height: 92
+      alignment: 1
+      pivot: {x: 942, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0005.png
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 1956
+        width: 78
+        height: 90
+      alignment: 1
+      pivot: {x: 212, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0079.png
+      rect:
+        serializedVersion: 2
+        x: 1586
+        y: 1030
+        width: 102
+        height: 144
+      alignment: 1
+      pivot: {x: 1637, y: 946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0089.png
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 868
+        width: 94
+        height: 124
+      alignment: 1
+      pivot: {x: 653, y: 1118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0080.png
+      rect:
+        serializedVersion: 2
+        x: 1688
+        y: 1032
+        width: 100
+        height: 142
+      alignment: 1
+      pivot: {x: 1738, y: 945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0071.png
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 1006
+        width: 140
+        height: 168
+      alignment: 1
+      pivot: {x: 682, y: 958}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0062.png
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 1192
+        width: 178
+        height: 164
+      alignment: 1
+      pivot: {x: 1171, y: 774}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0053.png
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 1358
+        width: 220
+        height: 122
+      alignment: 1
+      pivot: {x: 1432, y: 629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0044.png
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1480
+        width: 312
+        height: 136
+      alignment: 1
+      pivot: {x: 778, y: 500}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0035.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1616
+        width: 242
+        height: 144
+      alignment: 1
+      pivot: {x: 123, y: 360}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0026.png
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1766
+        width: 148
+        height: 140
+      alignment: 1
+      pivot: {x: 370, y: 212}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0017.png
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 1956
+        width: 104
+        height: 90
+      alignment: 1
+      pivot: {x: 1241, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0008.png
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 1956
+        width: 78
+        height: 90
+      alignment: 1
+      pivot: {x: 446, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0000.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2041
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 4.5, y: 4.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0074.png
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 1026
+        width: 126
+        height: 148
+      alignment: 1
+      pivot: {x: 1085, y: 948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0065.png
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 1176
+        width: 172
+        height: 180
+      alignment: 1
+      pivot: {x: 1696, y: 782}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0056.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1232
+        width: 180
+        height: 124
+      alignment: 1
+      pivot: {x: 92, y: 754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0047.png
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 1490
+        width: 298
+        height: 126
+      alignment: 1
+      pivot: {x: 1699, y: 495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0038.png
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 1616
+        width: 274
+        height: 144
+      alignment: 1
+      pivot: {x: 895, y: 360}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0029.png
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 1762
+        width: 150
+        height: 144
+      alignment: 1
+      pivot: {x: 817, y: 214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0083.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 848
+        width: 104
+        height: 144
+      alignment: 1
+      pivot: {x: 54, y: 1128}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0088.png
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 858
+        width: 94
+        height: 134
+      alignment: 1
+      pivot: {x: 559, y: 1123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0030.png
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 1762
+        width: 154
+        height: 144
+      alignment: 1
+      pivot: {x: 969, y: 214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0021.png
+      rect:
+        serializedVersion: 2
+        x: 1627
+        y: 1960
+        width: 118
+        height: 86
+      alignment: 1
+      pivot: {x: 1686, y: 45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0012.png
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 1954
+        width: 82
+        height: 92
+      alignment: 1
+      pivot: {x: 766, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0003.png
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1956
+        width: 80
+        height: 90
+      alignment: 1
+      pivot: {x: 53, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0077.png
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 1028
+        width: 106
+        height: 146
+      alignment: 1
+      pivot: {x: 1429, y: 947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0068.png
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 994
+        width: 156
+        height: 180
+      alignment: 1
+      pivot: {x: 242, y: 964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0059.png
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 1218
+        width: 180
+        height: 138
+      alignment: 1
+      pivot: {x: 634, y: 761}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0060.png
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1208
+        width: 180
+        height: 148
+      alignment: 1
+      pivot: {x: 814, y: 766}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0051.png
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 1358
+        width: 252
+        height: 122
+      alignment: 1
+      pivot: {x: 960, y: 629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0042.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1480
+        width: 308
+        height: 136
+      alignment: 1
+      pivot: {x: 156, y: 500}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0033.png
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 1760
+        width: 214
+        height: 146
+      alignment: 1
+      pivot: {x: 1525, y: 215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0024.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1766
+        width: 146
+        height: 140
+      alignment: 1
+      pivot: {x: 75, y: 212}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0015.png
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 1954
+        width: 98
+        height: 92
+      alignment: 1
+      pivot: {x: 1038, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0006.png
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 1956
+        width: 78
+        height: 90
+      alignment: 1
+      pivot: {x: 290, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0087.png
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 858
+        width: 94
+        height: 134
+      alignment: 1
+      pivot: {x: 465, y: 1123}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0090.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2041
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 4.5, y: 4.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0081.png
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 1030
+        width: 102
+        height: 144
+      alignment: 1
+      pivot: {x: 1839, y: 946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0072.png
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 1012
+        width: 136
+        height: 162
+      alignment: 1
+      pivot: {x: 820, y: 955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0063.png
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1184
+        width: 176
+        height: 172
+      alignment: 1
+      pivot: {x: 1348, y: 778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0054.png
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 1356
+        width: 202
+        height: 124
+      alignment: 1
+      pivot: {x: 1643, y: 630}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0045.png
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 1480
+        width: 310
+        height: 136
+      alignment: 1
+      pivot: {x: 1089, y: 500}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0036.png
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1616
+        width: 252
+        height: 144
+      alignment: 1
+      pivot: {x: 370, y: 360}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0027.png
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1764
+        width: 148
+        height: 142
+      alignment: 1
+      pivot: {x: 518, y: 213}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0018.png
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 1958
+        width: 108
+        height: 88
+      alignment: 1
+      pivot: {x: 1347, y: 46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0009.png
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 1956
+        width: 78
+        height: 90
+      alignment: 1
+      pivot: {x: 524, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0084.png
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 848
+        width: 108
+        height: 144
+      alignment: 1
+      pivot: {x: 160, y: 1128}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0085.png
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 852
+        width: 110
+        height: 140
+      alignment: 1
+      pivot: {x: 269, y: 1126}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0010.png
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 1954
+        width: 80
+        height: 92
+      alignment: 1
+      pivot: {x: 603, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0001.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2041
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 4.5, y: 4.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0075.png
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 1026
+        width: 118
+        height: 148
+      alignment: 1
+      pivot: {x: 1207, y: 948}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0066.png
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1174
+        width: 170
+        height: 182
+      alignment: 1
+      pivot: {x: 1867, y: 783}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0057.png
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 1232
+        width: 180
+        height: 124
+      alignment: 1
+      pivot: {x: 272, y: 754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0048.png
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1360
+        width: 290
+        height: 120
+      alignment: 1
+      pivot: {x: 147, y: 628}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0039.png
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1616
+        width: 284
+        height: 144
+      alignment: 1
+      pivot: {x: 1174, y: 360}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0040.png
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 1618
+        width: 294
+        height: 142
+      alignment: 1
+      pivot: {x: 1463, y: 359}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0031.png
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 1762
+        width: 176
+        height: 144
+      alignment: 1
+      pivot: {x: 1134, y: 214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0022.png
+      rect:
+        serializedVersion: 2
+        x: 1745
+        y: 1906
+        width: 146
+        height: 140
+      alignment: 1
+      pivot: {x: 1818, y: 72}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0013.png
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 1954
+        width: 88
+        height: 92
+      alignment: 1
+      pivot: {x: 851, y: 48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0004.png
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1956
+        width: 80
+        height: 90
+      alignment: 1
+      pivot: {x: 133, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0078.png
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 1030
+        width: 104
+        height: 144
+      alignment: 1
+      pivot: {x: 1534, y: 946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0069.png
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 994
+        width: 148
+        height: 180
+      alignment: 1
+      pivot: {x: 394, y: 964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0070.png
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1000
+        width: 144
+        height: 174
+      alignment: 1
+      pivot: {x: 540, y: 961}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0061.png
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1198
+        width: 178
+        height: 158
+      alignment: 1
+      pivot: {x: 993, y: 771}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0052.png
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 1358
+        width: 236
+        height: 122
+      alignment: 1
+      pivot: {x: 1204, y: 629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0043.png
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1480
+        width: 312
+        height: 136
+      alignment: 1
+      pivot: {x: 466, y: 500}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0034.png
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 1760
+        width: 230
+        height: 146
+      alignment: 1
+      pivot: {x: 1747, y: 215}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0025.png
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1766
+        width: 148
+        height: 140
+      alignment: 1
+      pivot: {x: 222, y: 212}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0016.png
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 1956
+        width: 102
+        height: 90
+      alignment: 1
+      pivot: {x: 1138, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0007.png
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 1956
+        width: 78
+        height: 90
+      alignment: 1
+      pivot: {x: 368, y: 47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0082.png
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1030
+        width: 102
+        height: 144
+      alignment: 1
+      pivot: {x: 1941, y: 946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0073.png
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1020
+        width: 134
+        height: 154
+      alignment: 1
+      pivot: {x: 955, y: 951}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0064.png
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 1178
+        width: 174
+        height: 178
+      alignment: 1
+      pivot: {x: 1523, y: 781}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0055.png
+      rect:
+        serializedVersion: 2
+        x: 1744
+        y: 1356
+        width: 184
+        height: 124
+      alignment: 1
+      pivot: {x: 1836, y: 630}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0046.png
+      rect:
+        serializedVersion: 2
+        x: 1244
+        y: 1480
+        width: 306
+        height: 136
+      alignment: 1
+      pivot: {x: 1397, y: 500}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0037.png
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1616
+        width: 262
+        height: 144
+      alignment: 1
+      pivot: {x: 627, y: 360}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0028.png
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1762
+        width: 150
+        height: 144
+      alignment: 1
+      pivot: {x: 667, y: 214}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wind_animation0019.png
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 1958
+        width: 110
+        height: 88
+      alignment: 1
+      pivot: {x: 1456, y: 46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

@@ -29,6 +29,7 @@ public class Item : System.Object{
 	protected int _defence;
 	protected int _buyValue;
 	protected int _sellValue;
+	protected int _levelRequirement;
 	protected bool _equiped = false;
 	protected string _itemMesh;
 	protected string _itemTexture;
@@ -40,6 +41,15 @@ public class Item : System.Object{
 		}
 		set{
 			_name = value;
+		}
+	}
+	public int levelRequirement
+	{
+		get{
+			return _levelRequirement;
+		}
+		set{
+			_levelRequirement = value;
 		}
 	}
 	public ItemSort currentItemSort

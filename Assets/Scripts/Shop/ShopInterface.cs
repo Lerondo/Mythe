@@ -77,6 +77,7 @@ public class ShopInterface : MonoBehaviour {
 			stats += "Magic Dmg : " + item.itemMagicDamage + "\n";
 		if (!CheckIfZero(item.itemDefence))
 			stats += "Defence : " + item.itemDefence;
+		stats += "LevelRequirement: " + item.levelRequirement;
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
