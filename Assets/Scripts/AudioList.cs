@@ -5,25 +5,28 @@ using System.Collections.Generic;
 
 public class AudioList : MonoBehaviour 
 {
-	//Menu
-	public AudioClip clicksound;
-	public AudioClip menuMusic;
+	//Music
+	[SerializeField]private AudioClip menuMusic;
+	[SerializeField]private AudioClip hubmusic;
 
 	//EffectSounds
-	public AudioClip hitSound;
-	public AudioClip walkSound;
+	[SerializeField]private AudioClip hitSound;
+	[SerializeField]private AudioClip walkSound;
+
 
 
 	public void Lists()
 	{
-		List<AudioClip> effectSound = new List<AudioClip> ();
+		List<AudioClip> AudioL = new List<AudioClip> ();
+		//Music
+		AudioL.Add (menuMusic);
+		AudioL.Add (hubmusic);
 
-		effectSound.Add (clicksound);
-		effectSound.Add (menuMusic);
-		effectSound.Add (hitSound);
-		effectSound.Add (walkSound);
+		//Effects
+		AudioL.Add (hitSound);
+		AudioL.Add (walkSound);
 
-		foreach (AudioClip effectS in effectSound) 
+		foreach (AudioClip effectS in AudioL) 
 		{
 
 		}
