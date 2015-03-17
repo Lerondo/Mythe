@@ -35,6 +35,11 @@ public class Item : System.Object{
 	protected string _itemMesh;
 	protected string _itemTexture;
 	protected string _itemSprite;
+
+	public void Activate()
+	{
+		//For legendarys
+	}
 	public string itemName
 	{
 		get{
