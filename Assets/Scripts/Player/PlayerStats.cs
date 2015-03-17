@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour {
 	private int _basicDamage = 10;
 	private int _basicDefence = 3;
-	private int _level;
+	private int _level = 10;
 	private string _username = "";
 	private float _experience = 0;
 	private float _maxExp = 125;

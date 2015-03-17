@@ -8,6 +8,7 @@ public class InventoryInterface : MonoBehaviour {
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
+	public GameObject equipOffHandButton;
 
 	private PlayerStats _playerStats;
 	private Inventory _playerInventory;
@@ -32,6 +33,7 @@ public class InventoryInterface : MonoBehaviour {
 			allButtons[i] = allItemSlots[i].GetComponent<Button>();
 		}
 		inventoryInterface.SetActive(false);
+		equipOffHandButton.SetActive (false);
 	}
 	public void UpdateInterface()
 	{
@@ -65,8 +67,27 @@ public class InventoryInterface : MonoBehaviour {
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
+		if (item.offHandWieldAble == true)
+			equipOffHandButton.SetActive(true);
+		else
+			equipOffHandButton.SetActive(false);
 	}
 	public void EquipCurrentSelected()
+	{
+		if (selectedItem != null)
+		{
+			if(_playerStats.level >= selectedItem.levelRequirement)
+			{
+				equipOffHandButton.SetActive(false);
+				Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
+				_playerInventory.RemovePlayerItem(selectedItem);
+				SetInventorySpace(selectedButtonId, oldItem);
+			} else {
+				//TODO: return error level not high enough
+			}
+		}
+	}
+	public void EquipOffHandCurrentSelected()
 	{
 		if(_playerStats.level >= selectedItem.levelRequirement)
 		{

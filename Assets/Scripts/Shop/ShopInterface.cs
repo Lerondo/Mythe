@@ -66,9 +66,6 @@ public class ShopInterface : MonoBehaviour {
 		string stats = "";
 		stats += item.currentItemSort + "\n";
 		stats += item.itemName + "\n";
-		stats += item.currentItemQuality + "\n";
-		stats += item.itemSort + "\n";
-		stats += item.itemName + "\n";
 		stats += item.itemQuality + "\n";
 
 		if (!CheckIfZero(item.itemDamage))

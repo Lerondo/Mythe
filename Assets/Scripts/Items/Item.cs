@@ -24,6 +24,7 @@ public class Item : System.Object{
 	public ItemQuality itemQuality;
 	public int itemId;
 	protected string _name;
+	protected bool _offHandWieldAble;
 	protected int _damage;
 	protected int _magicDamage;
 	protected int _defence;
@@ -34,6 +35,11 @@ public class Item : System.Object{
 	protected string _itemMesh;
 	protected string _itemTexture;
 	protected string _itemSprite;
+
+	public void Activate()
+	{
+		//For legendarys
+	}
 	public string itemName
 	{
 		get{
@@ -41,6 +47,15 @@ public class Item : System.Object{
 		}
 		set{
 			_name = value;
+		}
+	}
+	public bool offHandWieldAble
+	{
+		get{
+			return _offHandWieldAble;
+		}
+		set{
+			_offHandWieldAble = value;
 		}
 	}
 	public int levelRequirement
