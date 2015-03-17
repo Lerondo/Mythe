@@ -30,7 +30,7 @@ public class WindController : MonoBehaviour
 	void MouseDown() 
 	{
 		rigidbodies.Clear ();
-		if(Input.mousePosition.x > 200 && Input.mousePosition.y > 100 && Input.mousePosition.y < 600 && Input.mousePosition.x < 800)
+		if(Input.mousePosition.x > 200 && Input.mousePosition.y > 100 && Input.mousePosition.y < 600 && Input.mousePosition.x < 600)
 		{
 			_startTime = Time.time;
 			_startPos = Input.mousePosition;
@@ -40,9 +40,9 @@ public class WindController : MonoBehaviour
 			Collider[] currentCols = Physics.OverlapSphere(_startPos, 1f);
 			foreach(Collider col in currentCols)
 			{
-				if(col.rigidbody != null)
+				if(col.GetComponent<Rigidbody>() != null)
 				{
-					rigidbodies.Add(col.rigidbody);
+					rigidbodies.Add(col.GetComponent<Rigidbody>());
 				}
 			}
 		}

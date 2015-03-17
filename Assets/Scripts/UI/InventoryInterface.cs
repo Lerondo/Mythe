@@ -9,7 +9,7 @@ public class InventoryInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject equipOffHandButton;
-
+	
 	private PlayerStats _playerStats;
 	private Inventory _playerInventory;
 	private int selectedButtonId;
@@ -72,30 +72,25 @@ public class InventoryInterface : MonoBehaviour {
 		else
 			equipOffHandButton.SetActive(false);
 	}
-	public void EquipCurrentSelected()
+	public void EquipCurrentSelected(bool offHand)
 	{
 		if (selectedItem != null)
 		{
 			if(_playerStats.level >= selectedItem.levelRequirement)
 			{
-				equipOffHandButton.SetActive(false);
+
+				if(offHand)
+				{
+					equipOffHandButton.SetActive(false);
+					selectedItem.itemSort = Item.ItemSort.OffHand;
+				}
 				Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
 				_playerInventory.RemovePlayerItem(selectedItem);
 				SetInventorySpace(selectedButtonId, oldItem);
+
 			} else {
 				//TODO: return error level not high enough
 			}
-		}
-	}
-	public void EquipOffHandCurrentSelected()
-	{
-		if(_playerStats.level >= selectedItem.levelRequirement)
-		{
-			Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
-			_playerInventory.RemovePlayerItem(selectedItem);
-			SetInventorySpace(selectedButtonId, oldItem);
-		} else {
-			//TODO: return error level not high enough
 		}
 	}
 }

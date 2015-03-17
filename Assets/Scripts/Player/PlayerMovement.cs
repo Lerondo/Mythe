@@ -106,9 +106,9 @@ public class PlayerMovement : MonoBehaviour {
 			_justJumped = true;
 			_playerAnimator.StopPlayback();
 			_playerAnimator.SetTrigger("Jump");
-			Vector3 jumpForce = rigidbody.velocity;
+			Vector3 jumpForce = GetComponent<Rigidbody>().velocity;
 			jumpForce.y = Mathf.Sqrt( 2f * _jumpHeight);
-			rigidbody.velocity = jumpForce; 
+			GetComponent<Rigidbody>().velocity = jumpForce; 
 			_isGrounded = false;
 		} 
 		else if(!_isTryingToClimb) 
@@ -149,15 +149,15 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		_isClimbing = true;
 		_playerAnimator.SetBool("Climbing",true);
-		rigidbody.useGravity = false;
-		rigidbody.velocity = new Vector3(0,0,0);
+		GetComponent<Rigidbody>().useGravity = false;
+		GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 		Vector3 newRot = ladderEuler;
 		newRot.y += 90;
 		this.transform.eulerAngles = newRot;
 		Vector3 newPos = this.transform.position;
 		newPos.x = ladderPos.x - 0.2f;
 		newPos.z = ladderPos.z - 0.2f;
-		rigidbody.velocity = new Vector3(0,0,0);
+		GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 		this.transform.position = newPos;
 	}
 	/// <summary>
@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		_isClimbing = false;
 		_playerAnimator.SetBool("Climbing",false);
-		rigidbody.useGravity = true;
+		GetComponent<Rigidbody>().useGravity = true;
 		Vector3 newRot = this.transform.eulerAngles;
 		newRot.y = 90;
 		this.transform.eulerAngles = newRot;
@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 		newPos.z = 0f;
 		this.transform.position = newPos;
 		_playerAnimator.speed = 1f;
-		rigidbody.velocity = new Vector3(0,0,0);
+		GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
 	}
 	void Update()
 	{
@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour {
 			{
 				CheckCollision();
 			}
-			else if(rigidbody.velocity.y <= -0.5f)
+			else if(GetComponent<Rigidbody>().velocity.y <= -0.5f)
 			{
 				_justJumped = false;
 			}

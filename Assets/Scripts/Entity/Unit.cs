@@ -26,14 +26,14 @@ public class Unit : MonoBehaviour {
 	public void KnockBack(Vector3 position, float yPower, float xPower)
 	{
 		float side = this.transform.position.x - position.x;
-		Vector3 knockback = this.rigidbody.velocity;
+		Vector3 knockback = this.GetComponent<Rigidbody>().velocity;
 		knockback.y = yPower;
 		knockback.x = xPower;
 		if(side < 0)
 		{
 			knockback.x *= -1;
 		} 
-		this.rigidbody.velocity = knockback;
+		this.GetComponent<Rigidbody>().velocity = knockback;
 	}
 	/// <summary>
 	/// Attack via AnimationEvent.

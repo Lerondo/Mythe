@@ -30,7 +30,7 @@ public class Equipment : MonoBehaviour {
 		_itemObject.Add(Item.ItemSort.Helm, playerHelm);
 		if(_playerStats.username == "")
 		{
-			_sword = new SwordOfFate();
+			_sword = new WoodenSword();
 			EquipItem(_sword);
 			//making fake items! (gets replaced by real items later on)
 			_offHand.itemSort = Item.ItemSort.OffHand;
@@ -91,7 +91,7 @@ public class Equipment : MonoBehaviour {
 		if(_itemObject.ContainsKey(item.itemSort))
 		{
 			_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
-			_itemObject[item.itemSort].renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+			_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		}
 		return oldItem;
 	}
