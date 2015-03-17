@@ -20,6 +20,7 @@ public class UserInterface : MonoBehaviour {
 		_allBars.Add(HEALTHBAR, _healthBar);
 		_allBars.Add(STAMINABAR, _staminaBar);
 		_allBars.Add(EXPERIENCEBAR, _experienceBar);
+		_allBars [HEALTHBAR].value -= 10;
 	}
 	/// <summary>
 	/// Updates a userinterface slider.

@@ -91,7 +91,7 @@ public class Equipment : MonoBehaviour {
 		if(_itemObject.ContainsKey(item.itemSort))
 		{
 			_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
-			_itemObject[item.itemSort].renderer.material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+			_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		}
 		return oldItem;
 	}

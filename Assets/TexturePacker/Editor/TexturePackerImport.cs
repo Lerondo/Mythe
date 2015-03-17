@@ -154,7 +154,7 @@ public static class TexturePackerImport{
 			if(createdNewPrefab){
 				GameObject go = new GameObject(meshes[i].name, typeof(MeshRenderer), typeof(MeshFilter));
 				go.GetComponent<MeshFilter>().sharedMesh = meshes[i];
-				go.renderer.sharedMaterial = mat;
+				go.GetComponent<Renderer>().sharedMaterial = mat;
 				
 				PrefabUtility.ReplacePrefab(go, prefab, ReplacePrefabOptions.ConnectToPrefab);
 				
@@ -162,7 +162,7 @@ public static class TexturePackerImport{
 			}
 			else{
 				GameObject pgo = (GameObject)prefab;
-				pgo.renderer.sharedMaterial = mat;
+				pgo.GetComponent<Renderer>().sharedMaterial = mat;
 				pgo.GetComponent<MeshFilter>().sharedMesh = meshes[i];
 				EditorUtility.SetDirty(pgo);
 			}
