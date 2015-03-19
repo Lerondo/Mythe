@@ -40,9 +40,9 @@ public class WindController : MonoBehaviour
 			Collider[] currentCols = Physics.OverlapSphere(_startPos, 1f);
 			foreach(Collider col in currentCols)
 			{
-				if(col.rigidbody != null)
+				if(col.GetComponent<Rigidbody>() != null)
 				{
-					rigidbodies.Add(col.rigidbody);
+					rigidbodies.Add(col.GetComponent<Rigidbody>());
 				}
 			}
 		}

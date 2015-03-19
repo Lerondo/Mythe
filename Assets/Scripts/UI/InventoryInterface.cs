@@ -82,6 +82,8 @@ public class InventoryInterface : MonoBehaviour {
 				Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
 				_playerInventory.RemovePlayerItem(selectedItem);
 				SetInventorySpace(selectedButtonId, oldItem);
+				selectedItem = null;
+				statText.text = "";
 			} else {
 				//TODO: return error level not high enough
 			}

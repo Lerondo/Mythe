@@ -56,7 +56,7 @@ public class PlayerController : Unit {
 	public void OnDeath()
 	{
 		this.transform.position = _checkPoint;
-		rigidbody.velocity = Vector3.zero;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		GetComponent<HealthController>().ResetHealth();
 		_death = false;
 	}

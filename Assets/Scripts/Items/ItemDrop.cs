@@ -20,6 +20,6 @@ public class ItemDrop : MonoBehaviour {
 	{
 		currentItem = item;
 		this.gameObject.GetComponent<MeshFilter>().mesh = Resources.Load(currentItem.itemMesh,typeof(Mesh)) as Mesh;;
-		this.gameObject.renderer.material.mainTexture = Resources.Load(currentItem.itemTexture,typeof(Texture)) as Texture;
+		this.gameObject.GetComponent<Renderer>().material.mainTexture = Resources.Load(currentItem.itemTexture,typeof(Texture)) as Texture;
 	}
 }
