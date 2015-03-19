@@ -140,6 +140,7 @@ public class PlayerController : Unit {
 			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);
 		}
 		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+		entity.GetComponent<Enemy>().justHit = true;
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
 
 	}

@@ -61,9 +61,12 @@ public class WindController : MonoBehaviour
 			rbody.AddForce(force * _factor);
 		}
 		GameObject windAnim = _objectPool.GetObjectForType("WindAnimation", true) as GameObject;
-		windAnim.transform.position = _startPos;
-		windAnim.GetComponent<RemoveWindAnim>().InvokeRemove();
-		float angle = Mathf.Atan2(endPos.y-_startPos.y, endPos.x-_startPos.x) * Mathf.Rad2Deg;
-		windAnim.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+		if(windAnim)
+		{
+			windAnim.transform.position = _startPos;
+			windAnim.GetComponent<RemoveWindAnim>().InvokeRemove();
+			float angle = Mathf.Atan2(endPos.y-_startPos.y, endPos.x-_startPos.x) * Mathf.Rad2Deg;
+			windAnim.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+		}
 	}
 }
