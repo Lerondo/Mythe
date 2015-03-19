@@ -3,8 +3,15 @@ using System.Collections;
 
 public class Enemy : Unit {
 	protected Transform _target;
+	protected bool _justHit;
 	protected float _attackCooldown;
 	protected float _exp = 50;
+	protected Animator _enemyAnimator;
+	void Awake()
+	{
+		_enemyAnimator = GetComponent<Animator> ();
+	}
+
 	/// <summary>
 	/// Raises the trigger enter event.
 	/// </summary>
@@ -42,9 +49,26 @@ public class Enemy : Unit {
 		if(!_death && _target && IsSeeingPlayer())
 		{
 			MoveTowardsPlayer();
+		} else if(!_death)
+		{
+			_enemyAnimator.SetBool("Running", false);
 		}
 	}
-
+	public bool justHit
+	{
+		get{
+			return _justHit;
+		}
+		set{
+			_justHit = value;
+			if(value == true)
+				Invoke ("StoppedGettingHit", 0.5f);
+		}
+	}
+	private void StoppedGettingHit()
+	{
+		_justHit = false;
+	}
 	/// <summary>
 	/// Moves towards the player.
 	/// </summary>
@@ -53,19 +77,26 @@ public class Enemy : Unit {
 		if (Vector3.Distance (this.transform.position, _target.position) < _range) 
 		{
 			//TODO: if animation not playing set animation + animation event attack
+			_enemyAnimator.SetTrigger("Attack");
+			/*
 			if(_attackCooldown < Time.time)
 			{
 				Attack();
 				_attackCooldown = Time.time + 2f;
-			}
+			} */
 		} 
-		else 
+		else if(!_justHit)
 		{
+			_enemyAnimator.SetBool("Running", true);
 			Vector3 movement = new Vector3(1,0,0);
-			Vector3 scale = new Vector3(1,1,1);
+			Vector3 scale = this.transform.localScale;
 			if(this.transform.position.x > _target.transform.position.x)
 			{
 				movement.x *= -1;
+				if(scale.x > 0) scale.x *= -1;
+			} 
+			else if(scale.x < 0)
+			{
 				scale.x *= -1;
 			}
 			movement *= _speed * Time.deltaTime;

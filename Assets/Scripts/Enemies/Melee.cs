@@ -3,47 +3,60 @@ using System.Collections;
 
 public class Melee : Enemy 
 {
-	private Animator _enemyAnimator;
-
 	private HealthController _playerHealth;
 	private Unit _playerUnit;
 	private PlayerController _playerController;
 	protected override void Start()
 	{
-		_range = 2f;
+		_range = 3f;
 		_speed = 2.5f;
 		_currentAttackDmg = 10;
 		_enemyAnimator.SetBool ("Idle", true);
 	}
-
-	void Awake()
+	protected virtual AnimationEvent Attack()
 	{
-		_enemyAnimator = GetComponent<Animator> ();
-	}
-	/// <summary>
-	/// Raises the trigger stay event.
-	/// </summary>
-	/// <param name="other">Other.</param>
-	void OnTriggerStay(Collider other)
-	{
-		if(_attacking && !_justAttacked && other.transform.tag == Tags.Player)
+		_attacking = true;
+		_justAttacked = false;
+		Vector3 spherePosition = this.transform.position;
+		spherePosition.x += 1;
+		if(this.transform.localScale.x == -0.5f)
 		{
-			_enemyAnimator.SetBool("Attack", true);
-
-			if(_playerHealth == null || _playerUnit == null || _playerController == null)
+			spherePosition.x -= 2;
+		}
+		Collider[] cols = Physics.OverlapSphere(spherePosition,2);
+		foreach (var col in cols) 
+		{
+			if(col.tag == Tags.Player)
 			{
-				_playerController = other.GetComponent<PlayerController>();
-				_playerUnit = other.GetComponent<Unit>();
-				_playerHealth = other.GetComponent<HealthController>();
-			}
-			bool isPlayerHit = _playerController.justHit;
-			if(!isPlayerHit)
-			{
-				_justAttacked = true;				
-				_playerHealth.UpdateHealth(-_currentAttackDmg);
-				_playerUnit.KnockBack(this.transform.position, 2f, 2f);
-				_playerController.justHit = true;
+				if(_attacking && !_justAttacked)
+				{
+					if(_playerHealth == null || _playerUnit == null || _playerController == null)
+					{
+						_playerController = col.GetComponent<PlayerController>();
+						_playerUnit = col.GetComponent<Unit>();
+						_playerHealth = col.GetComponent<HealthController>();
+					}
+					bool isPlayerHit = _playerController.justHit;
+					if(!isPlayerHit)
+					{
+						_justAttacked = true;				
+						_playerHealth.UpdateHealth(-_currentAttackDmg);
+						_playerUnit.KnockBack(this.transform.position, 2f, 2f);
+						_playerController.justHit = true;
+					}
+				}
+				break;
 			}
 		}
+		return null;
+	}
+	/// <summary>
+	/// Stops the attack via AnimationEvent.
+	/// </summary>
+	/// <returns>nothing.</returns>
+	protected virtual AnimationEvent StopAttack()
+	{
+		_attacking = false;
+		return null;
 	}
 }

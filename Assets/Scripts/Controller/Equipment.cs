@@ -30,7 +30,7 @@ public class Equipment : MonoBehaviour {
 		_itemObject.Add(Item.ItemSort.Helm, playerHelm);
 		if(_playerStats.username == "")
 		{
-			_sword = new SwordOfFate();
+			_sword = new WoodenSword();
 			EquipItem(_sword);
 			//making fake items! (gets replaced by real items later on)
 			_offHand.itemSort = Item.ItemSort.OffHand;
