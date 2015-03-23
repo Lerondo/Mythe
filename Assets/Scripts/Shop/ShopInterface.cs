@@ -27,7 +27,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	void Start()
 	{
-		_merchant = GameObject.Find (Tags.Merchant);
+		_merchant = GameObject.FindGameObjectWithTag (Tags.Merchant);
 		float counter = 0;
 		GameObject[] allItemSlots = new GameObject[15];
 		for (int i = 0; i < allItemSlots.Length; i++) 
