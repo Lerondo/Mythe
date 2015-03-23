@@ -227,7 +227,13 @@ public class PlayerMovement : MonoBehaviour {
 			StopClimbing();
 		}
 	}
-
+	void OnCollisionStay(Collision other)
+	{
+		if(other.transform.tag == Tags.Enemy)
+		{
+			GetComponent<Unit>().KnockBack(other.transform.position,2,5);
+		}
+	}
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.transform.tag == Tags.Ladder && _isTryingToClimb)

@@ -14,9 +14,19 @@ public class Skill : System.Object {
 	}
 	public skillType type;
 	public string animationName;
-	public virtual void Activate(Vector3 playerPos, Vector3 playerEuler)
+	public virtual IEnumerator Activate(Vector3 playerPos, Vector3 playerEuler)
 	{
 		//Put here specified skill
+		return null;
+	}
+	public float currentCoolDown
+	{
+		get{
+			return _currentCoolDown;
+		}
+		set{
+			_currentCoolDown = value;
+		}
 	}
 	public float coolDown
 	{

@@ -3,12 +3,12 @@ using System.Collections;
 
 public class PlayerStats : MonoBehaviour {
 	private int _basicDamage = 10;
-	private int _basicDefence = 3;
-	private int _level = 10;
+	private int _basicDefence = 0;
+	private int _level = 1;
 	private string _username = "";
 	private float _experience = 0;
 	private float _maxExp = 125;
-	private int _defence;
+	private int _defence = 0;
 	private int _goldValue = 100;
 	private UserInterface _userInterface;
 	void Awake()

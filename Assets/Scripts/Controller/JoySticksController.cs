@@ -31,7 +31,6 @@ public class JoySticksController : MonoBehaviour {
 			shopInterface.SetActive(true);
 			controllerMenu.SetActive(false);
 		}
-		Debug.Log("Pressing button: " + buttonID);
 	}
 	public void SetFingerIndex(int index)
 	{
