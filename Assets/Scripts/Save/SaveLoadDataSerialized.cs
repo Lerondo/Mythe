@@ -14,6 +14,14 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 	private string _currentUsername;
 	public static SaveLoadDataSerialized Instance;
 
+	void OnLevelWasLoaded(int index)
+	{
+		if(index == 1)
+		{
+			_playerStats = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>();
+			_playerStats.username = _currentUsername;
+		}
+	}
 	void Awake()
 	{
 		if(Instance)
@@ -69,7 +77,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.playerZ = _player.transform.position.z;
 		//player username
 		saveData.username = _playerStats.username;
-		if(saveData.username == null)
+		if(saveData.username == "")
 		{
 			saveData.username = _currentUsername;
 		}
@@ -144,7 +152,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 
 			_equipment.EquipAllItems(saveData.equipedItems);
 			_inventory.inventory = saveData.inventoryItems;
-
+			Debug.Log(_inventory.inventory);
 			file.Close();
 		} else
 		{

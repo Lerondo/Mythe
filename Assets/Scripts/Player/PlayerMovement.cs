@@ -185,6 +185,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(!_justJumped)
 			{
 				CheckCollision();
+				_isTryingToClimb = false;
 			}
 			else if(GetComponent<Rigidbody>().velocity.y <= -0.5f)
 			{

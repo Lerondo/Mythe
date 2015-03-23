@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Enemy : Unit {
 	protected Transform _target;
-	protected bool _justHit;
 	protected float _attackCooldown;
 	protected float _exp = 50;
 	protected Animator _enemyAnimator;
@@ -58,21 +57,6 @@ public class Enemy : Unit {
 				Destroy(this.gameObject);
 			}
 		}
-	}
-	public bool justHit
-	{
-		get{
-			return _justHit;
-		}
-		set{
-			_justHit = value;
-			if(value == true)
-				Invoke ("StoppedGettingHit", 0.5f);
-		}
-	}
-	private void StoppedGettingHit()
-	{
-		_justHit = false;
 	}
 	/// <summary>
 	/// Moves towards the player.

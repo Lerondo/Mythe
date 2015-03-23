@@ -8,6 +8,7 @@ public class ObsidianDagger : Item {
 		itemSort = ItemSort.Weapon;
 		_offHandWieldAble = true;
 		itemQuality = ItemQuality.Rare;
+		_weaponSort = WeaponSort.Sword;
 		_name = "Obsidian Dagger";
 		_damage = 7;
 		_magicDamage = 0;

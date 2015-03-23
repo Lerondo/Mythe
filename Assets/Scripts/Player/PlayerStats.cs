@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour {
 	private string _username = "";
 	private float _experience = 0;
 	private float _maxExp = 125;
-	private int _damage;
 	private int _defence;
 	private int _goldValue = 100;
 	private UserInterface _userInterface;
@@ -68,12 +67,6 @@ public class PlayerStats : MonoBehaviour {
 		}
 		set{
 			_basicDefence = value;
-		}
-	}
-	public int damage
-	{
-		get{
-		return _damage;
 		}
 	}
 	public void UpdateGold (int gold)

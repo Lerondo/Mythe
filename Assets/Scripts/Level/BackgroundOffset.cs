@@ -8,14 +8,13 @@ public class BackgroundOffset : MonoBehaviour {
 
 	void Start()
 	{
-		_cam = GameObject.FindGameObjectWithTag ("MainCamera");
+		_cam = GameObject.FindGameObjectWithTag (Tags.MainCam);
 
 		if (this.gameObject.name == "background-back")
 			speed = 0.05f;
 		else if (this.gameObject.name == "background-close")
 			speed = 0.08f;
 	}
-
 	void Update()
 	{
 		GetComponent<Renderer>().material.mainTextureOffset = new Vector2 (_cam.transform.position.x * speed, 0);

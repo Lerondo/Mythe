@@ -13,6 +13,13 @@ public class Item : System.Object{
 		Legs,
 		Boots
 	}
+	public enum WeaponSort
+	{
+		Bow,
+		Staff,
+		Sword,
+		None
+	}
 	public enum ItemQuality
 	{
 		Common,
@@ -23,6 +30,7 @@ public class Item : System.Object{
 	public ItemSort itemSort;
 	public ItemQuality itemQuality;
 	public int itemId;
+	protected WeaponSort _weaponSort = Item.WeaponSort.None;
 	protected string _name;
 	protected bool _offHandWieldAble;
 	protected int _damage;
@@ -39,6 +47,15 @@ public class Item : System.Object{
 	public void Activate()
 	{
 		//For legendarys
+	}
+	public WeaponSort weaponSort
+	{
+		get{
+			return _weaponSort;
+		}
+		set{
+			_weaponSort = value;
+		}
 	}
 	public string itemName
 	{

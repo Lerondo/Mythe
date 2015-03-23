@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DropController : MonoBehaviour {
 	public int dropRate;
+
 	public void DropItem()
 	{
 		if(Random.Range(0,100) <= dropRate)

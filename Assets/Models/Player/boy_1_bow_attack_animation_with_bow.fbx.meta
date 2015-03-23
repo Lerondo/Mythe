@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 1e48422f60816384ab698c456752ea4c
+timeCreated: 1426847455
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: arrow_null
+    100002: Bend
+    100004: Bow
+    100006: Bow_2
+    100008: //RootNode
+    100010: Floor
+    100012: Head
+    100014: L_Foot
+    100016: LL_Arm
+    100018: LL_Leg
+    100020: LU_Arm
+    100022: LU_Leg
+    100024: Null
+    100026: Pelvis
+    100028: R_Foot
+    100030: RL_Arm
+    100032: RL_Leg
+    100034: RU_Arm
+    100036: RU_Leg
+    100038: Torso
+    100040: Weapon
+    400000: arrow_null
+    400002: Bend
+    400004: Bow
+    400006: Bow_2
+    400008: //RootNode
+    400010: Floor
+    400012: Head
+    400014: L_Foot
+    400016: LL_Arm
+    400018: LL_Leg
+    400020: LU_Arm
+    400022: LU_Leg
+    400024: Null
+    400026: Pelvis
+    400028: R_Foot
+    400030: RL_Arm
+    400032: RL_Leg
+    400034: RU_Arm
+    400036: RU_Leg
+    400038: Torso
+    400040: Weapon
+    2300000: Bow_2
+    2300002: Head
+    2300004: L_Foot
+    2300006: LL_Arm
+    2300008: LL_Leg
+    2300010: LU_Arm
+    2300012: LU_Leg
+    2300014: Pelvis
+    2300016: R_Foot
+    2300018: RL_Arm
+    2300020: RL_Leg
+    2300022: RU_Arm
+    2300024: RU_Leg
+    2300026: Torso
+    3300000: Bow_2
+    3300002: Head
+    3300004: L_Foot
+    3300006: LL_Arm
+    3300008: LL_Leg
+    3300010: LU_Arm
+    3300012: LU_Leg
+    3300014: Pelvis
+    3300016: R_Foot
+    3300018: RL_Arm
+    3300020: RL_Leg
+    3300022: RU_Arm
+    3300024: RU_Leg
+    3300026: Torso
+    4300000: Pelvis
+    4300002: LU_Leg
+    4300004: LL_Leg
+    4300006: L_Foot
+    4300008: RU_Leg
+    4300010: RL_Leg
+    4300012: R_Foot
+    4300014: Torso
+    4300016: RU_Arm
+    4300018: RL_Arm
+    4300020: Bow_2
+    4300022: LU_Arm
+    4300024: LL_Arm
+    4300026: Head
+    7400000: PlayerAttackBow
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: PlayerAttackBow
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .732441485
+        functionName: Attack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Floor
+        weight: 1
+      - path: Null
+        weight: 1
+      - path: Null/arrow_null
+        weight: 1
+      - path: Null/Pelvis
+        weight: 1
+      - path: Null/Pelvis/LU_Leg
+        weight: 1
+      - path: Null/Pelvis/LU_Leg/LL_Leg
+        weight: 1
+      - path: Null/Pelvis/LU_Leg/LL_Leg/L_Foot
+        weight: 1
+      - path: Null/Pelvis/RU_Leg
+        weight: 1
+      - path: Null/Pelvis/RU_Leg/RL_Leg
+        weight: 1
+      - path: Null/Pelvis/RU_Leg/RL_Leg/R_Foot
+        weight: 1
+      - path: Null/Pelvis/Torso
+        weight: 1
+      - path: Null/Pelvis/Torso/Head
+        weight: 1
+      - path: Null/Pelvis/Torso/LU_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/LU_Arm/LL_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Bow
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Bow/Bend
+        weight: 1
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Bow/Bow_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

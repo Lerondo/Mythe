@@ -8,14 +8,14 @@ public class NextLevel : MonoBehaviour {
 	private int _nextLvlTimer = 0;
 	private Color _oldDarkColor;
 	private LoadingScreen _loadingScreen;
-	private SaveLoadDataSerialized _saveLoadData;
+	//private SaveLoadDataSerialized _saveLoadData;
 
 	private Image _darkness;
 
 	void Awake()
 	{
 		_loadingScreen = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<LoadingScreen>();
-		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
+		//_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
 	}
 	void Start()
 	{
@@ -42,13 +42,11 @@ public class NextLevel : MonoBehaviour {
 
 		if(PlayerPrefs.GetInt("next_lvl") > Application.levelCount)
 		{
-			_saveLoadData.Save(SavePaths.currentPath);
+			//_saveLoadData.Save(SavePaths.currentPath);
 			PlayerPrefs.SetInt("next_lvl", 0);
 			_nextLvl = PlayerPrefs.GetInt("next_lvl");
 			Application.LoadLevel(_nextLvl);
-		}
-		else
-		{
+		}else{
 			Application.LoadLevel(_nextLvl);
 		}
 	}
