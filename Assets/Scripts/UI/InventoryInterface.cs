@@ -91,7 +91,11 @@ public class InventoryInterface : MonoBehaviour {
 				}
 				Item oldItem = GetComponent<Equipment>().EquipItem(selectedItem);
 				_playerInventory.RemovePlayerItem(selectedItem);
-				SetInventorySpace(selectedButtonId, oldItem);
+				if(oldItem.itemBuyValue != 0)
+				{
+					SetInventorySpace(selectedButtonId, oldItem);
+					_playerInventory.AddItem(oldItem);
+				}
 				selectedItem = null;
 				ResetInventoryTexts();
 			}

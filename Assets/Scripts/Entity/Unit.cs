@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour {
 	protected float _range;
 	protected bool _death = false;
 	protected int _health;
-
+	protected bool _justHit = false;
 	protected virtual void Start () {
 		//start function
 	}
@@ -23,7 +23,23 @@ public class Unit : MonoBehaviour {
 	{
 		_death = death;
 	}
-	public void KnockBack(Vector3 position, float yPower, float xPower)
+	public bool justHit
+	{
+		get
+		{
+			return _justHit;
+		}
+		set{
+			_justHit = value;
+			if(value == true)
+				Invoke("CanGetHitAgain", 0.5f);
+		}
+	}
+	private void CanGetHitAgain()
+	{
+		_justHit = false;
+	}
+	public virtual void KnockBack(Vector3 position, float yPower, float xPower)
 	{
 		float side = this.transform.position.x - position.x;
 		Vector3 knockback = this.GetComponent<Rigidbody>().velocity;

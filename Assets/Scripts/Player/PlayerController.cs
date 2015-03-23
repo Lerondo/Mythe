@@ -3,18 +3,21 @@ using System.Collections;
 
 public class PlayerController : Unit {
 	public Collider myAttackCollider;
+	public Animator bowAnimator;
+	public Transform spawnPoint;
 	//TODO: list skills
 
 	private Equipment _equipment;
-	private bool _justHit;
 	private bool _isLastAttack;
 	private Animator _playerAnimator;
+	private ObjectPool _objectPool;
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
+		_objectPool = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>();
 		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
 	}
 	protected override void Update()
@@ -31,21 +34,6 @@ public class PlayerController : Unit {
 		{
 			return _death;
 		}
-	}
-	public bool justHit
-	{
-		get
-		{
-			return _justHit;
-		}
-		set{
-			_justHit = value;
-			Invoke("CanGetHitAgain", 0.5f);
-		}
-	}
-	private void CanGetHitAgain()
-	{
-		_justHit = false;
 	}
 	public void SetCheckPoint(Vector3 pos)
 	{
@@ -66,11 +54,14 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void StartSkill(int skillNumber)
 	{
-		if(skillNumber == 1)
+		if(skillNumber == 1 || skillNumber == 2)
 		{
 			GetComponent<SkillController>().ActivateSkill(skillNumber);
-		} else {
+		}
+		else {
 			_playerAnimator.SetTrigger("Attack");
+			if(_playerAnimator.GetBool("HasBow"))
+				bowAnimator.SetTrigger("Attack");
 		}
 		//set trigger to current skill
 	}
@@ -80,7 +71,20 @@ public class PlayerController : Unit {
 	protected override AnimationEvent Attack()
 	{
 		myAttackCollider.enabled = true;
+		if(_playerAnimator.GetBool("HasBow"))
+		{
+			ShootArrow();
+		}
 		return base.Attack();
+	}
+	private void ShootArrow()
+	{
+		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
+		GameObject newArrow = _objectPool.GetObjectForType("Arrow", false) as GameObject;
+		newArrow.GetComponent<ArrowBehavior>().SetDamage(_currentAttackDmg);
+		newArrow.transform.position = spawnPoint.position;
+		newArrow.transform.rotation = spawnPoint.rotation;
+		newArrow.GetComponent<ArrowBehavior>().tagToHit = Tags.Enemy;
 	}
 	/// <summary>
 	/// lastattack via animationevent.
@@ -110,26 +114,26 @@ public class PlayerController : Unit {
 	/// <param name="other">Other.</param>
 	void OnTriggerStay(Collider other)
 	{
-		if(!other.isTrigger)
+		if(!other.isTrigger && _playerAnimator.GetBool("HasSword"))
 		{
 			if(other.transform.tag == Tags.Enemy)
 			{
 				if(_attacking && !_justAttacked)
 				{
-					DoDamage(other.gameObject, 2f, 2f);
+					DoDamage(other.gameObject, 2f, 2f, 0);
 				} 
 				else if(_isLastAttack && !_justAttacked)
 				{
-					DoDamage(other.gameObject, 2f, 5f);
+					DoDamage(other.gameObject, 2f, 5f, 5);
 				}
 			}
 		}
 	}
-	public void DoDamage(GameObject entity, float yPower, float xPower)
+	public void DoDamage(GameObject entity, float yPower, float xPower, int extraDamage)
 	{
 		_justAttacked = true;	
 		_attacking = false;
-		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
+		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage() + extraDamage;
 		if(Random.Range(0,100) <= 25)
 		{
 			_currentAttackDmg = Mathf.FloorToInt(_currentAttackDmg * 1.5f);
@@ -139,9 +143,14 @@ public class PlayerController : Unit {
 			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
 			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);
 		}
-		entity.GetComponent<HealthController>().UpdateHealth(-_currentAttackDmg);
+		entity.GetComponent<HealthController>().DoDamage(_currentAttackDmg);
 		entity.GetComponent<Enemy>().justHit = true;
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
 
+	}
+	public override void KnockBack (Vector3 position, float yPower, float xPower)
+	{
+		base.KnockBack (position, yPower, xPower);
+		_playerAnimator.SetTrigger("KnockBack");
 	}
 }

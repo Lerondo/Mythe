@@ -1,87 +1,99 @@
 fileFormatVersion: 2
-guid: 79f7fff072ddea84c9c19512e03b2157
+guid: 289a95c0d98fa5f41bb1cdb67291cbfa
+timeCreated: 1426845189
+licenseType: Free
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
-    100000: Floor
-    100002: Head
-    100004: L_Foot
-    100006: LL_Arm
-    100008: LL_Leg
-    100010: LU_Arm
-    100012: LU_Leg
-    100014: //RootNode
-    100016: Null
-    100018: Pelvis
-    100020: R_Foot
-    100022: RL_Arm
-    100024: RL_Leg
-    100026: RU_Arm
-    100028: RU_Leg
-    100030: staff
-    100032: Torso
-    100034: Weapon
-    400000: Floor
-    400002: Head
-    400004: L_Foot
-    400006: LL_Arm
-    400008: LL_Leg
-    400010: LU_Arm
-    400012: LU_Leg
-    400014: //RootNode
-    400016: Null
-    400018: Pelvis
-    400020: R_Foot
-    400022: RL_Arm
-    400024: RL_Leg
-    400026: RU_Arm
-    400028: RU_Leg
-    400030: staff
-    400032: Torso
-    400034: Weapon
-    2300000: Head
-    2300002: L_Foot
-    2300004: LL_Arm
-    2300006: LL_Leg
-    2300008: LU_Arm
-    2300010: LU_Leg
-    2300012: Pelvis
-    2300014: R_Foot
-    2300016: RL_Arm
-    2300018: RL_Leg
-    2300020: RU_Arm
-    2300022: RU_Leg
-    2300024: staff
-    2300026: Torso
-    3300000: Head
-    3300002: L_Foot
-    3300004: LL_Arm
-    3300006: LL_Leg
-    3300008: LU_Arm
-    3300010: LU_Leg
-    3300012: Pelvis
-    3300014: R_Foot
-    3300016: RL_Arm
-    3300018: RL_Leg
-    3300020: RU_Arm
-    3300022: RU_Leg
-    3300024: staff
-    3300026: Torso
-    4300000: Pelvis
-    4300002: LU_Leg
-    4300004: LL_Leg
-    4300006: L_Foot
-    4300008: RU_Leg
-    4300010: RL_Leg
-    4300012: R_Foot
-    4300014: Torso
-    4300016: RU_Arm
-    4300018: RL_Arm
-    4300020: staff
-    4300022: LU_Arm
-    4300024: LL_Arm
-    4300026: Head
-    7400000: playerIdle02
+    100000: Cube
+    100002: Cube_1
+    100004: Cylinder
+    100006: Floor
+    100008: Head
+    100010: L_Foot
+    100012: LL_Arm
+    100014: LL_Leg
+    100016: LU_Arm
+    100018: LU_Leg
+    100020: Null
+    100022: Pelvis
+    100024: R_Foot
+    100026: RL_Arm
+    100028: RL_Leg
+    100030: RU_Arm
+    100032: RU_Leg
+    100034: Torso
+    100036: //RootNode
+    100038: Weapon
+    400000: Cube
+    400002: Cube_1
+    400004: Cylinder
+    400006: Floor
+    400008: Head
+    400010: L_Foot
+    400012: LL_Arm
+    400014: LL_Leg
+    400016: LU_Arm
+    400018: LU_Leg
+    400020: Null
+    400022: Pelvis
+    400024: R_Foot
+    400026: RL_Arm
+    400028: RL_Leg
+    400030: RU_Arm
+    400032: RU_Leg
+    400034: Torso
+    400036: //RootNode
+    400038: Weapon
+    2300000: Cube
+    2300002: Cube_1
+    2300004: Cylinder
+    2300006: Head
+    2300008: L_Foot
+    2300010: LL_Arm
+    2300012: LL_Leg
+    2300014: LU_Arm
+    2300016: LU_Leg
+    2300018: Pelvis
+    2300020: R_Foot
+    2300022: RL_Arm
+    2300024: RL_Leg
+    2300026: RU_Arm
+    2300028: RU_Leg
+    2300030: Torso
+    3300000: Cube
+    3300002: Cube_1
+    3300004: Cylinder
+    3300006: Head
+    3300008: L_Foot
+    3300010: LL_Arm
+    3300012: LL_Leg
+    3300014: LU_Arm
+    3300016: LU_Leg
+    3300018: Pelvis
+    3300020: R_Foot
+    3300022: RL_Arm
+    3300024: RL_Leg
+    3300026: RU_Arm
+    3300028: RU_Leg
+    3300030: Torso
+    4300000: Cube_1
+    4300002: Cube
+    4300004: Pelvis
+    4300006: RU_Leg
+    4300008: RL_Leg
+    4300010: R_Foot
+    4300012: LU_Leg
+    4300014: LL_Leg
+    4300016: L_Foot
+    4300018: Torso
+    4300020: Head
+    4300022: RU_Arm
+    4300024: RL_Arm
+    4300026: Cylinder
+    4300028: LU_Arm
+    4300030: LL_Arm
+    7400000: TuathaAttack
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -100,10 +112,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: playerIdle02
+      name: TuathaAttack
       takeName: C4D Animation Take
       firstFrame: 0
-      lastFrame: 75
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -121,9 +133,27 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .585284293
+        functionName: Attack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .725752473
+        functionName: StopAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_1
         weight: 1
       - path: Floor
         weight: 1
@@ -157,14 +187,14 @@ ModelImporter:
         weight: 1
       - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon
         weight: 1
-      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/staff
+      - path: Null/Pelvis/Torso/RU_Arm/RL_Arm/Weapon/Cylinder
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -172,11 +202,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -199,3 +231,5 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

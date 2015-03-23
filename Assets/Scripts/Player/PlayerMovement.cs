@@ -185,6 +185,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(!_justJumped)
 			{
 				CheckCollision();
+				_isTryingToClimb = false;
 			}
 			else if(GetComponent<Rigidbody>().velocity.y <= -0.5f)
 			{
@@ -226,7 +227,13 @@ public class PlayerMovement : MonoBehaviour {
 			StopClimbing();
 		}
 	}
-
+	void OnCollisionStay(Collision other)
+	{
+		if(other.transform.tag == Tags.Enemy)
+		{
+			GetComponent<Unit>().KnockBack(other.transform.position,2,5);
+		}
+	}
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.transform.tag == Tags.Ladder && _isTryingToClimb)

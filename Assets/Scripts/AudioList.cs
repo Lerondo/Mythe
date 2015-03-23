@@ -16,16 +16,30 @@ public class AudioList : MonoBehaviour
 	[SerializeField]private AudioClip jumpSound;
 	[SerializeField]private AudioClip playerHitSound;
 	[SerializeField]private AudioClip attackingSound;
+	[SerializeField]private AudioClip chargeShout;
+	[SerializeField]private AudioClip magicShotSound;
 
-	//ObjectSounds
+	//BowSounds
+	[SerializeField]private AudioClip bowStretchingSound;
 	[SerializeField]private AudioClip arrowShotSound;
 	[SerializeField]private AudioClip arrowInpactSound;
+
+	//MeleeSounds
 	[SerializeField]private AudioClip hitSound;
-	[SerializeField]private AudioClip chargeShout;
+
+	//MagicSounds
+	[SerializeField]private AudioClip magicInpactSound;
 
 	//WorldSounds
 	[SerializeField]private AudioClip birdSound;
 	[SerializeField]private AudioClip windSound;
+	[SerializeField]private AudioClip wolfSound;
+
+	//EnemySounds
+	[SerializeField]private AudioClip wolfAttackSound;
+
+	//OtherSounds
+	[SerializeField]private AudioClip ButtonClickSound;
 
 	private List<AudioClip> AudioL = new List<AudioClip> ();
 
@@ -52,6 +66,7 @@ public class AudioList : MonoBehaviour
 		//WorldSounds
 		AudioL.Add (birdSound);
 		AudioL.Add (windSound);
+	
 
 		foreach (AudioClip SoundF in AudioL) 
 		{

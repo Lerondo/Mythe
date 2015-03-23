@@ -5,24 +5,24 @@ using System.Collections;
 public class StrongSlash : Skill {
 	public StrongSlash()
 	{
-		animationName = "attack";
+		animationName = "StrongSlash";
 		type = skillType.offensive;
+		_coolDown = 5f;
 	}
-	public override void Activate (Vector3 playerPos, Vector3 playerEuler)
+	public override IEnumerator Activate (Vector3 playerPos, Vector3 playerEuler)
 	{
+		yield return new WaitForSeconds(0.75f);
 		Vector3 spherePosition = playerPos;
-		spherePosition.x += 1;
-		if(playerEuler.y == 270)
-		{
-			spherePosition.x -= 2;
-		}
 		Collider[] colliders = Physics.OverlapSphere (spherePosition,  1f);
 		foreach(Collider col in colliders)
 		{
 			if(col.tag == Tags.Enemy)
 			{
-				GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3);
+				GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3,10);
 			}
 		}
+		GameObject strongSlash = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("StrongSlash", false) as GameObject;
+		strongSlash.transform.position = playerPos - new Vector3(0,1,0);
+		strongSlash.GetComponent<ParticleSystemBehavior>().StartPooling();
 	}
 }

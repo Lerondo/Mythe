@@ -5,15 +5,11 @@ public class Melee : Enemy
 {
 	private HealthController _playerHealth;
 	private Unit _playerUnit;
-	private PlayerController _playerController;
 	protected override void Start()
 	{
-		_range = 3f;
-		_speed = 2.5f;
-		_currentAttackDmg = 10;
 		_enemyAnimator.SetBool ("Idle", true);
 	}
-	protected virtual AnimationEvent Attack()
+	protected override AnimationEvent Attack()
 	{
 		_attacking = true;
 		_justAttacked = false;
@@ -30,19 +26,18 @@ public class Melee : Enemy
 			{
 				if(_attacking && !_justAttacked)
 				{
-					if(_playerHealth == null || _playerUnit == null || _playerController == null)
+					if(_playerHealth == null || _playerUnit == null)
 					{
-						_playerController = col.GetComponent<PlayerController>();
 						_playerUnit = col.GetComponent<Unit>();
 						_playerHealth = col.GetComponent<HealthController>();
 					}
-					bool isPlayerHit = _playerController.justHit;
+					bool isPlayerHit = _playerUnit.justHit;
 					if(!isPlayerHit)
 					{
 						_justAttacked = true;				
-						_playerHealth.UpdateHealth(-_currentAttackDmg);
+						_playerHealth.DoDamage(_currentAttackDmg);
 						_playerUnit.KnockBack(this.transform.position, 2f, 2f);
-						_playerController.justHit = true;
+						_playerUnit.justHit = true;
 					}
 				}
 				break;
@@ -54,7 +49,7 @@ public class Melee : Enemy
 	/// Stops the attack via AnimationEvent.
 	/// </summary>
 	/// <returns>nothing.</returns>
-	protected virtual AnimationEvent StopAttack()
+	protected override AnimationEvent StopAttack()
 	{
 		_attacking = false;
 		return null;

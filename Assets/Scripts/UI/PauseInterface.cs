@@ -7,10 +7,10 @@ public class PauseInterface : MonoBehaviour {
 	public GameObject optionsInterface;
 	public GameObject controllerMenu;
 
-	//private SaveLoadDataSerialized _saveLoadData;
+	private SaveLoadDataSerialized _saveLoadData;
 	void Awake()
 	{
-		//_saveLoadData = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<SaveLoadDataSerialized>();
+		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
 	}
 	void Start()
 	{
@@ -19,7 +19,7 @@ public class PauseInterface : MonoBehaviour {
 	}
 	public void ReturnToGame()
 	{
-		//_saveLoadData.Save(SavePaths.currentPath);
+		_saveLoadData.Save(SavePaths.currentPath);
 		pauseInterface.SetActive (false);
 		ChangeTimeScale ();
 		controllerMenu.SetActive(true);
@@ -36,7 +36,7 @@ public class PauseInterface : MonoBehaviour {
 	}
 	public void MainMenu()
 	{
-		//_saveLoadData.Save(SavePaths.currentPath);
+		_saveLoadData.Save(SavePaths.currentPath);
 		ChangeTimeScale ();
 		Application.LoadLevel ("Menu");
 	}

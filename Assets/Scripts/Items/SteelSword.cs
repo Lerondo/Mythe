@@ -8,6 +8,7 @@ public class SteelSword : Item {
 	{
 		itemSort = ItemSort.Weapon;
 		itemQuality = ItemQuality.Uncommon;
+		_weaponSort = WeaponSort.Sword;
 		_name = "Steel Sword";
 		_damage = 9;
 		_magicDamage = 0;

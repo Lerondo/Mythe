@@ -2,11 +2,21 @@
 using System.Collections;
 
 public class ArrowBehavior : MonoBehaviour {
-	private float _speed = 5f;
+	private float _speed = 25f;
 	private int _damage;
+	private string _tagToHit;
 	// Update is called once per frame
 	void Update () {
 		this.transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+	}
+	public string tagToHit
+	{
+		get{
+			return _tagToHit;
+		}
+		set{
+			_tagToHit = value;
+		}
 	}
 	public void SetDamage(int damage)
 	{
@@ -15,15 +25,24 @@ public class ArrowBehavior : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Player")
+		if(other.transform.tag == _tagToHit)
 		{
-			bool isPlayerHit = other.GetComponent<PlayerController>().justHit;
-			if(!isPlayerHit)
+			bool isTargetHit = other.GetComponent<Unit>().justHit;
+			if(!isTargetHit)
 			{
-				other.GetComponent<HealthController>().UpdateHealth(-_damage);
-				other.GetComponent<Unit>().KnockBack(this.transform.position, 1f, 2f);
+				other.GetComponent<HealthController>().DoDamage(_damage);
+				other.GetComponent<Unit>().KnockBack(this.transform.position, 2f, 2f);
+				other.GetComponent<Unit>().justHit = true;
+				if(Random.Range(0,100) <= 25)
+				{
+					_damage = Mathf.FloorToInt(_damage * 1.5f);
+					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+					txtMessenger.MakeText(_damage.ToString(), other.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+				} else {
+					TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
+					txtMessenger.MakeText(_damage.ToString(), other.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);
+				}
 				ObjectPool.instance.PoolObject(this.gameObject);
-				other.GetComponent<PlayerController>().justHit = true;
 			}
 		}
 	}

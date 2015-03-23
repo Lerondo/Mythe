@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class SwordOfFate : Item {
 
 	public SwordOfFate()
 	{
 		itemSort = ItemSort.Weapon;
 		itemQuality = ItemQuality.Legendary;
+		_weaponSort = WeaponSort.Sword;
 		_name = "Sword of Fate";
 		_damage = 11;
 		_magicDamage = 5;

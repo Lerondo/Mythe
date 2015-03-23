@@ -8,6 +8,7 @@ public class WoodenSword : Item {
 	{
 		itemSort = ItemSort.Weapon;
 		itemQuality = ItemQuality.Common;
+		_weaponSort = WeaponSort.Sword;
 		_name = "Wooden Sword";
 		_damage = 2;
 		_magicDamage = 0;
