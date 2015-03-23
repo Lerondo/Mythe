@@ -30,7 +30,7 @@ public class ArrowBehavior : MonoBehaviour {
 			bool isTargetHit = other.GetComponent<Unit>().justHit;
 			if(!isTargetHit)
 			{
-				other.GetComponent<HealthController>().UpdateHealth(-_damage);
+				other.GetComponent<HealthController>().DoDamage(_damage);
 				other.GetComponent<Unit>().KnockBack(this.transform.position, 2f, 2f);
 				other.GetComponent<Unit>().justHit = true;
 				if(Random.Range(0,100) <= 25)

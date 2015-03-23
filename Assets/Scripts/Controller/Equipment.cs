@@ -6,6 +6,7 @@ public class Equipment : MonoBehaviour {
 	public GameObject playerRH;
 	public GameObject playerLH;
 	public GameObject playerHelm;
+	public GameObject bow;
 	public List<Item> equipedItems = new List<Item>();
 	public Animator _playerAnimator;
 
@@ -81,6 +82,15 @@ public class Equipment : MonoBehaviour {
 		}
 		return damage;
 	}
+	public int GetDefence()
+	{
+		int defence = 0;
+		foreach(Item item in equipedItems)
+		{
+			defence += item.itemDefence;
+		}
+		return defence;
+	}
 	public List<Item> GetEquipedItem()
 	{
 		return equipedItems;
@@ -116,8 +126,21 @@ public class Equipment : MonoBehaviour {
 		}
 		if(_itemObject.ContainsKey(item.itemSort))
 		{
-			_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
-			_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+			if(item.weaponSort == Item.WeaponSort.Bow)
+			{
+				_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = null;
+				_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = null;
+				bow.SetActive(true);
+			} 
+			else 
+			{
+				if(bow.activeSelf)
+				{
+					bow.SetActive(false);
+				}
+				_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
+				_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+			}
 		}
 		if(item.itemSort == Item.ItemSort.Weapon)
 		{

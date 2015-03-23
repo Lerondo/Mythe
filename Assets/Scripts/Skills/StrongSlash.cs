@@ -5,33 +5,24 @@ using System.Collections;
 public class StrongSlash : Skill {
 	public StrongSlash()
 	{
-		animationName = "attack";
+		animationName = "StrongSlash";
 		type = skillType.offensive;
 		_coolDown = 5f;
 	}
-	public override void Activate (Vector3 playerPos, Vector3 playerEuler)
+	public override IEnumerator Activate (Vector3 playerPos, Vector3 playerEuler)
 	{
-		if(Time.time > _currentCoolDown)
+		yield return new WaitForSeconds(0.75f);
+		Vector3 spherePosition = playerPos;
+		Collider[] colliders = Physics.OverlapSphere (spherePosition,  1f);
+		foreach(Collider col in colliders)
 		{
-			Vector3 spherePosition = playerPos;
-			spherePosition.x += 1;
-			if(playerEuler.y == 270)
+			if(col.tag == Tags.Enemy)
 			{
-				spherePosition.x -= 2;
+				GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3,10);
 			}
-			Collider[] colliders = Physics.OverlapSphere (spherePosition,  1f);
-			foreach(Collider col in colliders)
-			{
-				if(col.tag == Tags.Enemy)
-				{
-					GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerController>().DoDamage(col.gameObject,3,3);
-				}
-			}
-			_currentCoolDown = Time.time + _coolDown;
-		} 
-		else 
-		{
-			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>().MakeText("You can't use that yet", playerPos + new Vector3(0,2,0),Color.yellow,24,true);
 		}
+		GameObject strongSlash = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("StrongSlash", false) as GameObject;
+		strongSlash.transform.position = playerPos - new Vector3(0,1,0);
+		strongSlash.GetComponent<ParticleSystemBehavior>().StartPooling();
 	}
 }

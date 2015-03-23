@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class SkillController : MonoBehaviour {
 	private List<Skill> _currentSkills = new List<Skill>();
 	private Animator playerAnimator;
+	public ParticleSystem strongSlashParticles;
 	void Awake()
 	{
 		playerAnimator = GetComponent<Animator>();
 		AddSkill(new Skill());
 		AddSkill(new StrongSlash());
+		AddSkill(new ChargeSlash());
 	}
 	public List<Skill> currentSkills
 	{
@@ -24,15 +26,24 @@ public class SkillController : MonoBehaviour {
 	}
 	public void ActivateSkill(int skillNumber)
 	{
-		_currentSkills[skillNumber].Activate(this.transform.position,this.transform.eulerAngles);
-		if(_currentSkills[skillNumber].type == Skill.skillType.buff)
+		if(Time.time > _currentSkills[skillNumber].currentCoolDown)
 		{
-			//TODO: buff stuff
-		} else if(_currentSkills[skillNumber].type == Skill.skillType.debuff)
+			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
+			playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
+			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform.position,this.transform.eulerAngles));
+			if(_currentSkills[skillNumber].type == Skill.skillType.buff)
+			{
+				//TODO: buff stuff
+			} else if(_currentSkills[skillNumber].type == Skill.skillType.debuff)
+			{
+				//TODO: debuff stuff.
+			} else {
+
+			}
+		}
+		else 
 		{
-			//TODO: debuff stuff.
-		} else {
-			playerAnimator.SetTrigger("StrongSlash");
+			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>().MakeText("You can't use that yet", this.transform.position + new Vector3(0,2,0),Color.yellow,24,true);
 		}
 	}
 	public void AddSkill(Skill skill)

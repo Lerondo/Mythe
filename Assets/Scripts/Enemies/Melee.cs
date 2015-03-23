@@ -35,10 +35,9 @@ public class Melee : Enemy
 					if(!isPlayerHit)
 					{
 						_justAttacked = true;				
-						_playerHealth.UpdateHealth(-_currentAttackDmg);
+						_playerHealth.DoDamage(_currentAttackDmg);
 						_playerUnit.KnockBack(this.transform.position, 2f, 2f);
 						_playerUnit.justHit = true;
-						Debug.Log("Got Hit Bitch!");
 					}
 				}
 				break;
