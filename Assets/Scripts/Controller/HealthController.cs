@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class HealthController : MonoBehaviour {
+	private PlayerStats _playerStats;
 	private UserInterface _userInterface;
 	private Unit _currentUnit;
 	private int _health = 100;
@@ -11,6 +12,10 @@ public class HealthController : MonoBehaviour {
 		if(GetComponent<PlayerController>())
 			_userInterface = GameObject.FindGameObjectWithTag("GameController").GetComponent<UserInterface>();
 		_currentUnit = GetComponent<Unit>();
+	}
+	void Start()
+	{
+		_playerStats = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerStats> ();
 	}
 	public void ResetHealth()
 	{
@@ -56,6 +61,7 @@ public class HealthController : MonoBehaviour {
 		} else {
 			Destroy(gameObject);
 			//TODO: death animation + drop gold
+			_playerStats.UpdateGold(Mathf.FloorToInt(_maxHealth / 10));
 			float currentExp = GetComponent<Enemy>().GetExp();
 			GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>().UpdateExp(currentExp);
 			GetComponent<DropController>().DropItem();

@@ -15,10 +15,7 @@ public class SwordOfFate : Item {
 		_buyValue = (_damage + _defence) * 3;
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/Sword_Of_Fate";
-		_itemSprite = "Sprites/Items/dagger";
+		_itemSprite = "Sprites/Items/swordoffate";
 		_itemTexture = "Textures/Items/swordoffate";
-		//_itemMesh = Resources.Load("Models/Items/Axe1", typeof(Mesh)) as Mesh;
-		//_itemSprite = Resources.Load("Sprites/Items/axe", typeof(Sprite)) as Sprite;
-		//_itemTexture = Resources.Load("Textures/Items/axe",typeof(Texture)) as Texture;
 	}
 }

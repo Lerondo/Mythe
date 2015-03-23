@@ -1,73 +1,30 @@
 fileFormatVersion: 2
-guid: 72fff767f1aa09446a24e06de6ee3def
-timeCreated: 1426755198
+guid: ced24617bf3a5984f96b8a4968c6c1c7
+timeCreated: 1426762844
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Cloner
-    100002: Cloner_2
-    100004: Cloner_3
+    100000: loose_1
+    100002: loose_2
+    100004: Mainbody
     100006: Ornament
-    100008: Ornament_0
-    100010: Ornament_0_2
-    100012: Ornament_0_3
-    100014: Ornament_1
-    100016: Ornament_2
-    100018: Ornament_2_2
-    100020: Ornament_3
-    100022: Ornament_3_2
-    100024: Ornament_4
-    100026: Side_branch
-    100028: Spline
-    100030: //RootNode
-    100032: String_1
-    100034: String_2
-    400000: Cloner
-    400002: Cloner_2
-    400004: Cloner_3
+    100008: //RootNode
+    100010: target_1
+    100012: target_2
+    400000: loose_1
+    400002: loose_2
+    400004: Mainbody
     400006: Ornament
-    400008: Ornament_0
-    400010: Ornament_0_2
-    400012: Ornament_0_3
-    400014: Ornament_1
-    400016: Ornament_2
-    400018: Ornament_2_2
-    400020: Ornament_3
-    400022: Ornament_3_2
-    400024: Ornament_4
-    400026: Side_branch
-    400028: Spline
-    400030: //RootNode
-    400032: String_1
-    400034: String_2
-    2300000: Ornament_0
-    2300002: Ornament_0_2
-    2300004: Ornament_0_3
-    2300006: Ornament_1
-    2300008: Ornament_2
-    2300010: Ornament_3
-    2300012: Ornament_4
-    2300014: Side_branch
-    2300016: //RootNode
-    3300000: Ornament_0
-    3300002: Ornament_0_2
-    3300004: Ornament_0_3
-    3300006: Ornament_1
-    3300008: Ornament_2
-    3300010: Ornament_3
-    3300012: Ornament_4
-    3300014: Side_branch
-    3300016: //RootNode
+    400008: //RootNode
+    400010: target_1
+    400012: target_2
+    2300000: Mainbody
+    2300002: Ornament
+    3300000: Mainbody
+    3300002: Ornament
     4300000: Mainbody
-    4300002: Ornament_0
-    4300004: Ornament_1
-    4300006: Ornament_2
-    4300008: Ornament_3
-    4300010: Ornament_4
-    4300012: Ornament_0_2
-    4300014: Ornament_0_3
-    4300016: Side_branch
+    4300002: Ornament
   materials:
     importMaterials: 1
     materialName: 0
