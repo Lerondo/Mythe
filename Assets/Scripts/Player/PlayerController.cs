@@ -23,7 +23,7 @@ public class PlayerController : Unit {
 	{
 		if(!_death)
 		{
-			if(this.transform.position.y <= -10f)
+			if(this.transform.position.y <= -25f)
 				OnDeath();
 		}
 	}

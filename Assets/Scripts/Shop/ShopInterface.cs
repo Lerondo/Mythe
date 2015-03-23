@@ -45,6 +45,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	public void Back()
 	{
+		ResetTexts ();
 		controllerMenu.SetActive(true);
 		shopInterface.SetActive (false);
 		_dialogueController.LeaveMessage (_merchant.transform.position + new Vector3(0,3,0));
@@ -110,6 +111,7 @@ public class ShopInterface : MonoBehaviour {
 	}
 	public void ResetTexts()
 	{
+		statText.text = "Stats";
 		costText.text = "Cost : ";
 		goldText.text = "Gold : " + _playerStats.gold;
 	}

@@ -16,7 +16,7 @@ public class CameraControll : MonoBehaviour {
 	void Start()
 	{
 		_oldCamPos = this.transform.position;
-		_player = GameObject.Find ("Player");
+		_player = GameObject.FindGameObjectWithTag (Tags.Player);
 	}
 	void Update()
 	{
@@ -49,7 +49,7 @@ public class CameraControll : MonoBehaviour {
 	void FollowPlayer()
 	{
 		_playerPos = new Vector3 (_player.transform.position.x, _player.transform.position.y, 0);
-		_camPos = new Vector3 (Mathf.Clamp(_playerPos.x, minX, maxX), Mathf.Clamp(_playerPos.y, minY, maxY), -10);
+		_camPos = new Vector3 (Mathf.Clamp(_playerPos.x, minX, maxX), Mathf.Clamp(_playerPos.y, minY, maxY), -15);
 		transform.position = _camPos;
 	}
 }

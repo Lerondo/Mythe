@@ -21,7 +21,7 @@ public class PauseInterface : MonoBehaviour {
 	{
 		_saveLoadData.Save(SavePaths.currentPath);
 		pauseInterface.SetActive (false);
-		Time.timeScale = 1;
+		ChangeTimeScale ();
 		controllerMenu.SetActive(true);
 	}
 	public void Options()
@@ -31,16 +31,24 @@ public class PauseInterface : MonoBehaviour {
 	}
 	public void RestartLevel()
 	{
+		ChangeTimeScale ();
 		Application.LoadLevel (Application.loadedLevel);
 	}
 	public void MainMenu()
 	{
 		_saveLoadData.Save(SavePaths.currentPath);
-		Time.timeScale = 1;
+		ChangeTimeScale ();
 		Application.LoadLevel ("Menu");
 	}
 	public void ExitGame()
 	{
 		Application.Quit ();
+	}
+	private void ChangeTimeScale()
+	{
+		if(Time.timeScale == 1)
+			Time.timeScale = 0;
+		else
+			Time.timeScale = 1;
 	}
 }

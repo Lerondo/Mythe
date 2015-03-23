@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class InventoryInterface : MonoBehaviour {
 	public Text statText;
 	public Text goldText;
+	public Text lvlRequirementText;
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
@@ -34,10 +35,11 @@ public class InventoryInterface : MonoBehaviour {
 		}
 		inventoryInterface.SetActive(false);
 		equipOffHandButton.SetActive (false);
+		lvlRequirementText.text = "";
 	}
 	public void UpdateInterface()
 	{
-		goldText.text = "Gold : " + _playerStats.gold;
+		ResetInventoryTexts();
 	}
 	public void Back()
 	{
@@ -54,7 +56,7 @@ public class InventoryInterface : MonoBehaviour {
 	{
 		allButtons[slot].GetComponent<Image>().sprite = emptySlot;
 		allButtons[slot].onClick.RemoveAllListeners();
-		statText.text = "";
+		ResetInventoryTexts();
 	}
 	public void ShowStats(int buttonSlot, Item item)
 	{
@@ -71,6 +73,10 @@ public class InventoryInterface : MonoBehaviour {
 			equipOffHandButton.SetActive(true);
 		else
 			equipOffHandButton.SetActive(false);
+		if (selectedItem.levelRequirement > _playerStats.level)
+			lvlRequirementText.text = "Level not high enough!";
+		else
+			lvlRequirementText.text = "";
 	}
 	public void EquipCurrentSelected(bool offHand)
 	{
@@ -91,10 +97,14 @@ public class InventoryInterface : MonoBehaviour {
 					_playerInventory.AddItem(oldItem);
 				}
 				selectedItem = null;
-				statText.text = "";
-			} else {
-				//TODO: return error level not high enough
+				ResetInventoryTexts();
 			}
 		}
+	}
+	public void ResetInventoryTexts()
+	{
+		lvlRequirementText.text = "";
+		statText.text = "";
+		goldText.text = "Gold : " + _playerStats.gold;
 	}
 }
