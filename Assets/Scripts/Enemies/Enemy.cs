@@ -52,6 +52,11 @@ public class Enemy : Unit {
 		} else if(!_death)
 		{
 			_enemyAnimator.SetBool("Running", false);
+			if(this.transform.position.y <= -40f) 
+			{
+				GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>().UpdateExp(_exp);
+				Destroy(this.gameObject);
+			}
 		}
 	}
 	public bool justHit
