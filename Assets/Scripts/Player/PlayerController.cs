@@ -3,18 +3,20 @@ using System.Collections;
 
 public class PlayerController : Unit {
 	public Collider myAttackCollider;
+	public Transform spawnPoint;
 	//TODO: list skills
 
 	private Equipment _equipment;
-	private bool _justHit;
 	private bool _isLastAttack;
 	private Animator _playerAnimator;
+	private ObjectPool _objectPool;
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
+		_objectPool = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>();
 		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
 	}
 	protected override void Update()
@@ -31,21 +33,6 @@ public class PlayerController : Unit {
 		{
 			return _death;
 		}
-	}
-	public bool justHit
-	{
-		get
-		{
-			return _justHit;
-		}
-		set{
-			_justHit = value;
-			Invoke("CanGetHitAgain", 0.5f);
-		}
-	}
-	private void CanGetHitAgain()
-	{
-		_justHit = false;
 	}
 	public void SetCheckPoint(Vector3 pos)
 	{
@@ -80,7 +67,20 @@ public class PlayerController : Unit {
 	protected override AnimationEvent Attack()
 	{
 		myAttackCollider.enabled = true;
+		if(_playerAnimator.GetBool("HasBow"))
+		{
+			ShootArrow();
+		}
 		return base.Attack();
+	}
+	private void ShootArrow()
+	{
+		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
+		GameObject newArrow = _objectPool.GetObjectForType("Arrow", false) as GameObject;
+		newArrow.GetComponent<ArrowBehavior>().SetDamage(_currentAttackDmg);
+		newArrow.transform.position = spawnPoint.position;
+		newArrow.transform.rotation = spawnPoint.rotation;
+		newArrow.GetComponent<ArrowBehavior>().tagToHit = Tags.Enemy;
 	}
 	/// <summary>
 	/// lastattack via animationevent.
@@ -110,7 +110,7 @@ public class PlayerController : Unit {
 	/// <param name="other">Other.</param>
 	void OnTriggerStay(Collider other)
 	{
-		if(!other.isTrigger)
+		if(!other.isTrigger && _playerAnimator.GetBool("HasSword"))
 		{
 			if(other.transform.tag == Tags.Enemy)
 			{
@@ -143,5 +143,10 @@ public class PlayerController : Unit {
 		entity.GetComponent<Enemy>().justHit = true;
 		entity.GetComponent<Unit>().KnockBack(this.transform.position, yPower,xPower);
 
+	}
+	public override void KnockBack (Vector3 position, float yPower, float xPower)
+	{
+		base.KnockBack (position, yPower, xPower);
+		_playerAnimator.SetTrigger("KnockBack");
 	}
 }

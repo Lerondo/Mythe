@@ -88,7 +88,6 @@ public class ObjectPool : MonoBehaviour
 			GameObject prefab = objectPrefabs[i];
 			if(prefab.name == objectType)
 			{
-				
 				if(pooledObjects[i].Count > 0)
 				{
 					GameObject pooledObject = pooledObjects[i][0];

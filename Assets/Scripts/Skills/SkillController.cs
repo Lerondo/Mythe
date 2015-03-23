@@ -32,7 +32,7 @@ public class SkillController : MonoBehaviour {
 		{
 			//TODO: debuff stuff.
 		} else {
-			//TODO: offensive stuff.
+			playerAnimator.SetTrigger("StrongSlash");
 		}
 	}
 	public void AddSkill(Skill skill)

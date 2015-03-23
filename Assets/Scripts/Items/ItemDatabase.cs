@@ -11,6 +11,8 @@ public class ItemDatabase : MonoBehaviour {
 		itemList.Add(new SteelSword ());
 		itemList.Add(new ObsidianDagger());
 		itemList.Add(new Bandana());
+		itemList.Add(new WoodenBow());
+		itemList.Add(new WoodenStaff());
 
 		for(int i = 0; i < itemList.Count; i++)
 		{

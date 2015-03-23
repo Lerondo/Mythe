@@ -8,6 +8,7 @@ public class Axe : Item {
 	{
 		itemSort = ItemSort.Weapon;
 		itemQuality = ItemQuality.Common;
+		_weaponSort = WeaponSort.Sword;
 		_name = "Hunter's Axe";
 		_damage = 5;
 		_magicDamage = 0;
