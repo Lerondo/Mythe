@@ -18,6 +18,13 @@ public class HealthController : MonoBehaviour {
 		_currentUnit = GetComponent<Unit>();
 		_playerStats = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerStats> ();
 	}
+	void Start()
+	{
+		if(GetComponent<Enemy>())
+		{
+			_health = GetComponent<Enemy>().health;
+		}
+	}
 	public void ResetHealth()
 	{
 		_health = _maxHealth;

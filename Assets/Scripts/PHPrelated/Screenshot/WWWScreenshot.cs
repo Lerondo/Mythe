@@ -20,11 +20,17 @@ public class WWWScreenshot : MonoBehaviour {
 		// Encode texture into PNG
 		byte[] bytes = tex.EncodeToPNG();
 		Destroy( tex );
+
+		PlayerStats playerStats = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerStats>();
+		username = playerStats.username;
+		score = playerStats.gold;
+		string time = Time.time.ToString();
 		// Create a Web Form
 		WWWForm form = new WWWForm();
 		form.AddField("frameCount", Time.frameCount.ToString());
 		form.AddField("score", score.ToString());
 		form.AddField("username", username);
+		form.AddField("time", time);
 		form.AddField("thumb", username + ".png");
 		form.AddBinaryData("fileToUpload", bytes, username + ".png", "image/png");
 

@@ -10,7 +10,12 @@ public class Enemy : Unit {
 	{
 		_enemyAnimator = GetComponent<Animator> ();
 	}
-
+	protected virtual void Start()
+	{
+		_exp *= Mathf.FloorToInt(Application.loadedLevel * 0.75f);
+		_health *= Mathf.FloorToInt(Application.loadedLevel * 0.75f);
+		_currentAttackDmg *= Mathf.FloorToInt(Application.loadedLevel * 0.75f);
+	}
 	/// <summary>
 	/// Raises the trigger enter event.
 	/// </summary>
