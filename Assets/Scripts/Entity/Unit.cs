@@ -19,6 +19,15 @@ public class Unit : MonoBehaviour {
 	protected virtual void Update () {
 		//update function
 	}
+	public int health
+	{
+		get{
+			return _health;
+		}
+		set{
+			_health = value;
+		}
+	}
 	public void SetDeath(bool death)
 	{
 		_death = death;

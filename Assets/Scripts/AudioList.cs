@@ -67,13 +67,28 @@ public class AudioList : MonoBehaviour
 		AudioL.Add (birdSound);
 		AudioL.Add (windSound);
 	
-
-		foreach (AudioClip SoundF in AudioL) 
-		{
-
-		}
+	
+		//getComponent<AudioSource>().audio = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("windSound");
+		//getComponent<AudioSource>().play();
 	}
-
+	public AudioClip PlayAudio(string audioname)
+	{
+		AudioClip newSound = null;
+		foreach(AudioClip sound in AudioL)
+		{
+			if(sound.name == audioname)
+			{
+				newSound = sound;
+				break;
+			}
+		}
+		if(newSound == null)
+		{
+			Debug.LogWarning("no sound has been found, add it in the list if exists.");
+			return null;
+		}
+		return newSound;
+	}
 	void Awake()
 	{
 		Lists ();

@@ -6,6 +6,12 @@ public class Equipment : MonoBehaviour {
 	public GameObject playerRH;
 	public GameObject playerLH;
 	public GameObject playerHelm;
+	public GameObject playerRK;
+	public GameObject playerLK;
+	public GameObject playerRS;
+	public GameObject playerLS;
+	public GameObject playerLHip;
+	public GameObject playerRHip;
 	public GameObject bow;
 	public List<Item> equipedItems = new List<Item>();
 	public Animator _playerAnimator;
@@ -19,7 +25,7 @@ public class Equipment : MonoBehaviour {
 	public Item _boots = new Item();
 
 	private Dictionary<Item.WeaponSort, string> _weaponSorts = new Dictionary<Item.WeaponSort, string>();
-	private Dictionary<Item.ItemSort, GameObject> _itemObject = new Dictionary<Item.ItemSort, GameObject>();
+	private Dictionary<Item.ItemSort, List<GameObject>> _itemObject = new Dictionary<Item.ItemSort, List<GameObject>>();
 	private PlayerStats _playerStats;
 	// Use this for initialization
 	void Awake()
@@ -30,9 +36,28 @@ public class Equipment : MonoBehaviour {
 	}
 	void Start () {
 		//Dictionary for changing the gameobjects etc.;
-		_itemObject.Add(Item.ItemSort.Weapon, playerRH);
-		_itemObject.Add(Item.ItemSort.OffHand, playerLH);
-		_itemObject.Add(Item.ItemSort.Helm, playerHelm);
+		List<GameObject> playerRightHand = new List<GameObject>();
+		playerRightHand.Add(playerRH);
+		List<GameObject> playerLeftHand = new List<GameObject>();
+		playerLeftHand.Add(playerLH);
+		List<GameObject> playerHelmList = new List<GameObject>();
+		playerHelmList.Add(playerHelm);
+		List<GameObject> playerKnees = new List<GameObject>();
+		playerKnees.Add(playerLK);
+		playerKnees.Add(playerRK);
+		List<GameObject> playerShoulders = new List<GameObject>();
+		playerShoulders.Add(playerLS);
+		playerShoulders.Add(playerRS);
+		List<GameObject> playerHips = new List<GameObject>();
+		playerHips.Add(playerRHip);
+		playerHips.Add(playerLHip);
+
+		_itemObject.Add(Item.ItemSort.Weapon, playerRightHand);
+		_itemObject.Add(Item.ItemSort.OffHand, playerLeftHand);
+		_itemObject.Add(Item.ItemSort.Helm, playerHelmList);
+		_itemObject.Add(Item.ItemSort.Legs, playerKnees);
+		_itemObject.Add(Item.ItemSort.Shoulders, playerShoulders);
+		_itemObject.Add(Item.ItemSort.Hips, playerHips);
 		_weaponSorts.Add(Item.WeaponSort.Bow, "HasBow");
 		_weaponSorts.Add(Item.WeaponSort.Staff, "HasStaff");
 		_weaponSorts.Add(Item.WeaponSort.Sword, "HasSword");
@@ -128,8 +153,8 @@ public class Equipment : MonoBehaviour {
 		{
 			if(item.weaponSort == Item.WeaponSort.Bow)
 			{
-				_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = null;
-				_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = null;
+				_itemObject[item.itemSort][0].GetComponent<MeshFilter>().mesh = null;
+				_itemObject[item.itemSort][0].GetComponent<Renderer>().material.mainTexture = null;
 				bow.SetActive(true);
 			} 
 			else 
@@ -138,8 +163,11 @@ public class Equipment : MonoBehaviour {
 				{
 					bow.SetActive(false);
 				}
-				_itemObject[item.itemSort].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
-				_itemObject[item.itemSort].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+				for (int i = 0; i < _itemObject[item.itemSort].Count; i++) 
+				{
+					_itemObject[item.itemSort][i].GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
+					_itemObject[item.itemSort][i].GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+				}
 			}
 		}
 		if(item.itemSort == Item.ItemSort.Weapon)

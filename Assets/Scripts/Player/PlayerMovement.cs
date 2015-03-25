@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour {
 	private Animator _playerAnimator;
@@ -13,6 +14,9 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _justJumped = false;
 	private bool _death = false;
 	private float _jumpHeight = 50f;
+
+	private AudioSource _audioSource;
+
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
@@ -69,6 +73,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// <param name="movement">Movement.</param>
 	public void Move(Vector3 movement, bool isGoingRight)
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("walkSound");
+		_audioSource.Play();
+
 		if(!_isClimbing && _canMove)
 		{
 			_isTryingToClimb = false;
@@ -91,6 +99,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	public void StoppedMoving()
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("walkSound");
+		_audioSource.Stop ();
+
 		_speed = 5f;
 		_playerAnimator.SetBool("Running", false);
 		_isMoving = false;
@@ -126,6 +138,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// <param name="climbMovement">Climb movement.</param>
 	public void Climb(Vector3 climbMovement)
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
+		_audioSource.Play();
+
 		climbMovement *= _climbSpeed * Time.deltaTime;
 		transform.Translate(climbMovement);
 	}
@@ -165,6 +181,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	public void StopClimbing()
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
+		_audioSource.Stop();
+
 		_isClimbing = false;
 		_playerAnimator.SetBool("Climbing",false);
 		GetComponent<Rigidbody>().useGravity = true;

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SkillController : MonoBehaviour {
 	private List<Skill> _currentSkills = new List<Skill>();
 	private Animator playerAnimator;
-	public ParticleSystem strongSlashParticles;
 	void Awake()
 	{
 		playerAnimator = GetComponent<Animator>();

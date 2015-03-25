@@ -8,6 +8,7 @@ public class Melee : Enemy
 	protected override void Start()
 	{
 		_enemyAnimator.SetBool ("Idle", true);
+		base.Start();
 	}
 	protected override AnimationEvent Attack()
 	{

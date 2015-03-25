@@ -10,12 +10,25 @@ public class InventoryInterface : MonoBehaviour {
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject equipOffHandButton;
-	
+	public GameObject sellButton;
+	public GameObject equipButton;
+
+	private bool _isOnShop = false;
 	private PlayerStats _playerStats;
 	private Inventory _playerInventory;
 	private int selectedButtonId;
 	private Item selectedItem;
 	private Button[] allButtons = new Button[24];
+
+	public bool onShop{
+		get{
+			return _isOnShop;
+		}
+		set{
+			_isOnShop = value;
+		}
+	}
+
 	void Awake()
 	{
 		_playerStats = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerStats> ();
@@ -35,7 +48,26 @@ public class InventoryInterface : MonoBehaviour {
 		}
 		inventoryInterface.SetActive(false);
 		equipOffHandButton.SetActive (false);
+		sellButton.SetActive(false);
 		lvlRequirementText.text = "";
+	}
+	public void CheckButtonSwap()
+	{
+		if(_isOnShop && sellButton.activeSelf == false || !_isOnShop && equipButton.activeSelf == false)
+		{
+			SwapButtons();
+		}
+	}
+	public void SwapButtons()
+	{
+		if(sellButton.activeSelf == false)
+		{
+			sellButton.SetActive(true);
+			equipButton.SetActive(false);
+		} else {
+			sellButton.SetActive(false);
+			equipButton.SetActive(true);
+		}
 	}
 	public void UpdateInterface()
 	{
@@ -57,6 +89,16 @@ public class InventoryInterface : MonoBehaviour {
 		allButtons[slot].GetComponent<Image>().sprite = emptySlot;
 		allButtons[slot].onClick.RemoveAllListeners();
 		ResetInventoryTexts();
+	}
+	public void SellCurrentItem()
+	{
+		if (selectedItem != null)
+		{
+			_playerInventory.RemovePlayerItem(selectedItem);
+			_playerStats.UpdateGold(selectedItem.itemSellValue);
+			selectedItem = null;
+			ResetInventoryTexts();
+		}
 	}
 	public void ShowStats(int buttonSlot, Item item)
 	{

@@ -13,6 +13,11 @@ public class ItemDatabase : MonoBehaviour {
 		itemList.Add(new Bandana());
 		itemList.Add(new WoodenBow());
 		itemList.Add(new WoodenStaff());
+		itemList.Add(new BodyPlate());
+		itemList.Add(new ClothHood());
+		itemList.Add(new KneeCaps());
+		itemList.Add(new HipPads());
+		itemList.Add(new ShoulderPads());
 
 		for(int i = 0; i < itemList.Count; i++)
 		{

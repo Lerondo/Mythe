@@ -5,7 +5,6 @@ public class Tuatha : Melee {
 	public GameObject weapon;
 
 	protected override void Start () {
-		base.Start();
 		_range = 2.5f;
 		_health = 150;
 		_speed = 2.5f;
@@ -18,5 +17,6 @@ public class Tuatha : Melee {
 		_currentAttackDmg += item.itemDamage;
 		weapon.GetComponent<MeshFilter>().mesh = Resources.Load(item.itemMesh,typeof(Mesh)) as Mesh;
 		weapon.GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
+		base.Start();
 	}
 }

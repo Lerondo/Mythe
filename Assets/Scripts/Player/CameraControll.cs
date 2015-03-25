@@ -6,7 +6,7 @@ public class CameraControll : MonoBehaviour {
 	private GameObject _player;
 	private Vector3 _playerPos;
 	private Vector3 _camPos;
-	private Vector3 _oldCamPos;
+	private bool _shaking;
 
 	[SerializeField]private float minX = -15f;
 	[SerializeField]private float maxX = 300f;
@@ -15,36 +15,24 @@ public class CameraControll : MonoBehaviour {
 
 	void Start()
 	{
-		_oldCamPos = this.transform.position;
 		_player = GameObject.FindGameObjectWithTag (Tags.Player);
 	}
 	void Update()
 	{
-		FollowPlayer ();
+		if(!_shaking)
+			FollowPlayer ();
 	}
-	public IEnumerator MoveCloser()
+	public IEnumerator ShakeScreen()
 	{
-		for(int i = 0; i < 2500; i++)
+		_shaking = true;
+		for (int i = 0; i < 10; i++) 
 		{
-			int noOfFramesToWait = (int)(0.16f * Application.targetFrameRate);
-			for (int j = 0; j < noOfFramesToWait; j++) 
-			{
-				yield return null;
-			}
-			transform.position = Vector3.Lerp (_camPos, new Vector3 (_playerPos.x + 1, _playerPos.y + 0.5f, -3), 0.05f);
+			_playerPos = new Vector3 (_player.transform.position.x+Random.Range(-1,1), _player.transform.position.y+Random.Range(-1,1), 0);
+			_camPos = new Vector3 (Mathf.Clamp(_playerPos.x, minX, maxX), Mathf.Clamp(_playerPos.y, minY, maxY), -15);
+			transform.position = _camPos;
+			yield return new WaitForSeconds(0.05f);
 		}
-	}
-	public IEnumerator MoveAway()
-	{
-		for(int i = 0; i < 2500; i++)
-		{
-			int noOfFramesToWait = (int)(0.16f * Application.targetFrameRate);
-			for (int j = 0; j < noOfFramesToWait; j++)
-			{
-				yield return null;
-			}
-			transform.position = Vector3.Lerp (_camPos, _oldCamPos, Time.deltaTime);
-		}
+		_shaking = false;
 	}
 	void FollowPlayer()
 	{

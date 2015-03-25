@@ -17,7 +17,6 @@ public class ChargeSlash : Skill {
 		GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Animator>().speed = 0;
 		Vector3 spherePosition = playerPos;
 		Vector3 chargePosition = playerPos;
-		Debug.Log(playerEuler);
 		spherePosition.x += 1f;
 		chargePosition.y += 2;
 		chargePosition.x -= 1;
@@ -28,6 +27,7 @@ public class ChargeSlash : Skill {
 		}
 		GameObject chargeSlash = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("Charge", false) as GameObject;
 		chargeSlash.transform.position = chargePosition;
+		chargeSlash.transform.parent = GameObject.FindGameObjectWithTag(Tags.Player).transform;
 		chargeSlash.GetComponent<ParticleSystemBehavior>().StartPooling();
 
 		yield return new WaitForSeconds(1f);
