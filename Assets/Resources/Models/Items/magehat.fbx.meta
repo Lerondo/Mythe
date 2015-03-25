@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9c1801c72842b5d4c8950f4de991f4b1
-timeCreated: 1427211616
+guid: 662ffb02e7619494288c47c9f58b4bb4
+timeCreated: 1427211615
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Masked_cowl
+    4300000: Wizard_hat
   materials:
     importMaterials: 1
     materialName: 0
