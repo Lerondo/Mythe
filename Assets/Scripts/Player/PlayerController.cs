@@ -147,6 +147,7 @@ public class PlayerController : Unit {
 			_currentAttackDmg = Mathf.FloorToInt(_currentAttackDmg * 1.5f);
 			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
 			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.red, 24, true);
+			StartCoroutine(GameObject.FindGameObjectWithTag(Tags.MainCam).GetComponent<CameraControll>().ShakeScreen());
 		} else {
 			TextMessenger txtMessenger = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>();
 			txtMessenger.MakeText(_currentAttackDmg.ToString(), entity.transform.position + new Vector3(0,3,0), Color.yellow, 24, true);

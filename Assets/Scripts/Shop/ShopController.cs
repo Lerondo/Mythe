@@ -8,11 +8,13 @@ public class ShopController : MonoBehaviour {
 	private List<Item> _playerItems = new List<Item>();
 	private ShopInterface _shopInterface;
 	private DialogueController _dialogueController;
+	private InventoryInterface _inventoryInterface;
 
 	void Awake()
 	{
 		_dialogueController = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<DialogueController> ();
 		_shopInterface = GetComponent<ShopInterface>();
+		_inventoryInterface = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<InventoryInterface>();
 	}
 	void Start()
 	{
@@ -42,11 +44,17 @@ public class ShopController : MonoBehaviour {
 		{
 			_buyButton.SetActive(true);
 			_dialogueController.WelcomeMessage(this.transform.position + new Vector3(0,3,0));
+			_inventoryInterface.SwapButtons();
+			_inventoryInterface.onShop = true;
 		}
 	}
 	void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
+		{
 			_buyButton.SetActive(false);
+			_inventoryInterface.SwapButtons();
+			_inventoryInterface.onShop = false;
+		}
 	}
 }

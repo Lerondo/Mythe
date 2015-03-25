@@ -11,7 +11,9 @@ public class Item : System.Object{
 		OffHand,
 		Body,
 		Legs,
-		Boots
+		Boots,
+		Shoulders,
+		Hips
 	}
 	public enum WeaponSort
 	{

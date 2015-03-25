@@ -44,5 +44,6 @@ public class Inventory : MonoBehaviour {
 		for (int i = 0; i < _playerItems.Count; i++) {
 			_inventoryInterface.SetInventorySpace(i,_playerItems[i]);
 		}
+		_inventoryInterface.CheckButtonSwap();
 	}
 }

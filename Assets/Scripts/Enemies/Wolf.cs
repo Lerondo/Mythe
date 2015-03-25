@@ -6,10 +6,10 @@ public class Wolf : Melee {
 
 	protected override void Start () 
 	{
-		base.Start();
 		_range = 3f;
-		_health = 100;
+		_health = 1;
 		_speed = 2.5f;
 		_currentAttackDmg = 10;
+		base.Start();
 	}
 }
