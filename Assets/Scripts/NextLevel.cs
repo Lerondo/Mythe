@@ -21,30 +21,11 @@ public class NextLevel : MonoBehaviour {
 	}
 	void Start()
 	{
-		_darkness = GameObject.Find ("darkpanel").GetComponent<Image> ();
-		_oldDarkColor = _darkness.color;
-		_darkness.gameObject.SetActive(false);
-		_nextLvl = PlayerPrefs.GetInt ("next_lvl", _nextLvl);
-
-	}
-	IEnumerator GoToNextLevel()
-	{
-		_nextLvlTimer = 0;
-		_darkness.gameObject.SetActive(true);
-		while(_nextLvlTimer < 225)
-		{
-			_darkness.color = Color.Lerp(_darkness.color, Color.black, Time.deltaTime * 4);
-			_nextLvlTimer += 4;
-			if(_nextLvlTimer > 223)
-				_loadingScreen.LoadScreen();
-			yield return new WaitForEndOfFrame();
-		}
-		_darkness.color = _oldDarkColor;
-		_darkness.gameObject.SetActive(false);
-
-		if(PlayerPrefs.GetInt("next_lvl") > Application.levelCount)
-			_oldDarkColor = fadeScreen.color;
+		fadeScreen = GameObject.Find ("darkpanel").GetComponent<Image> ();
+		_oldDarkColor = fadeScreen.color;
 		fadeScreen.gameObject.SetActive(false);
+		nextLvl = PlayerPrefs.GetInt ("next_lvl", nextLvl);
+
 	}
 	IEnumerator GoToNextLevel()
 	{
