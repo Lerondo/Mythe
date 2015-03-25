@@ -10,6 +10,7 @@ public class Wolf : Melee {
 		_health = 1;
 		_speed = 2.5f;
 		_currentAttackDmg = 10;
+		_exp = 50;
 		base.Start();
 	}
 }

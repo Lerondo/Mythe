@@ -17,12 +17,13 @@ public class Equipment : MonoBehaviour {
 	public Animator _playerAnimator;
 
 	//all items for player
-	public Item _sword;
-	public Item _offHand = new Item();
-	public Item _helm = new Item();
-	public Item _legs = new Item();
-	public Item _body = new Item();
-	public Item _boots = new Item();
+	private Item _sword;
+	private Item _offHand = new Item();
+	private Item _helm = new Item();
+	private Item _legs = new Item();
+	private Item _body = new Item();
+	private Item _boots = new Item();
+	private Item _shoulders = new Item();
 
 	private Dictionary<Item.WeaponSort, string> _weaponSorts = new Dictionary<Item.WeaponSort, string>();
 	private Dictionary<Item.ItemSort, List<GameObject>> _itemObject = new Dictionary<Item.ItemSort, List<GameObject>>();
@@ -48,16 +49,16 @@ public class Equipment : MonoBehaviour {
 		List<GameObject> playerShoulders = new List<GameObject>();
 		playerShoulders.Add(playerLS);
 		playerShoulders.Add(playerRS);
-		List<GameObject> playerHips = new List<GameObject>();
+		/*List<GameObject> playerHips = new List<GameObject>();
 		playerHips.Add(playerRHip);
-		playerHips.Add(playerLHip);
+		playerHips.Add(playerLHip); */
 
 		_itemObject.Add(Item.ItemSort.Weapon, playerRightHand);
 		_itemObject.Add(Item.ItemSort.OffHand, playerLeftHand);
 		_itemObject.Add(Item.ItemSort.Helm, playerHelmList);
 		_itemObject.Add(Item.ItemSort.Legs, playerKnees);
 		_itemObject.Add(Item.ItemSort.Shoulders, playerShoulders);
-		_itemObject.Add(Item.ItemSort.Hips, playerHips);
+		//_itemObject.Add(Item.ItemSort.Hips, playerHips);
 		_weaponSorts.Add(Item.WeaponSort.Bow, "HasBow");
 		_weaponSorts.Add(Item.WeaponSort.Staff, "HasStaff");
 		_weaponSorts.Add(Item.WeaponSort.Sword, "HasSword");
@@ -72,15 +73,20 @@ public class Equipment : MonoBehaviour {
 			EquipItem(_offHand);
 			//making fake items! (gets replaced by real items later on)
 
-			_legs.itemSort = Item.ItemSort.Legs;
-			_body.itemSort = Item.ItemSort.Body;
+			_legs = new KneeCaps();
+			EquipItem(_legs);
+			_body = new BodyPlate();
+			EquipItem(_body);
 			_boots.itemSort = Item.ItemSort.Boots;
+			_shoulders = new ShoulderPads();
+			EquipItem(_shoulders);
 			equipedItems.Add(_sword);
 			equipedItems.Add(_offHand);
 			equipedItems.Add(_helm);
 			equipedItems.Add(_legs);
 			equipedItems.Add(_body);
 			equipedItems.Add(_boots);
+			equipedItems.Add(_shoulders);
 		} else {
 			_sword = new WoodenSword();
 			EquipItem(_sword);
@@ -90,12 +96,14 @@ public class Equipment : MonoBehaviour {
 			_legs.itemSort = Item.ItemSort.Legs;
 			_body.itemSort = Item.ItemSort.Body;
 			_boots.itemSort = Item.ItemSort.Boots;
+			_shoulders.itemSort = Item.ItemSort.Shoulders;
 			equipedItems.Add(_sword);
 			equipedItems.Add(_offHand);
 			equipedItems.Add(_helm);
 			equipedItems.Add(_legs);
 			equipedItems.Add(_body);
 			equipedItems.Add(_boots);
+			equipedItems.Add(_shoulders);
 		}
 	}
 	public int GetDamage()
@@ -159,7 +167,7 @@ public class Equipment : MonoBehaviour {
 			} 
 			else 
 			{
-				if(bow.activeSelf)
+				if(bow.activeSelf && item.itemSort == Item.ItemSort.Weapon)
 				{
 					bow.SetActive(false);
 				}

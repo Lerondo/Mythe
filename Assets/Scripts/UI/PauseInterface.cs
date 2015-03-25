@@ -6,7 +6,7 @@ public class PauseInterface : MonoBehaviour {
 	public GameObject pauseInterface;
 	public GameObject optionsInterface;
 	public GameObject controllerMenu;
-
+	
 	private SaveLoadDataSerialized _saveLoadData;
 	void Awake()
 	{

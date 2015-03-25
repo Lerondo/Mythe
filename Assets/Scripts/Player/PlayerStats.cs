@@ -9,10 +9,29 @@ public class PlayerStats : MonoBehaviour {
 	private float _experience = 0;
 	private float _maxExp = 125;
 	private int _goldValue = 100;
+	private float _timePlayed = 0;
 	private UserInterface _userInterface;
 	void Awake()
 	{
 		_userInterface = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<UserInterface>();
+	}
+	void Start()
+	{
+		StartCoroutine(UpdatePlayingTime());
+	}
+	private IEnumerator UpdatePlayingTime()
+	{
+		_timePlayed += 1;
+		yield return new WaitForSeconds(1);
+	}
+	public float timePlayed
+	{
+		get{
+			return _timePlayed;
+		}
+		set{
+			_timePlayed = value;
+		}
 	}
 	public string username
 	{

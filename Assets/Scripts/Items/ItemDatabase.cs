@@ -16,7 +16,7 @@ public class ItemDatabase : MonoBehaviour {
 		itemList.Add(new BodyPlate());
 		itemList.Add(new ClothHood());
 		itemList.Add(new KneeCaps());
-		itemList.Add(new HipPads());
+		//itemList.Add(new HipPads());
 		itemList.Add(new ShoulderPads());
 
 		for(int i = 0; i < itemList.Count; i++)
@@ -39,7 +39,7 @@ public class ItemDatabase : MonoBehaviour {
 		List<Item> itemsToDrop = new List<Item>();
 		if(quality <= 5)
 		{
-			foreach(Item item in ItemDatabase.itemList)
+			foreach(Item item in itemList)
 			{
 				if(item.currentItemQuality == Item.ItemQuality.Legendary)
 				{
@@ -49,7 +49,7 @@ public class ItemDatabase : MonoBehaviour {
 		} 
 		else if(quality <= 20)
 		{
-			foreach(Item item in ItemDatabase.itemList)
+			foreach(Item item in itemList)
 			{
 				if(item.currentItemQuality == Item.ItemQuality.Rare)
 				{
@@ -59,7 +59,7 @@ public class ItemDatabase : MonoBehaviour {
 		} 
 		else if(quality <= 50)
 		{
-			foreach(Item item in ItemDatabase.itemList)
+			foreach(Item item in itemList)
 			{
 				if(item.currentItemQuality == Item.ItemQuality.Uncommon)
 				{
@@ -69,7 +69,7 @@ public class ItemDatabase : MonoBehaviour {
 		} 
 		else
 		{
-			foreach(Item item in ItemDatabase.itemList)
+			foreach(Item item in itemList)
 			{
 				if(item.currentItemQuality == Item.ItemQuality.Common)
 				{

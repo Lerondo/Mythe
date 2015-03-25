@@ -29,7 +29,7 @@ public class SkillController : MonoBehaviour {
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
 			playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
-			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform.position,this.transform.eulerAngles));
+			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform));
 			if(_currentSkills[skillNumber].type == Skill.skillType.buff)
 			{
 				//TODO: buff stuff

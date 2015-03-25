@@ -45,6 +45,7 @@ public class NextLevel : MonoBehaviour {
 		}
 		else
 		{
+			_saveLoadData.Save(SavePaths.currentPath);
 			_loadingScreen.loadingScreen.SetActive(false);
 			fadeScreen.gameObject.SetActive(false);
 			StartCoroutine(_wwwScreenShot.UploadPNG());

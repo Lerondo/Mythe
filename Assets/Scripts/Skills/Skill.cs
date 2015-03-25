@@ -14,7 +14,7 @@ public class Skill : System.Object {
 	}
 	public skillType type;
 	public string animationName;
-	public virtual IEnumerator Activate(Vector3 playerPos, Vector3 playerEuler)
+	public virtual IEnumerator Activate(Transform player)
 	{
 		//Put here specified skill
 		return null;
