@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
+
 
 public class PlayerController : Unit {
 	public Collider myAttackCollider;
@@ -13,12 +15,14 @@ public class PlayerController : Unit {
 	private ObjectPool _objectPool;
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
+	private AudioSource _audioSource;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
 		_stats = GetComponent<PlayerStats>();
 		_objectPool = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>();
 		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
+		_audioSource = GetComponent<AudioSource> ();
 	}
 	protected override void Update()
 	{
@@ -79,6 +83,10 @@ public class PlayerController : Unit {
 	}
 	private void ShootArrow()
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("windSound");
+		_audioSource.Play();
+
 		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
 		GameObject newArrow = _objectPool.GetObjectForType("Arrow", false) as GameObject;
 		newArrow.GetComponent<ArrowBehavior>().SetDamage(_currentAttackDmg);
@@ -150,6 +158,10 @@ public class PlayerController : Unit {
 	}
 	public override void KnockBack (Vector3 position, float yPower, float xPower)
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
+		_audioSource.Play();
+
 		base.KnockBack (position, yPower, xPower);
 		_playerAnimator.SetTrigger("KnockBack");
 	}
