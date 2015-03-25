@@ -18,7 +18,7 @@ public class InventoryInterface : MonoBehaviour {
 	private Button[] allButtons = new Button[24];
 	void Awake()
 	{
-		_playerStats = GameObject.Find ("Player").GetComponent<PlayerStats> ();
+		_playerStats = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerStats> ();
 		_playerInventory = GetComponent<Inventory>();
 	}
 	void Start()
