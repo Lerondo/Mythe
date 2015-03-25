@@ -18,6 +18,10 @@ public class InteractiveObject : MonoBehaviour {
 		_objectAnimator.SetTrigger("Activate");
 		//activate function.
 	}
+	public virtual void Disable()
+	{
+		_objectAnimator.SetTrigger("Disable");
+	}
 	public objectSort GetObjectSort()
 	{
 		return _objectSort;

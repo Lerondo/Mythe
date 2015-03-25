@@ -44,6 +44,8 @@ public class WWWScreenshot : MonoBehaviour {
 			else
 				print("Finished Uploading Screenshot + highscore");
 			print (w.text);
+
+			playerStats.isRanked = true;
 		}
 	}
 }

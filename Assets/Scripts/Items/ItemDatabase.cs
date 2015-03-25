@@ -17,6 +17,7 @@ public class ItemDatabase : MonoBehaviour {
 		itemList.Add(new ClothHood());
 		itemList.Add(new KneeCaps());
 		//itemList.Add(new HipPads());
+		itemList.Add(new MageHat());
 		itemList.Add(new ShoulderPads());
 
 		for(int i = 0; i < itemList.Count; i++)

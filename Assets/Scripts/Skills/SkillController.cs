@@ -8,9 +8,10 @@ public class SkillController : MonoBehaviour {
 	void Awake()
 	{
 		playerAnimator = GetComponent<Animator>();
-		AddSkill(new Skill());
 		AddSkill(new StrongSlash());
 		AddSkill(new ChargeSlash());
+		AddSkill(new AttackSpeedBuff());
+		AddSkill(new HealthRegen());
 	}
 	public List<Skill> currentSkills
 	{
@@ -25,20 +26,12 @@ public class SkillController : MonoBehaviour {
 	}
 	public void ActivateSkill(int skillNumber)
 	{
+		skillNumber--;
 		if(Time.time > _currentSkills[skillNumber].currentCoolDown)
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
 			playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
 			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform));
-			if(_currentSkills[skillNumber].type == Skill.skillType.buff)
-			{
-				//TODO: buff stuff
-			} else if(_currentSkills[skillNumber].type == Skill.skillType.debuff)
-			{
-				//TODO: debuff stuff.
-			} else {
-
-			}
 		}
 		else 
 		{

@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
+		_audioSource = GetComponent<AudioSource>();
 	}
 	public bool isTryingToClimb
 	{
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void Move(Vector3 movement, bool isGoingRight)
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("walkSound");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("Run_Sound");
 		_audioSource.Play();
 
 		if(!_isClimbing && _canMove)
@@ -257,8 +258,9 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.transform.tag == Tags.Ladder && _isTryingToClimb)
-		{
 			StartClimbing(other.transform.position, other.transform.eulerAngles);
-		}
+
+		if(other.transform.tag == Tags.Lever)
+			other.GetComponent<LeverBehavior>().Activate();
 	}
 }

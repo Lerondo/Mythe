@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
 
@@ -16,6 +17,7 @@ public class PlayerController : Unit {
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
 	private AudioSource _audioSource;
+	private TrailRenderer _swordTrail;
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
@@ -23,6 +25,18 @@ public class PlayerController : Unit {
 		_objectPool = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>();
 		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
 		_audioSource = GetComponent<AudioSource> ();
+		_swordTrail = GameObject.FindGameObjectWithTag(Tags.Trail).GetComponent<TrailRenderer>();
+		_swordTrail.enabled = false;
+	}
+	public AnimationEvent StartTrail()
+	{
+		_swordTrail.enabled = true;
+		return null;
+	}
+	public AnimationEvent StopTrail()
+	{
+		_swordTrail.enabled = false;
+		return null;
 	}
 	protected override void Update()
 	{
@@ -58,7 +72,7 @@ public class PlayerController : Unit {
 	/// <param name="skillNumber">Skill number.</param>
 	public void StartSkill(int skillNumber)
 	{
-		if(skillNumber == 1 || skillNumber == 2)
+		if(skillNumber >= 1 && skillNumber <= 4)
 		{
 			GetComponent<SkillController>().ActivateSkill(skillNumber);
 		}
@@ -79,12 +93,13 @@ public class PlayerController : Unit {
 		{
 			ShootArrow();
 		}
+		_swordTrail.enabled = true;
 		return base.Attack();
 	}
 	private void ShootArrow()
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("windSound");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ArrowShot");
 		_audioSource.Play();
 
 		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
@@ -103,6 +118,7 @@ public class PlayerController : Unit {
 		myAttackCollider.enabled = true;
 		_justAttacked = false;
 		_isLastAttack = true;
+		_swordTrail.enabled = true;
 		return null;
 	}
 	/// <summary>
@@ -113,6 +129,7 @@ public class PlayerController : Unit {
 	{
 		myAttackCollider.enabled = false;
 		_isLastAttack = false;
+		_swordTrail.enabled = false;
 		return base.StopAttack();
 	}
 

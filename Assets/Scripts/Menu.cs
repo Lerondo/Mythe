@@ -16,6 +16,7 @@ public class Menu : MonoBehaviour
 	private GameObject _characterPanel;
 	private GameObject _deletionPanel;
 	private GameObject _usernamePanel;
+	private GameObject _rankingCanvas;
 
 	private Dictionary<int, string> loadPath = new Dictionary<int, string>();
 	private Dictionary<int, Text> characterTexts = new Dictionary<int, Text>();
@@ -34,6 +35,7 @@ public class Menu : MonoBehaviour
 		_characterPanel  = GameObject.Find ("CharacterPanel");
 		_deletionPanel = GameObject.Find("DeletionPanel");
 		_usernamePanel = GameObject.Find("UsernamePanel");
+		_rankingCanvas = GameObject.Find("RankingCanvas");
 	}
 
 	void Start()
@@ -43,6 +45,7 @@ public class Menu : MonoBehaviour
 		_characterPanel.SetActive (false);
 		_deletionPanel.SetActive (false);
 		_usernamePanel.SetActive(false);
+		_rankingCanvas.SetActive(false);
 		loadPath.Add(0,SavePaths.SavePathA);
 		loadPath.Add(1,SavePaths.SavePathB);
 		loadPath.Add(2,SavePaths.SavePathC);
@@ -73,6 +76,11 @@ public class Menu : MonoBehaviour
 		_deletionPanel.SetActive(false);
 		_characterPanel.SetActive(false);
 		_usernamePanel.SetActive(true);
+	}
+	public void ShowRanking()
+	{
+		_rankingCanvas.SetActive(true);
+		_mainMenuPanel.SetActive(false);
 	}
 	public void SetUsername()
 	{
@@ -128,6 +136,7 @@ public class Menu : MonoBehaviour
 		_mainMenuPanel.SetActive (true);
 		_creditsPanel.SetActive (false);
 		_optionsPanel.SetActive (false);
+		_rankingCanvas.SetActive(false);
 
 		if (_creditsPanelBool == true) 
 		{

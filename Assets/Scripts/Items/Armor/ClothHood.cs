@@ -17,6 +17,6 @@ public class ClothHood : Item {
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/Hood1";
 		_itemSprite = "Sprites/Items/Hood1";
-		_itemTexture = "Textures/Items/hood1";
+		_itemTexture = "Textures/Items/Hood1";
 	}
 }
