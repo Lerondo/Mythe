@@ -26,6 +26,7 @@ public class AudioList : MonoBehaviour
 
 	//MeleeSounds
 	[SerializeField]private AudioClip hitSound;
+	[SerializeField]private AudioClip meleeHitSound;
 
 	//MagicSounds
 	[SerializeField]private AudioClip magicInpactSound;
@@ -55,7 +56,7 @@ public class AudioList : MonoBehaviour
 		AudioL.Add (climbSound);
 		AudioL.Add (jumpSound);
 		AudioL.Add (playerHitSound);
-		AudioL.Add (attackingSound);
+		AudioL.Add (meleeHitSound);
 		AudioL.Add (chargeShout);
 
 		//ObjectSound

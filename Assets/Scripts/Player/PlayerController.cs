@@ -18,6 +18,7 @@ public class PlayerController : Unit {
 	private PlayerStats _stats;
 	private AudioSource _audioSource;
 	private TrailRenderer _swordTrail;
+
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
@@ -81,8 +82,21 @@ public class PlayerController : Unit {
 		}
 		else {
 			_playerAnimator.SetTrigger("Attack");
+			//Audio
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("stabHit");
+			_audioSource.Play();
+
 			if(_playerAnimator.GetBool("HasBow"))
 				bowAnimator.SetTrigger("Attack");
+			//Audio
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("StretchBow");
+			_audioSource.Play();
+
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ArrowShot");
+			_audioSource.Play();
+
+
+
 		}
 		//set trigger to current skill
 	}

@@ -37,10 +37,6 @@ public class HealthController : MonoBehaviour {
 		}
 		set{
 			_health = value;
-			if(_health > _maxHealth)
-			{
-				_health = _maxHealth;
-			}
 			UpdateInterface();
 		}
 	}

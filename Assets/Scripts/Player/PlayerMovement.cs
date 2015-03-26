@@ -114,6 +114,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// <param name="climbMovement">Climb movement.</param>
 	public void Jump()
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("JumpSound");
+		_audioSource.Play ();
+
 		if(_isGrounded)
 		{
 			_justJumped = true;
@@ -139,10 +143,6 @@ public class PlayerMovement : MonoBehaviour {
 	/// <param name="climbMovement">Climb movement.</param>
 	public void Climb(Vector3 climbMovement)
 	{
-		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
-		_audioSource.Play();
-
 		climbMovement *= _climbSpeed * Time.deltaTime;
 		transform.Translate(climbMovement);
 	}
@@ -164,6 +164,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	public void StartClimbing(Vector3 ladderPos, Vector3 ladderEuler)
 	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ClimbingSound");
+		_audioSource.Play();
+
 		_isClimbing = true;
 		_playerAnimator.SetBool("Climbing",true);
 		GetComponent<Rigidbody>().useGravity = false;
@@ -183,7 +187,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void StopClimbing()
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ClimbingSound");
 		_audioSource.Stop();
 
 		_isClimbing = false;
@@ -200,6 +204,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void Update()
 	{
+		if (_isClimbing) 
+		{
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PlayerHit");
+			_audioSource.Play();
+		}
+
 		_death = GetComponent<PlayerController>().isDeath;
 		if(!_death)
 		{ 
