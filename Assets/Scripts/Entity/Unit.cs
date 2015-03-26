@@ -12,10 +12,32 @@ public class Unit : MonoBehaviour {
 	protected bool _death = false;
 	protected int _health;
 	protected bool _justHit = false;
+	protected ParticleSystem _particleSystem;
+	void Awake()
+	{
+
+	}
 	protected virtual void Start () {
 		//start function
 	}
+	public void SetOnFire()
+	{
+		StartCoroutine(OnFire());
+	}
+	private IEnumerator OnFire()
+	{
+		if(_particleSystem == null)
+			_particleSystem = GetComponent<ParticleSystem>();
 
+		_particleSystem.Play();
+		for (int i = 0; i < 10; i++) 
+		{
+			GetComponent<HealthController>().health -= 5;
+			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>().MakeText("5",this.transform.position+new Vector3(0,2,0),Color.red,18,true);
+			yield return new WaitForSeconds(0.5f);
+		}
+		_particleSystem.Stop();
+	}
 	protected virtual void Update () {
 		//update function
 	}

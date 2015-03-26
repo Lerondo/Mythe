@@ -92,9 +92,6 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		//saveData.equipedItemsIds = _equipment.GetEquipedItemIds();
 		saveData.equipedItems = _equipment.equipedItems;
 
-		//skills
-		saveData.equipedSkills = _skills.currentSkills;
-
 		binaryFormatter.Serialize(file,saveData);
 		file.Close();
 	}
@@ -150,7 +147,6 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.level = saveData.level;
 			_player.transform.position = new Vector3(saveData.playerX,saveData.playerY,saveData.playerZ);
 			_playerStats.username = saveData.username;
-			_skills.currentSkills = saveData.equipedSkills;
 			_playerStats.timePlayed = saveData.timePlayed;
 			_playerStats.isRanked = saveData.isRanked;
 
@@ -183,6 +179,5 @@ public class SaveData
 	public bool isRanked;
 	public List<Item> equipedItems = new List<Item>();
 	public List<Item> inventoryItems = new List<Item>();
-	public List<Skill> equipedSkills = new List<Skill>();
 	//TODO: time
 }

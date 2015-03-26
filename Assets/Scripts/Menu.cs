@@ -38,14 +38,11 @@ public class Menu : MonoBehaviour
 		_deletionPanel = GameObject.Find("DeletionPanel");
 		_usernamePanel = GameObject.Find("UsernamePanel");
 		_rankingCanvas = GameObject.Find("RankingCanvas");
-		_audioSource = GetComponent<AudioSource> ();
-
-	
-
 	}
 
 	void Start()
 	{
+		_audioSource = GetComponent<AudioSource>();
 		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("MenuMusic");
 		_audioSource.Play();
 
