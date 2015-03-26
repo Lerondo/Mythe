@@ -107,7 +107,7 @@ public class InventoryInterface : MonoBehaviour {
 		stats += "Magic " + item.itemMagicDamage + "\n";
 		stats += "Defence " + item.itemDefence + "\n";
 		stats += "LevelRequirement " + item.levelRequirement;
-		if(selectedItem.levelRequirement > _playerStats.level)
+		if(item.levelRequirement > _playerStats.level)
 			stats += "Level not high enough!";
 		statText.text = stats;
 		selectedButtonId = buttonSlot;

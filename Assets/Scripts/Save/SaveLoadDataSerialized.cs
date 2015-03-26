@@ -8,7 +8,6 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 	private PlayerStats _playerStats;
 	private Equipment _equipment;
 	private Inventory _inventory;
-	private SkillController _skills;
 	private HealthController _healthController;
 	private GameObject _player;
 	private string _currentUsername;
@@ -56,7 +55,6 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		_healthController = _player.GetComponent<HealthController>();
 		_equipment = gameController.GetComponent<Equipment>();
 		_inventory = gameController.GetComponent<Inventory>();
-		_skills = _player.GetComponent<SkillController>();
 
 		//get all values
 		//Loaded level
@@ -135,7 +133,6 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_healthController = _player.GetComponent<HealthController>();
 			_equipment = gameController.GetComponent<Equipment>();
 			_inventory = gameController.GetComponent<Inventory>();
-			_skills = _player.GetComponent<SkillController>();
 
 			//setting all values
 			_playerStats.basicDamage = saveData.damage;
