@@ -16,6 +16,7 @@ public class PlayerController : Unit {
 	private Vector3 _checkPoint;
 	private PlayerStats _stats;
 	private AudioSource _audioSource;
+
 	void Awake()
 	{
 		_playerAnimator = GetComponent<Animator>();
@@ -64,8 +65,21 @@ public class PlayerController : Unit {
 		}
 		else {
 			_playerAnimator.SetTrigger("Attack");
+			//Audio
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("stabHit");
+			_audioSource.Play();
+
 			if(_playerAnimator.GetBool("HasBow"))
 				bowAnimator.SetTrigger("Attack");
+			//Audio
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("StretchBow");
+			_audioSource.Play();
+
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ArrowShot");
+			_audioSource.Play();
+
+
+
 		}
 		//set trigger to current skill
 	}
@@ -84,7 +98,7 @@ public class PlayerController : Unit {
 	private void ShootArrow()
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("windSound");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ArrowShot");
 		_audioSource.Play();
 
 		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();

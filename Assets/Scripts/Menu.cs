@@ -25,6 +25,8 @@ public class Menu : MonoBehaviour
 	private bool _creditsPanelBool = false;
 	private bool _optionsPanelBool = false;
 
+	private AudioSource _audioSource;
+
 	void Awake()
 	{
 		_saveLoadData = GameObject.FindGameObjectWithTag(Tags.SaveLoadObject).GetComponent<SaveLoadDataSerialized>();
@@ -34,10 +36,14 @@ public class Menu : MonoBehaviour
 		_characterPanel  = GameObject.Find ("CharacterPanel");
 		_deletionPanel = GameObject.Find("DeletionPanel");
 		_usernamePanel = GameObject.Find("UsernamePanel");
+		_audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Start()
 	{
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("MenuMusic");
+		_audioSource.Play();
+
 		_creditsPanel.SetActive (false);
 		_optionsPanel.SetActive (false);
 		_characterPanel.SetActive (false);
