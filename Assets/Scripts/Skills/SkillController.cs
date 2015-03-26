@@ -34,8 +34,6 @@ public class SkillController : MonoBehaviour {
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
 			_playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
-			if(_playerAnimator.GetBool("HasBow"))
-				bowAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
 			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform));
 		}
 		else 

@@ -109,8 +109,10 @@ public class PlayerController : Unit {
 		if(_playerAnimator.GetBool("HasBow"))
 		{
 			ShootArrow();
+		} else {
+			_swordTrail.enabled = true;
 		}
-		_swordTrail.enabled = true;
+
 		return base.Attack();
 	}
 	private void ShootArrow()
