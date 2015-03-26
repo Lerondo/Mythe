@@ -14,6 +14,10 @@ public class SkillController : MonoBehaviour {
 		_currentSkills.Add(new ChargeSlash());
 		_currentSkills.Add(new AttackSpeedBuff());
 		_currentSkills.Add(new HealthRegen());
+		_currentSkills.Add(new FireArrow());
+		_currentSkills.Add(new RapidFire());
+		_currentSkills.Add(new ArcherDash());
+		_currentSkills.Add(new ExplosiveArrow());
 	}
 	public List<Skill> currentSkills
 	{
@@ -28,8 +32,14 @@ public class SkillController : MonoBehaviour {
 	}
 	public void ActivateSkill(int skillNumber)
 	{
-		CheckWeaponSkills();
 		skillNumber--;
+		if(_playerAnimator.GetBool("HasBow"))
+		{
+			skillNumber += 4;
+		} else if(_playerAnimator.GetBool("HasStaff"))
+		{
+			skillNumber += 8;
+		}
 		if(Time.time > _currentSkills[skillNumber].currentCoolDown)
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
@@ -39,27 +49,6 @@ public class SkillController : MonoBehaviour {
 		else 
 		{
 			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>().MakeText("You can't use that yet", this.transform.position + new Vector3(0,2,0),Color.yellow,24,true);
-		}
-	}
-	public void CheckWeaponSkills()
-	{
-		if(_playerAnimator.GetBool("HasBow"))
-		{
-			_currentSkills.Clear();
-			_currentSkills.Add(new FireArrow());
-			_currentSkills.Add(new RapidFire());
-			//TODO: add 4 bow skills.
-		} 
-		else if(_playerAnimator.GetBool("HasStaff"))
-		{
-			_currentSkills.Clear();
-			//TODO: add 4 staff skills.
-		} else {
-			_currentSkills.Clear();
-			_currentSkills.Add(new StrongSlash());
-			_currentSkills.Add(new ChargeSlash());
-			_currentSkills.Add(new AttackSpeedBuff());
-			_currentSkills.Add(new HealthRegen());
 		}
 	}
 }
