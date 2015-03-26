@@ -4,10 +4,16 @@ using System.Collections;
 public class PlayBack : MonoBehaviour {
 
 	public GameObject pauseInterface;
+	public bool canPause;
+
+	void Start()
+	{
+		canPause = true;
+	}
 	
 	void Update()
 	{		
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Escape) && canPause == true)
 			togglePause();
 	}
 	protected bool togglePause()
