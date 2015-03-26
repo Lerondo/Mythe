@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 public class SkillController : MonoBehaviour {
 	private List<Skill> _currentSkills = new List<Skill>();
-	private Animator playerAnimator;
+	private Animator _playerAnimator;
+	public Animator bowAnimator;
+
 	void Awake()
 	{
-		playerAnimator = GetComponent<Animator>();
-		AddSkill(new Skill());
-		AddSkill(new StrongSlash());
-		AddSkill(new ChargeSlash());
+		_playerAnimator = GetComponent<Animator>();
+		_currentSkills.Add(new StrongSlash());
+		_currentSkills.Add(new ChargeSlash());
+		_currentSkills.Add(new AttackSpeedBuff());
+		_currentSkills.Add(new HealthRegen());
 	}
 	public List<Skill> currentSkills
 	{
@@ -25,33 +28,39 @@ public class SkillController : MonoBehaviour {
 	}
 	public void ActivateSkill(int skillNumber)
 	{
+		CheckWeaponSkills();
+		skillNumber--;
 		if(Time.time > _currentSkills[skillNumber].currentCoolDown)
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
-			playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
+			_playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
+			if(_playerAnimator.GetBool("HasBow"))
+				bowAnimator.SetTrigger("Attack");
 			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform));
-			if(_currentSkills[skillNumber].type == Skill.skillType.buff)
-			{
-				//TODO: buff stuff
-			} else if(_currentSkills[skillNumber].type == Skill.skillType.debuff)
-			{
-				//TODO: debuff stuff.
-			} else {
-
-			}
 		}
 		else 
 		{
 			GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<TextMessenger>().MakeText("You can't use that yet", this.transform.position + new Vector3(0,2,0),Color.yellow,24,true);
 		}
 	}
-	public void AddSkill(Skill skill)
+	public void CheckWeaponSkills()
 	{
-		if(_currentSkills.Count < 4)
+		if(_playerAnimator.GetBool("HasBow"))
 		{
-			_currentSkills.Add (skill);
+			_currentSkills.Clear();
+			_currentSkills.Add(new FireArrow());
+			//TODO: add 4 bow skills.
+		} 
+		else if(_playerAnimator.GetBool("HasStaff"))
+		{
+			_currentSkills.Clear();
+			//TODO: add 4 staff skills.
 		} else {
-			//TODO: popup window to much skills
+			_currentSkills.Clear();
+			_currentSkills.Add(new StrongSlash());
+			_currentSkills.Add(new ChargeSlash());
+			_currentSkills.Add(new AttackSpeedBuff());
+			_currentSkills.Add(new HealthRegen());
 		}
 	}
 }

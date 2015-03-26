@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class InventoryInterface : MonoBehaviour {
 	public Text statText;
 	public Text goldText;
-	public Text lvlRequirementText;
 	public Sprite emptySlot;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
@@ -49,7 +48,6 @@ public class InventoryInterface : MonoBehaviour {
 		inventoryInterface.SetActive(false);
 		equipOffHandButton.SetActive (false);
 		sellButton.SetActive(false);
-		lvlRequirementText.text = "";
 	}
 	public void CheckButtonSwap()
 	{
@@ -105,9 +103,12 @@ public class InventoryInterface : MonoBehaviour {
 		string stats = "";
 		stats += item.itemSort + "\n";
 		stats += item.itemQuality + "\n";
-		stats += item.itemDamage + "\n";
-		stats += item.itemDefence + "\n";
-		stats += "LevelRequirement: " + item.levelRequirement;
+		stats += "Damage " + item.itemDamage + "\n";
+		stats += "Magic " + item.itemMagicDamage + "\n";
+		stats += "Defence " + item.itemDefence + "\n";
+		stats += "LevelRequirement " + item.levelRequirement;
+		if(selectedItem.levelRequirement > _playerStats.level)
+			stats += "Level not high enough!";
 		statText.text = stats;
 		selectedButtonId = buttonSlot;
 		selectedItem = item;
@@ -115,10 +116,6 @@ public class InventoryInterface : MonoBehaviour {
 			equipOffHandButton.SetActive(true);
 		else
 			equipOffHandButton.SetActive(false);
-		if (selectedItem.levelRequirement > _playerStats.level)
-			lvlRequirementText.text = "Level not high enough!";
-		else
-			lvlRequirementText.text = "";
 	}
 	public void EquipCurrentSelected(bool offHand)
 	{
@@ -145,7 +142,6 @@ public class InventoryInterface : MonoBehaviour {
 	}
 	public void ResetInventoryTexts()
 	{
-		lvlRequirementText.text = "";
 		statText.text = "";
 		goldText.text = "Gold : " + _playerStats.gold;
 	}

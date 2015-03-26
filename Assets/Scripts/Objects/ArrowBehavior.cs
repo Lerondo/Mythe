@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class ArrowBehavior : MonoBehaviour {
-	private float _speed = 25f;
-	private int _damage;
-	private string _tagToHit;
+	protected float _speed = 25f;
+	protected int _damage;
+	protected string _tagToHit;
 	// Update is called once per frame
 	void Update () {
 		this.transform.Translate(Vector3.forward * _speed * Time.deltaTime);
@@ -21,11 +21,11 @@ public class ArrowBehavior : MonoBehaviour {
 	public void SetDamage(int damage)
 	{
 		_damage = damage;
-		Invoke ("PoolMyself", 5f);
+		Invoke ("PoolMyself", 1f);
 	}
-	void OnTriggerEnter(Collider other)
+	public virtual void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == _tagToHit)
+		if(other.transform.tag == _tagToHit || !other.isTrigger)
 		{
 			bool isTargetHit = other.GetComponent<Unit>().justHit;
 			if(!isTargetHit)

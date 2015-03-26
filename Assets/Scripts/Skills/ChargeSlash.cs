@@ -14,7 +14,7 @@ public class ChargeSlash : Skill {
 	public override IEnumerator Activate (Transform player)
 	{
 		yield return new WaitForSeconds(0.25f);
-		GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Animator>().speed = 0;
+		player.GetComponent<Animator>().speed = 0;
 		Vector3 spherePosition = player.position;
 		Vector3 chargePosition = player.position;
 		spherePosition.x += 1f;

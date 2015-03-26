@@ -27,6 +27,7 @@ public class WWWScreenshot : MonoBehaviour {
 			username = playerStats.username;
 			score = playerStats.gold;
 			string time = playerStats.timePlayed.ToString();
+			yield return new WaitForEndOfFrame();
 			// Create a Web Form
 			WWWForm form = new WWWForm();
 			form.AddField("frameCount", Time.frameCount.ToString());
@@ -44,6 +45,8 @@ public class WWWScreenshot : MonoBehaviour {
 			else
 				print("Finished Uploading Screenshot + highscore");
 			print (w.text);
+
+			playerStats.isRanked = true;
 		}
 	}
 }

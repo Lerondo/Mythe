@@ -18,4 +18,5 @@ public class Tags : MonoBehaviour {
 	public const string SaveLoadObject = "SaveLoadObject";
 	public const string Menu = "Menu";
 	public const string MainCam = "MainCamera";
+	public const string Trail = "Trail";
 }

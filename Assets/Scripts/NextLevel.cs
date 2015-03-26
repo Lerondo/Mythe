@@ -21,7 +21,6 @@ public class NextLevel : MonoBehaviour {
 	}
 	void Start()
 	{
-		fadeScreen = GameObject.Find ("darkpanel").GetComponent<Image> ();
 		_oldDarkColor = fadeScreen.color;
 		fadeScreen.gameObject.SetActive(false);
 		nextLvl = PlayerPrefs.GetInt ("next_lvl", nextLvl);
@@ -57,7 +56,7 @@ public class NextLevel : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "Player")
+		if (other.transform.tag == Tags.Player)
 		{
 			StartCoroutine(GoToNextLevel());
 		}
