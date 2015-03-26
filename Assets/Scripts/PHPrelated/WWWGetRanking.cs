@@ -7,12 +7,8 @@ public class WWWGetRanking : MonoBehaviour {
 	private string URL = "16710.hosts.ma-cloud.nl/mythe/getHighscores.php?unity=true";
 	public Image[] allImages;
 	public Text[] allTexts;
-	void Start () {
-		StartCoroutine(CreateFakeImages());
-		WWW www = new WWW(URL);
-		StartCoroutine(WaitForRequest(www));
-	}
-	IEnumerator CreateFakeImages()
+
+	void CreateFakeImages()
 	{
 		foreach(Image image in allImages)
 		{
