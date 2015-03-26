@@ -9,10 +9,10 @@ public class StrongSlash : Skill {
 		type = skillType.offensive;
 		_coolDown = 5f;
 	}
-	public override IEnumerator Activate (Vector3 playerPos, Vector3 playerEuler)
+	public override IEnumerator Activate (Transform player)
 	{
 		yield return new WaitForSeconds(0.75f);
-		Vector3 spherePosition = playerPos;
+		Vector3 spherePosition = player.position;
 		Collider[] colliders = Physics.OverlapSphere (spherePosition,  1f);
 		foreach(Collider col in colliders)
 		{
@@ -22,7 +22,8 @@ public class StrongSlash : Skill {
 			}
 		}
 		GameObject strongSlash = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("StrongSlash", false) as GameObject;
-		strongSlash.transform.position = playerPos - new Vector3(0,1,0);
+		strongSlash.transform.position = player.position - new Vector3(0,1,0);
 		strongSlash.GetComponent<ParticleSystemBehavior>().StartPooling();
+		strongSlash.transform.parent = player;
 	}
 }

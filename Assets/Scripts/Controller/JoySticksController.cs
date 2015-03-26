@@ -14,6 +14,8 @@ public class JoySticksController : MonoBehaviour {
 
 	void Start()
 	{
+		playerController = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerController> ();
+		playerMovement = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerMovement> ();
 		_currentFingerId = -1;
 		_movementJoystickOriginalPos = movementJoyStickTransform.position;
 		followButton.SetActive(false);

@@ -40,17 +40,18 @@ public class ShopController : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == Tags.Player)
 		{
 			_buyButton.SetActive(true);
 			_dialogueController.WelcomeMessage(this.transform.position + new Vector3(0,3,0));
 			_inventoryInterface.SwapButtons();
 			_inventoryInterface.onShop = true;
+			_shopInterface.CheckSwapItems();
 		}
 	}
 	void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == Tags.Player)
 		{
 			_buyButton.SetActive(false);
 			_inventoryInterface.SwapButtons();

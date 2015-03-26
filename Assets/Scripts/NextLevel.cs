@@ -21,8 +21,14 @@ public class NextLevel : MonoBehaviour {
 	}
 	void Start()
 	{
+<<<<<<< HEAD
+=======
+		fadeScreen = GameObject.Find ("darkpanel").GetComponent<Image> ();
+>>>>>>> origin/master
 		_oldDarkColor = fadeScreen.color;
 		fadeScreen.gameObject.SetActive(false);
+		nextLvl = PlayerPrefs.GetInt ("next_lvl", nextLvl);
+
 	}
 	IEnumerator GoToNextLevel()
 	{
@@ -45,6 +51,7 @@ public class NextLevel : MonoBehaviour {
 		}
 		else
 		{
+			_saveLoadData.Save(SavePaths.currentPath);
 			_loadingScreen.loadingScreen.SetActive(false);
 			fadeScreen.gameObject.SetActive(false);
 			StartCoroutine(_wwwScreenShot.UploadPNG());
@@ -53,7 +60,7 @@ public class NextLevel : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "Player")
+		if (other.transform.tag == Tags.Player)
 		{
 			StartCoroutine(GoToNextLevel());
 		}
