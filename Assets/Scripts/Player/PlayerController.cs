@@ -26,6 +26,9 @@ public class PlayerController : Unit {
 		_equipment = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<Equipment>();
 		_audioSource = GetComponent<AudioSource> ();
 		_swordTrail = GameObject.FindGameObjectWithTag(Tags.Trail).GetComponent<TrailRenderer>();
+	}
+	protected override void Start()
+	{
 		_swordTrail.enabled = false;
 	}
 	public AnimationEvent StartTrail()
