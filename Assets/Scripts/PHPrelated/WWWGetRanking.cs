@@ -8,15 +8,19 @@ public class WWWGetRanking : MonoBehaviour {
 	public Image[] allImages;
 	public Text[] allTexts;
 	void Start () {
+		StartCoroutine(CreateFakeImages());
+		WWW www = new WWW(URL);
+		StartCoroutine(WaitForRequest(www));
+	}
+	IEnumerator CreateFakeImages()
+	{
 		foreach(Image image in allImages)
 		{
-			image.sprite = Sprite.Create(Texture2D.blackTexture,new Rect(0,0,522,326),new Vector2(0,0));
+			image.sprite = Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,522,326),new Vector2(0,0));
 			Color newColor = Color.white;
 			newColor.a = 0;
 			image.color = newColor;
 		}
-		WWW www = new WWW(URL);
-		StartCoroutine(WaitForRequest(www));
 	}
 	IEnumerator WaitForRequest(WWW www) {
 		yield return www;
