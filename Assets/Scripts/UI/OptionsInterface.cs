@@ -7,8 +7,14 @@ public class OptionsInterface : MonoBehaviour {
 	public GameObject pauseInterface;
 	public GameObject optionsInterface;
 	public Slider volumeSlider;
+	private PlayBack _playBack;
 
 	private static int _gameQuality;
+
+	void Awake()
+	{
+		_playBack = GameObject.FindGameObjectWithTag (Tags.GameController).GetComponent<PlayBack> ();
+	}
 
 	void Start()
 	{
@@ -17,6 +23,7 @@ public class OptionsInterface : MonoBehaviour {
 	}
 	public void ReturnToPauseMenu()
 	{
+		_playBack.canPause = true;
 		pauseInterface.SetActive (true);
 		optionsInterface.SetActive (false);
 	}
