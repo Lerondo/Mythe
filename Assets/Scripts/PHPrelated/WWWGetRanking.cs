@@ -8,11 +8,11 @@ public class WWWGetRanking : MonoBehaviour {
 	public Image[] allImages;
 	public Text[] allTexts;
 	void Start () {
-		StartCoroutine(CreateFakeImages());
+		CreateFakeImages();
 		WWW www = new WWW(URL);
 		StartCoroutine(WaitForRequest(www));
 	}
-	IEnumerator CreateFakeImages()
+	void CreateFakeImages()
 	{
 		foreach(Image image in allImages)
 		{
