@@ -19,4 +19,11 @@ public class Tuatha : Melee {
 		weapon.GetComponent<Renderer>().material.mainTexture = Resources.Load(item.itemTexture, typeof(Texture)) as Texture;
 		base.Start();
 	}
+
+	protected override AnimationEvent Attack ()
+	{
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("HitSound");
+		_audioSource.Play();
+		return base.Attack ();
+	}
 }
