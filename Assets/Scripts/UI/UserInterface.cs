@@ -20,7 +20,6 @@ public class UserInterface : MonoBehaviour {
 		_allBars.Add(HEALTHBAR, _healthBar);
 		_allBars.Add(STAMINABAR, _staminaBar);
 		_allBars.Add(EXPERIENCEBAR, _experienceBar);
-		_allBars [HEALTHBAR].value -= 10;
 	}
 	/// <summary>
 	/// Updates a userinterface slider.
@@ -29,7 +28,7 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="value">Value.</param>
 	public void UpdateBar(string bar, int value)
 	{
-		_allBars[bar].value += value;
+		_allBars[bar].value = value;
 	}
 	/// <summary>
 	/// Updates the max value.

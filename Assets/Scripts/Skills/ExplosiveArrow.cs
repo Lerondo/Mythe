@@ -7,6 +7,7 @@ public class ExplosiveArrow : Skill {
 		animationName = "fireBowAttack";
 		_coolDown = 60f;
 		type = skillType.offensive;
+		_mana = 25;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

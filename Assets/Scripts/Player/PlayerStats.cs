@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour {
 	private string _username = "";
 	private float _experience = 0;
 	private float _maxExp = 125;
+	private int _mana = 100;
 	private int _goldValue = 100;
 	private float _timePlayed = 0;
 	private bool _isRanked = false;
@@ -29,6 +30,7 @@ public class PlayerStats : MonoBehaviour {
 	private IEnumerator UpdatePlayingTime()
 	{
 		_timePlayed += 1;
+		mana += 1;
 		yield return new WaitForSeconds(1);
 	}
 	public bool isRanked
@@ -148,6 +150,16 @@ public class PlayerStats : MonoBehaviour {
 		if(_level >= 10)
 		{
 			fourthSkillButton.SetActive(true);
+		}
+	}
+	public int mana
+	{
+		get{
+			return _mana;
+		}
+		set{
+			_mana = value;
+			_userInterface.UpdateBar(UserInterface.STAMINABAR, _mana);
 		}
 	}
 }

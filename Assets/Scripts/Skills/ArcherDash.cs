@@ -7,6 +7,7 @@ public class ArcherDash : Skill {
 		animationName = "Jump";
 		type = skillType.buff;
 		_coolDown = 5f;
+		_mana = 0;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

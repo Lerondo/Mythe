@@ -5,10 +5,12 @@ using System.Collections.Generic;
 public class SkillController : MonoBehaviour {
 	private List<Skill> _currentSkills = new List<Skill>();
 	private Animator _playerAnimator;
+	private PlayerStats _playerStats;
 	public Animator bowAnimator;
 
 	void Awake()
 	{
+		_playerStats = GetComponent<PlayerStats>();
 		_playerAnimator = GetComponent<Animator>();
 		_currentSkills.Add(new StrongSlash());
 		_currentSkills.Add(new ChargeSlash());
@@ -40,10 +42,11 @@ public class SkillController : MonoBehaviour {
 		{
 			skillNumber += 8;
 		}
-		if(Time.time > _currentSkills[skillNumber].currentCoolDown)
+		if(Time.time > _currentSkills[skillNumber].currentCoolDown && _playerStats.mana >= _currentSkills[skillNumber].mana)
 		{
 			_currentSkills[skillNumber].currentCoolDown = Time.time + _currentSkills[skillNumber].coolDown;
 			_playerAnimator.SetTrigger(_currentSkills[skillNumber].animationName);
+			_playerStats.mana -= _currentSkills[skillNumber].mana;
 			StartCoroutine(_currentSkills[skillNumber].Activate(this.transform));
 		}
 		else 

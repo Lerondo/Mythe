@@ -9,7 +9,7 @@ public class ChargeSlash : Skill {
 		animationName = "ChargeSlash";
 		type = skillType.offensive;
 		_coolDown = 5f;
-
+		_mana = 15;
 	}
 	public override IEnumerator Activate (Transform player)
 	{
