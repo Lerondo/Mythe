@@ -7,9 +7,11 @@ public class FireArrow : Skill {
 		animationName = "fireBowAttack";
 		type = skillType.offensive;
 		_coolDown = 5f;
+		_mana = 10;
 	}
 	public override IEnumerator Activate (Transform player)
 	{
+		player.GetComponent<PlayerController>().bowAnimator.SetTrigger("Attack");
 		yield return new WaitForSeconds(1f);
 		GameObject newArrow = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<ObjectPool>().GetObjectForType("FireArrow", false) as GameObject;
 		newArrow.GetComponent<ArrowBehavior>().SetDamage(5);

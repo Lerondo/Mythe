@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class JoySticksController : MonoBehaviour {
-	public PlayerController playerController;
-	public PlayerMovement playerMovement;
+	private PlayerController _playerController;
+	private PlayerMovement _playerMovement;
 	public GameObject controllerMenu;
 	public GameObject inventoryInterface;
 	public GameObject shopInterface;
@@ -14,8 +14,8 @@ public class JoySticksController : MonoBehaviour {
 
 	void Start()
 	{
-		playerController = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerController> ();
-		playerMovement = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerMovement> ();
+		_playerController = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerController> ();
+		_playerMovement = GameObject.FindGameObjectWithTag (Tags.Player).GetComponent<PlayerMovement> ();
 		_currentFingerId = -1;
 		_movementJoystickOriginalPos = movementJoyStickTransform.position;
 		followButton.SetActive(false);
@@ -24,7 +24,7 @@ public class JoySticksController : MonoBehaviour {
 	{
 		if(buttonID <= 6)
 		{
-			playerController.StartSkill(buttonID);
+			_playerController.StartSkill(buttonID);
 		} else if (buttonID == 7){
 			GetComponent<Inventory>().ShowCurrentItems();
 			inventoryInterface.SetActive(true);
@@ -81,49 +81,49 @@ public class JoySticksController : MonoBehaviour {
 						xOffSet = 1f;
 					}
 					Vector3 movement = new Vector3(0,0,xOffSet);
-					playerMovement.Move(movement, isGoingRight);
+					_playerMovement.Move(movement, isGoingRight);
 				} 
 				else 
 				{
-					if(playerMovement.isMoving)
+					if(_playerMovement.isMoving)
 					{
-						playerMovement.StoppedMoving();
+						_playerMovement.StoppedMoving();
 					}
 				}
-				if(playerMovement.isClimbing)
+				if(_playerMovement.isClimbing)
 				{
 					float yOffSet = Input.GetTouch(_currentFingerId).position.y - movementJoyStickTransform.position.y;
 					yOffSet *= 0.01f;
 					Vector3 climbMovement = new Vector3(0,yOffSet,0);
-					playerMovement.Climb(climbMovement);
+					_playerMovement.Climb(climbMovement);
 					if(yOffSet >= 0.1f || yOffSet <= -0.1f)
 					{
-						playerMovement.SetPlayerAnimatorSpeed(2f);
+						_playerMovement.SetPlayerAnimatorSpeed(2f);
 					}  
 					else 
 					{
-						playerMovement.SetPlayerAnimatorSpeed(0f);
+						_playerMovement.SetPlayerAnimatorSpeed(0f);
 					}
 				}
 				else if(Input.GetTouch(_currentFingerId).position.y > movementJoyStickTransform.position.y+50)
 				{
-					playerMovement.Jump();
+					_playerMovement.Jump();
 				} else if (Input.GetTouch(_currentFingerId).position.y < movementJoyStickTransform.position.y-50)
 				{
-					playerMovement.isTryingToClimb = true;
+					_playerMovement.isTryingToClimb = true;
 				}
 			}
 		} else {
 			_currentFingerId = -1;
-			if(playerMovement.isMoving)
+			if(_playerMovement.isMoving)
 			{
 				followButton.SetActive(false);
-				playerMovement.StoppedMoving();
+				_playerMovement.StoppedMoving();
 				followButton.SetActive(false);
 			}
-			else if(playerMovement.isClimbing)
+			else if(_playerMovement.isClimbing)
 			{
-				playerMovement.SetPlayerAnimatorSpeed(0f);
+				_playerMovement.SetPlayerAnimatorSpeed(0f);
 			}
 		}
 	}

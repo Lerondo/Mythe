@@ -8,6 +8,7 @@ public class HealthRegen : Skill {
 		_coolDown = 120f;
 		animationName = "Buff";
 		type = skillType.buff;
+		_mana = 50;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

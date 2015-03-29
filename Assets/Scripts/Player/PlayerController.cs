@@ -109,8 +109,10 @@ public class PlayerController : Unit {
 		if(_playerAnimator.GetBool("HasBow"))
 		{
 			ShootArrow();
+		} else {
+			_swordTrail.enabled = true;
 		}
-		_swordTrail.enabled = true;
+
 		return base.Attack();
 	}
 	private void ShootArrow()
@@ -121,10 +123,10 @@ public class PlayerController : Unit {
 
 		_currentAttackDmg = _stats.basicDamage + _equipment.GetDamage();
 		GameObject newArrow = _objectPool.GetObjectForType("Arrow", false) as GameObject;
+		newArrow.GetComponent<ArrowBehavior>().tagToHit = Tags.Enemy;
 		newArrow.GetComponent<ArrowBehavior>().SetDamage(_currentAttackDmg);
 		newArrow.transform.position = spawnPoint.position;
 		newArrow.transform.rotation = spawnPoint.rotation;
-		newArrow.GetComponent<ArrowBehavior>().tagToHit = Tags.Enemy;
 	}
 	/// <summary>
 	/// lastattack via animationevent.

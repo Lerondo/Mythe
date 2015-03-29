@@ -5,18 +5,17 @@ public class Melee : Enemy
 {
 	private HealthController _playerHealth;
 	private Unit _playerUnit;
-	private AudioSource _audioSource;
+	protected AudioSource _audioSource;
 
 	protected override void Start()
 	{
 		_enemyAnimator.SetBool ("Idle", true);
+		_audioSource = GetComponent<AudioSource>();
 		base.Start();
 	}
 	protected override AnimationEvent Attack()
 	{
-		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("ChargeSound");
-		_audioSource.Play ();
+
 
 		_attacking = true;
 		_justAttacked = false;

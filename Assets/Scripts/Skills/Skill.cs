@@ -6,6 +6,7 @@ public class Skill : System.Object {
 	protected string _animationName;
 	protected float _coolDown;
 	protected float _currentCoolDown;
+	protected int _mana;
 	public enum skillType
 	{
 		offensive,
@@ -35,6 +36,15 @@ public class Skill : System.Object {
 		}
 		set{
 			_coolDown = value;
+		}
+	}
+	public int mana
+	{
+		get{
+			return _mana;
+		}
+		set{
+			_mana = value;
 		}
 	}
 }

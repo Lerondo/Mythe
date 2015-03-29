@@ -21,8 +21,7 @@ public class Menu : MonoBehaviour
 	private Dictionary<int, string> loadPath = new Dictionary<int, string>();
 	private Dictionary<int, Text> characterTexts = new Dictionary<int, Text>();
 	private SaveLoadDataSerialized _saveLoadData;
-
-	private bool _mainMenuPanelBool = true;
+	
 	private bool _creditsPanelBool = false;
 	private bool _optionsPanelBool = false;
 
@@ -120,7 +119,6 @@ public class Menu : MonoBehaviour
 
 		_optionsPanel.transform.position = new Vector2 (0, 0);
 
-		_mainMenuPanelBool = false;
 		_optionsPanelBool = true;
 	}
 

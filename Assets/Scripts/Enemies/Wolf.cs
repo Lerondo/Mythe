@@ -13,4 +13,11 @@ public class Wolf : Melee {
 		_exp = 50;
 		base.Start();
 	}
+
+	protected override AnimationEvent Attack ()
+	{
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("WolfBite");
+		_audioSource.Play();
+		return base.Attack ();
+	}
 }

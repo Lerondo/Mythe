@@ -17,6 +17,6 @@ public class BodyPlate : Item {
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/bodyPlate1";
 		_itemSprite = "Sprites/Items/bodyPlate1";
-		_itemTexture = "Textures/Items/bodyPlate1";
+		_itemTexture = "Textures/Items/bandana&chest_plate";
 	}
 }

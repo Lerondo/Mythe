@@ -13,10 +13,7 @@ public class Unit : MonoBehaviour {
 	protected int _health;
 	protected bool _justHit = false;
 	protected ParticleSystem _particleSystem;
-	void Awake()
-	{
 
-	}
 	protected virtual void Start () {
 		//start function
 	}

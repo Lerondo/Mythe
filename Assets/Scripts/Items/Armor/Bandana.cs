@@ -17,7 +17,7 @@ public class Bandana : Item {
 		_sellValue = Mathf.FloorToInt(_buyValue / 3);
 		_itemMesh = "Models/Items/bandana";
 		_itemSprite = "Sprites/Items/bandana";
-		_itemTexture = "Textures/Items/bandana";
+		_itemTexture = "Textures/Items/bandana&chest_plate";
 		//_itemMesh = Resources.Load("Models/Items/Axe1", typeof(Mesh)) as Mesh;
 		//_itemSprite = Resources.Load("Sprites/Items/axe", typeof(Sprite)) as Sprite;
 		//_itemTexture = Resources.Load("Textures/Items/axe",typeof(Texture)) as Texture;
