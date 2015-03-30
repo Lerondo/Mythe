@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Final Prefabs/DontDestroy Final.prefab.meta~HEAD.meta
 guid: 632f34c558c7de44db3b6656b5d4ed3f
 timeCreated: 1427706184
+=======
+guid: 7ed3d191dfba01b4792f69a86d0e7c08
+timeCreated: 1427706096
+>>>>>>> origin/master:Assets/Final Prefabs/DontDestroy Final.prefab.meta~HEAD.meta
 licenseType: Free
 DefaultImporter:
   userData: 
