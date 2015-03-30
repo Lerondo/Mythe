@@ -21,7 +21,7 @@ public class NextLevel : MonoBehaviour {
 	}
 	void Start()
 	{
-
+		_saveLoadData.StartCoroutine(_saveLoadData.LoadPlayerInfo(SavePaths.currentPath));
 		_oldDarkColor = fadeScreen.color;
 		fadeScreen.gameObject.SetActive(false);
 		nextLvl = PlayerPrefs.GetInt ("next_lvl", nextLvl);

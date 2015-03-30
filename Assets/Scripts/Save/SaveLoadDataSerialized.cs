@@ -156,6 +156,44 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		}
 		SavePaths.currentPath = path;
 	}
+	public IEnumerator LoadPlayerInfo (string path) 
+	{
+		if(File.Exists(Application.persistentDataPath + path))
+		{
+			BinaryFormatter binaryFormatter = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + path, FileMode.Open);
+			
+			SaveData saveData = binaryFormatter.Deserialize(file) as SaveData;
+			//Set all values
+			while(Application.isLoadingLevel)
+			{
+				yield return new WaitForEndOfFrame();
+			}
+			//get all components
+			GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
+			_player = GameObject.FindGameObjectWithTag(Tags.Player);
+			_playerStats = _player.GetComponent<PlayerStats>();
+			_healthController = _player.GetComponent<HealthController>();
+			_equipment = gameController.GetComponent<Equipment>();
+			_inventory = gameController.GetComponent<Inventory>();
+			
+			//setting all values
+			_playerStats.basicDamage = saveData.damage;
+			_playerStats.basicDefence = saveData.defence;
+			_playerStats.experience = saveData.exp;
+			_playerStats.maxExperience = saveData.maxExp;
+			_playerStats.gold = saveData.gold;
+			_healthController.health = saveData.health;
+			_playerStats.level = saveData.level;
+			_playerStats.username = saveData.username;
+			_playerStats.timePlayed = saveData.timePlayed;
+			_playerStats.isRanked = saveData.isRanked;
+			
+			_equipment.EquipAllItems(saveData.equipedItems);
+			_inventory.inventory = saveData.inventoryItems;
+			file.Close();
+		}
+	}
 }
 [System.Serializable]
 public class SaveData

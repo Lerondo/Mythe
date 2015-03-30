@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -88,7 +89,7 @@ public class Equipment : MonoBehaviour {
 			equipedItems.Add(_boots);
 			equipedItems.Add(_shoulders);
 		} else {
-			_sword = new WoodenBow();
+			_sword = new WoodenSword();
 			EquipItem(_sword);
 			//making fake items! (gets replaced by real items later on)
 			_offHand.itemSort = Item.ItemSort.OffHand;

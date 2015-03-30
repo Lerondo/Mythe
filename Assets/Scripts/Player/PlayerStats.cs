@@ -158,8 +158,11 @@ public class PlayerStats : MonoBehaviour {
 			return _mana;
 		}
 		set{
-			_mana = value;
-			_userInterface.UpdateBar(UserInterface.STAMINABAR, _mana);
+			if(mana < 100)
+			{
+				_mana = value;
+				_userInterface.UpdateBar(UserInterface.STAMINABAR, _mana);
+			}
 		}
 	}
 }
