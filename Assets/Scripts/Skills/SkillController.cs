@@ -29,6 +29,7 @@ public class SkillController : MonoBehaviour {
 		_currentSkills.Add (new InstantHeal ());
 		_currentSkills.Add (new ManaRegen ());
 		_currentSkills.Add (new Fireball ());
+		_currentSkills.Add (new IceNova ());
 
 	}
 	public List<Skill> currentSkills
