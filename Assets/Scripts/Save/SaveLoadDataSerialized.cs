@@ -70,6 +70,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.defence = _playerStats.basicDefence;
 		saveData.timePlayed = _playerStats.timePlayed;
 		saveData.isRanked = _playerStats.isRanked;
+		saveData.playableLevels = _playerStats.playableLevels;
 
 		//Player Position
 		saveData.playerX = _player.transform.position.x;
@@ -142,6 +143,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.gold = saveData.gold;
 			_healthController.health = saveData.health;
 			_playerStats.level = saveData.level;
+			_playerStats.playableLevels = saveData.playableLevels;
 			_player.transform.position = new Vector3(saveData.playerX,saveData.playerY,saveData.playerZ);
 			_playerStats.username = saveData.username;
 			_playerStats.timePlayed = saveData.timePlayed;
@@ -155,6 +157,45 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			GameObject.FindGameObjectWithTag(Tags.Menu).GetComponent<Menu>().ShowNewCharacter();
 		}
 		SavePaths.currentPath = path;
+	}
+	public IEnumerator LoadPlayerInfo (string path) 
+	{
+		if(File.Exists(Application.persistentDataPath + path))
+		{
+			BinaryFormatter binaryFormatter = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + path, FileMode.Open);
+			
+			SaveData saveData = binaryFormatter.Deserialize(file) as SaveData;
+			//Set all values
+			while(Application.isLoadingLevel)
+			{
+				yield return new WaitForEndOfFrame();
+			}
+			//get all components
+			GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
+			_player = GameObject.FindGameObjectWithTag(Tags.Player);
+			_playerStats = _player.GetComponent<PlayerStats>();
+			_healthController = _player.GetComponent<HealthController>();
+			_equipment = gameController.GetComponent<Equipment>();
+			_inventory = gameController.GetComponent<Inventory>();
+			
+			//setting all values
+			_playerStats.basicDamage = saveData.damage;
+			_playerStats.basicDefence = saveData.defence;
+			_playerStats.experience = saveData.exp;
+			_playerStats.playableLevels = saveData.playableLevels;
+			_playerStats.maxExperience = saveData.maxExp;
+			_playerStats.gold = saveData.gold;
+			_healthController.health = saveData.health;
+			_playerStats.level = saveData.level;
+			_playerStats.username = saveData.username;
+			_playerStats.timePlayed = saveData.timePlayed;
+			_playerStats.isRanked = saveData.isRanked;
+			
+			_equipment.EquipAllItems(saveData.equipedItems);
+			_inventory.inventory = saveData.inventoryItems;
+			file.Close();
+		}
 	}
 }
 [System.Serializable]
@@ -174,6 +215,7 @@ public class SaveData
 	public float playerZ;
 	public float timePlayed;
 	public bool isRanked;
+	public int playableLevels;
 	public List<Item> equipedItems = new List<Item>();
 	public List<Item> inventoryItems = new List<Item>();
 	//TODO: time

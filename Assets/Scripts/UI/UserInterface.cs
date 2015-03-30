@@ -28,7 +28,7 @@ public class UserInterface : MonoBehaviour {
 	/// <param name="value">Value.</param>
 	public void UpdateBar(string bar, int value)
 	{
-		_allBars[bar].value += value;
+		_allBars[bar].value = value;
 	}
 	/// <summary>
 	/// Updates the max value.

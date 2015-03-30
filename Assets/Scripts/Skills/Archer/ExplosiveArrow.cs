@@ -8,6 +8,7 @@ public class ExplosiveArrow : Skill {
 		_coolDown = 60;
 		_mana = 10;
 		type = skillType.offensive;
+		_mana = 25;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

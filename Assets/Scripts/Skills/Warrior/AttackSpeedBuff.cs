@@ -7,6 +7,7 @@ public class AttackSpeedBuff : Skill {
 		animationName = "SpeedAttack";
 		type = skillType.offensive;
 		_coolDown = 10f;
+		_mana = 20;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

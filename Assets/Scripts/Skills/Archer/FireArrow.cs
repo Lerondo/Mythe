@@ -7,6 +7,7 @@ public class FireArrow : Skill {
 		animationName = "fireBowAttack";
 		type = skillType.offensive;
 		_coolDown = 5f;
+		_mana = 10;
 	}
 	public override IEnumerator Activate (Transform player)
 	{

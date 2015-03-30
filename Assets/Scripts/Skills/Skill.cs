@@ -41,10 +41,11 @@ public class Skill : System.Object {
 	public int mana
 	{
 		get{
-						return _mana;
-				}
+			return _mana;
+		}
 		set{
-						_mana = value;
-				}
+			_mana = value;
+		}
+
 	}
 }
