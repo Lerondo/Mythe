@@ -32,7 +32,7 @@ public class AudioList : MonoBehaviour
 	//Abient Sounds
 	[SerializeField]private AudioClip birdSound;
 	[SerializeField]private AudioClip windSound;
-	[SerializeField]private AudioClip wolfSound;
+	[SerializeField]private AudioClip wolfAbient;
 
 	//EnemySounds
 	[SerializeField]private AudioClip wolfAttackSound;
@@ -52,13 +52,18 @@ public class AudioList : MonoBehaviour
 		AudioL.Add (climbSound);
 		AudioL.Add (jumpSound);
 		AudioL.Add (playerHitSound);
-		AudioL.Add (meleeHitSound);
 		AudioL.Add (chargeShout);
 
-		//ObjectSound
+		//Bow And magic sounds
 		AudioL.Add (arrowShotSound);
 		AudioL.Add (arrowInpactSound);
+		AudioL.Add (bowStretchingSound);
+		AudioL.Add (magicShotSound);
+		AudioL.Add (magicInpactSound);
+
+		//melee Sounds
 		AudioL.Add (hitSound);
+		AudioL.Add (meleeHitSound);
 
 		//Enemy Sound
 		AudioL.Add (wolfAttackSound);

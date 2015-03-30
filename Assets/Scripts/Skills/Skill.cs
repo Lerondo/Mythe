@@ -46,5 +46,6 @@ public class Skill : System.Object {
 		set{
 			_mana = value;
 		}
+
 	}
 }

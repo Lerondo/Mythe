@@ -7,19 +7,29 @@ public class SkillController : MonoBehaviour {
 	private Animator _playerAnimator;
 	private PlayerStats _playerStats;
 	public Animator bowAnimator;
+	private HealthController HealthMana;
+
 
 	void Awake()
 	{
 		_playerStats = GetComponent<PlayerStats>();
+
 		_playerAnimator = GetComponent<Animator>();
+		//Warrior
 		_currentSkills.Add(new StrongSlash());
 		_currentSkills.Add(new ChargeSlash());
 		_currentSkills.Add(new AttackSpeedBuff());
 		_currentSkills.Add(new HealthRegen());
+		//Archer
 		_currentSkills.Add(new FireArrow());
 		_currentSkills.Add(new RapidFire());
 		_currentSkills.Add(new ArcherDash());
 		_currentSkills.Add(new ExplosiveArrow());
+		//Mage
+		_currentSkills.Add (new InstantHeal ());
+		_currentSkills.Add (new ManaRegen ());
+		_currentSkills.Add (new Fireball ());
+
 	}
 	public List<Skill> currentSkills
 	{

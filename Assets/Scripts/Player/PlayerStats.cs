@@ -15,6 +15,7 @@ public class PlayerStats : MonoBehaviour {
 	private float _maxExp = 125;
 	private int _mana = 100;
 	private int _goldValue = 100;
+	private int _playableLevels = 1;
 	private float _timePlayed = 0;
 	private bool _isRanked = false;
 	private UserInterface _userInterface;
@@ -32,6 +33,15 @@ public class PlayerStats : MonoBehaviour {
 		_timePlayed += 1;
 		mana += 1;
 		yield return new WaitForSeconds(1);
+	}
+	public int playableLevels
+	{
+		set{
+			_playableLevels = value;
+		}
+		get{
+			return _playableLevels;
+		}
 	}
 	public bool isRanked
 	{
