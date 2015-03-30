@@ -171,7 +171,7 @@ public class PlayerStats : MonoBehaviour {
 			if(mana < 100)
 			{
 				_mana = value;
-				_userInterface.UpdateBar(UserInterface.STAMINABAR, _mana);
+				_userInterface.UpdateBar(UserInterface.MANABAR, _mana);
 			}
 		}
 	}

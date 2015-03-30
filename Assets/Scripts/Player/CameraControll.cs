@@ -25,7 +25,7 @@ public class CameraControll : MonoBehaviour {
 	public IEnumerator ShakeScreen()
 	{
 		_shaking = true;
-		for (int i = 0; i < 10; i++) 
+		for (int i = 0; i < 3; i++) 
 		{
 			_playerPos = new Vector3 (_player.transform.position.x+Random.Range(-1,1), _player.transform.position.y+Random.Range(-1,1), 0);
 			_camPos = new Vector3 (Mathf.Clamp(_playerPos.x, minX, maxX), Mathf.Clamp(_playerPos.y, minY, maxY), -15);

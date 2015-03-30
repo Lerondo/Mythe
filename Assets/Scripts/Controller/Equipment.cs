@@ -89,7 +89,7 @@ public class Equipment : MonoBehaviour {
 			equipedItems.Add(_boots);
 			equipedItems.Add(_shoulders);
 		} else {
-			_sword = new WoodenSword();
+			_sword = new WoodenStaff();
 			EquipItem(_sword);
 			//making fake items! (gets replaced by real items later on)
 			_offHand.itemSort = Item.ItemSort.OffHand;
@@ -116,6 +116,15 @@ public class Equipment : MonoBehaviour {
 		}
 		return damage;
 	}
+	public int GetMagicDamage()
+	{
+		int damage = 0;
+		foreach(Item item in equipedItems)
+		{
+			damage += item.itemMagicDamage;
+		}
+		return damage;
+	}
 	public int GetDefence()
 	{
 		int defence = 0;
@@ -125,6 +134,7 @@ public class Equipment : MonoBehaviour {
 		}
 		return defence;
 	}
+
 	public List<Item> GetEquipedItem()
 	{
 		return equipedItems;

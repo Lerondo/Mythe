@@ -109,11 +109,29 @@ public class PlayerController : Unit {
 		if(_playerAnimator.GetBool("HasBow"))
 		{
 			ShootArrow();
-		} else {
+		}else if(_playerAnimator.GetBool("HasStaff"))
+		{
+			ShootBolt();
+		}
+		else {
 			_swordTrail.enabled = true;
 		}
 
 		return base.Attack();
+	}
+	private void ShootBolt()
+	{
+		//Audio
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("MagicSpell");
+		_audioSource.Play();
+		
+		_currentAttackDmg = _equipment.GetMagicDamage();
+		Debug.Log(_currentAttackDmg);
+		GameObject newBolt = _objectPool.GetObjectForType("ArcaneBolt", false) as GameObject;
+		newBolt.GetComponent<Projectile>().tagToHit = Tags.Enemy;
+		newBolt.GetComponent<Projectile>().SetDamage(_currentAttackDmg);
+		newBolt.transform.position = spawnPoint.position;
+		newBolt.transform.rotation = spawnPoint.rotation;
 	}
 	private void ShootArrow()
 	{

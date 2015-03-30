@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void Move(Vector3 movement, bool isGoingRight)
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("Run_Sound");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("RunSound");
 		_audioSource.Play();
 
 		if(!_isClimbing && _canMove)
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour {
 	public void StoppedMoving()
 	{
 		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("walkSound");
+		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("RunSound");
 		_audioSource.Stop ();
 
 		_speed = 5f;
@@ -114,12 +114,13 @@ public class PlayerMovement : MonoBehaviour {
 	/// <param name="climbMovement">Climb movement.</param>
 	public void Jump()
 	{
-		//Audio
-		_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("JumpSound");
-		_audioSource.Play ();
-
 		if(_isGrounded)
 		{
+			//audio
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("PreJump");
+			_audioSource.Play ();
+
+			//jump
 			_justJumped = true;
 			_playerAnimator.StopPlayback();
 			_playerAnimator.SetTrigger("Jump");
