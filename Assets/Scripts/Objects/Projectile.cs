@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArrowBehavior : MonoBehaviour {
+public class Projectile : MonoBehaviour {
 	protected float _speed = 25f;
 	protected int _damage;
 	protected string _tagToHit;

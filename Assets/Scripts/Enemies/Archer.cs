@@ -23,7 +23,7 @@ public class Archer : Enemy {
 		GameObject newArrow = _objectPool.GetObjectForType("Arrow", false);
 		newArrow.transform.position = spawnPoint.position;
 		newArrow.transform.rotation = spawnPoint.rotation;
-		ArrowBehavior arrowScript = newArrow.GetComponent<ArrowBehavior>();
+		Projectile arrowScript = newArrow.GetComponent<Projectile>();
 		arrowScript.SetDamage(_currentAttackDmg);
 	}
 }

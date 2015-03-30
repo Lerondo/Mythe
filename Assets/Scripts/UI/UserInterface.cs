@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class UserInterface : MonoBehaviour {
 	public const string HEALTHBAR = "healthbar";
-	public const string STAMINABAR = "staminabar";
+	public const string MANABAR = "manabar";
 	public const string EXPERIENCEBAR = "xpbar";
 
 	//Ingame bars
 	[SerializeField]private Slider _healthBar;
-	[SerializeField]private Slider _staminaBar;
+	[SerializeField]private Slider _manaBar;
 	[SerializeField]private Slider _experienceBar;
 
 	private Dictionary<string, Slider> _allBars = new Dictionary<string, Slider>();
@@ -18,9 +18,8 @@ public class UserInterface : MonoBehaviour {
 	void Start()
 	{
 		_allBars.Add(HEALTHBAR, _healthBar);
-		_allBars.Add(STAMINABAR, _staminaBar);
+		_allBars.Add(MANABAR, _manaBar);
 		_allBars.Add(EXPERIENCEBAR, _experienceBar);
-		_allBars [HEALTHBAR].value -= 10;
 	}
 	/// <summary>
 	/// Updates a userinterface slider.

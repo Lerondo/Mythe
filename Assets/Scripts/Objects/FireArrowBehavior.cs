@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireArrowBehavior : ArrowBehavior {
+public class FireArrowBehavior : Projectile {
 	public override void OnTriggerEnter (Collider other)
 	{
 		if(other.transform.tag == _tagToHit || !other.isTrigger)

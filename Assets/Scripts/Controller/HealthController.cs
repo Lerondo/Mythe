@@ -8,6 +8,9 @@ public class HealthController : MonoBehaviour {
 	private Unit _currentUnit;
 	private int _health = 100;
 	private int _maxHealth = 100;
+
+	private int _mana = 100;
+	private int _maxMana = 100;
 	void Awake()
 	{
 		if(GetComponent<PlayerController>())
@@ -28,7 +31,7 @@ public class HealthController : MonoBehaviour {
 	public void ResetHealth()
 	{
 		_health = _maxHealth;
-		UpdateInterface();
+		UpdateInterfaceHealth();
 	}
 	public int health
 	{
@@ -41,9 +44,26 @@ public class HealthController : MonoBehaviour {
 			{
 				_health = _maxHealth;
 			}
-			UpdateInterface();
+			UpdateInterfaceHealth();
 		}
 	}
+
+	public int mana
+	{
+		get {
+			return _mana;
+			}
+			set 
+		{
+			_mana = value;
+			if (_mana > _maxMana) 
+			{
+				_mana = _maxMana;
+			}
+			UpdateUserInterfaceMana();
+			}
+	}
+
 	public void UpdateMaxHealth(int health)
 	{
 		_maxHealth += health;
@@ -59,7 +79,7 @@ public class HealthController : MonoBehaviour {
 			dmg = 0;
 		}
 		_health -= dmg;
-		UpdateInterface();
+		UpdateInterfaceHealth();
 		if(_health <= 0)
 		{
 			_currentUnit.SetDeath(true);
@@ -72,12 +92,20 @@ public class HealthController : MonoBehaviour {
 		_health += health;
 		UpdateInterface();
 	}  */
-	private void UpdateInterface()
+	private void UpdateInterfaceHealth()
 	{
 		if(_userInterface != null)
 		{
 			_userInterface.UpdateBar(UserInterface.HEALTHBAR, _health);
 		}
+	}
+
+	private void UpdateUserInterfaceMana()
+	{
+			if (_userInterface != null) 
+			{
+			_userInterface.UpdateBar(UserInterface.MANABAR, _mana);
+			}
 	}
 	private void Die()
 	{
