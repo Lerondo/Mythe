@@ -70,6 +70,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 		saveData.defence = _playerStats.basicDefence;
 		saveData.timePlayed = _playerStats.timePlayed;
 		saveData.isRanked = _playerStats.isRanked;
+		saveData.playableLevels = _playerStats.playableLevels;
 
 		//Player Position
 		saveData.playerX = _player.transform.position.x;
@@ -142,6 +143,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.gold = saveData.gold;
 			_healthController.health = saveData.health;
 			_playerStats.level = saveData.level;
+			_playerStats.playableLevels = saveData.playableLevels;
 			_player.transform.position = new Vector3(saveData.playerX,saveData.playerY,saveData.playerZ);
 			_playerStats.username = saveData.username;
 			_playerStats.timePlayed = saveData.timePlayed;
@@ -181,6 +183,7 @@ public class SaveLoadDataSerialized : MonoBehaviour {
 			_playerStats.basicDamage = saveData.damage;
 			_playerStats.basicDefence = saveData.defence;
 			_playerStats.experience = saveData.exp;
+			_playerStats.playableLevels = saveData.playableLevels;
 			_playerStats.maxExperience = saveData.maxExp;
 			_playerStats.gold = saveData.gold;
 			_healthController.health = saveData.health;
@@ -212,6 +215,7 @@ public class SaveData
 	public float playerZ;
 	public float timePlayed;
 	public bool isRanked;
+	public int playableLevels;
 	public List<Item> equipedItems = new List<Item>();
 	public List<Item> inventoryItems = new List<Item>();
 	//TODO: time
