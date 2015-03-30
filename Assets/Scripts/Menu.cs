@@ -91,7 +91,7 @@ public class Menu : MonoBehaviour
 	{
 		string username = GameObject.Find("Username").GetComponent<Text>().text;
 		_saveLoadData.SetUsername(username);
-		Application.LoadLevel(1);
+		Application.LoadLevel(5); //level 5 is the hub
 	}
 	public void DeleteCharacter(int charId)
 	{
