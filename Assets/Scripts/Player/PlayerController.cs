@@ -83,7 +83,7 @@ public class PlayerController : Unit {
 		else {
 			_playerAnimator.SetTrigger("Attack");
 			//Audio
-			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("stabHit");
+			_audioSource.clip = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<AudioList>().PlayAudio("HitSound");
 			_audioSource.Play();
 
 			if(_playerAnimator.GetBool("HasBow"))
